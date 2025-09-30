@@ -1,0 +1,19 @@
+import 'package:flutter/material.dart';
+import '../screens/splash_screen.dart';
+import '../screens/get_started_screen.dart';
+import '../screens/sign_up_screen.dart';
+
+
+class AppRoutes {
+  static const String splash = '/';
+  static const String getStarted = '/get-started';
+  static const String signin = '/signin';
+  static const String signup = '/signup';
+
+  static Map<String, WidgetBuilder> routes = {
+    splash: (context) => const SplashScreen(),
+    getStarted: (context) => const GetStartedScreen(),
+    // signin: (context) => const SignInScreen(),
+    signup: (context) => const SignUpScreen(),
+  };
+}
