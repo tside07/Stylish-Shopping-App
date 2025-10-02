@@ -8,13 +8,13 @@ class SocialLoginButton extends StatelessWidget {
   final bool isGoogle;
 
   const SocialLoginButton({
-    Key? key,
+    super.key,
     this.icon,
     required this.text,
     required this.color,
     required this.onTap,
     this.isGoogle = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

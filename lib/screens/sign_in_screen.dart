@@ -1,19 +1,19 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignUpScreen> createState() => _SignUpScreenState();
+  State<SignInScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _SignUpScreenState extends State<SignInScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _emailController = TextEditingController();
   bool _rememberMe = false;
   bool _isUsernameValid = false;
-  bool _isEmailValid = false;
 
   @override
   void initState() {
@@ -21,11 +21,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _usernameController.addListener(() {
       setState(() {
         _isUsernameValid = _usernameController.text.isNotEmpty;
-      });
-    });
-    _emailController.addListener(() {
-      setState(() {
-        _isEmailValid = _emailController.text.contains('@');
       });
     });
   }
@@ -55,15 +50,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   // Title
                   const Center(
                     child: Text(
-                      'Sign Up',
+                      'Welcome',
                       style: TextStyle(
                         fontFamily: 'Inter',
-                        fontSize: 28, 
-                        fontWeight: FontWeight.w600),
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
 
-                  const SizedBox(height: 50),
+                  Center(
+                    child: const Text(
+                        'Please enter your data to continue',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 15,
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w400,
+                        )),
+                  ),
+
+                  const SizedBox(height: 100),
 
                   // Username
                   const Text(
@@ -113,31 +120,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 35),
+                  const SizedBox(height: 30),
 
-                  // Email
-                  const Text(
-                    'Email Address',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
-                  TextField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      hintText: 'Enter the email address',
-                      hintStyle: const TextStyle(color: Colors.black87),
-                      suffixIcon: _isEmailValid
-                          ? const Icon(
-                              Icons.check,
-                              color: Colors.green,
-                              size: 20,
-                            )
-                          : null,
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 0.5),
-                      ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green, width: 1),
+
+                  //Forgot Password
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/forget-password');
+                      },
+                      child: const Text(
+                        'Forgot Password?',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 15,
+                          color: Colors.red,
+                        ),
                       ),
                     ),
                   ),
@@ -150,7 +149,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       const Text(
                         'Remember me',
-                        style: TextStyle(fontFamily: 'Inter',fontSize: 14, color: Colors.black),
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontSize: 14,
+                          color: Colors.black,
+                        ),
                       ),
                       Switch(
                         value: _rememberMe,
@@ -203,7 +206,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void dispose() {
     _usernameController.dispose();
     _passwordController.dispose();
-    _emailController.dispose();
     super.dispose();
   }
 }
