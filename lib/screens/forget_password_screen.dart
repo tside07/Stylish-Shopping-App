@@ -58,7 +58,7 @@ class _ForgotPasswordScreenState extends State<ForgetPasswordScreen> {
                   // Image
                   Image.asset(
                     'assets/images/logo_lockedcloud.png',
-                    width: 255,
+                    width: 225,
                     height: 166,
                     fit: BoxFit.contain,
                   ),
@@ -122,16 +122,17 @@ class _ForgotPasswordScreenState extends State<ForgetPasswordScreen> {
           const SizedBox(height: 20),
 
           // Confirm Mail Button - Fixed at bottom
-          Container(
+          SizedBox(
             width: double.infinity,
-            height: 55,
-            margin: const EdgeInsets.only(bottom: 30, left: 16, right: 16),
+            height: 75,
             child: ElevatedButton(
               onPressed: () {
-                // Frontend only
+                if (_isEmailValid) {
+                  Navigator.pushNamed(context, '/verification-code');
+                }
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF8B5CF6),
+                backgroundColor: const Color.fromRGBO(151, 117, 250, 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

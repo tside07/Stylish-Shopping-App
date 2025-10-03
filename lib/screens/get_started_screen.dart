@@ -119,7 +119,7 @@ class GetStartedScreen extends StatelessWidget {
                 Navigator.pushNamed(context, AppRoutes.signup);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
+                backgroundColor: const Color.fromRGBO(151, 117, 250, 1),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                 ),
