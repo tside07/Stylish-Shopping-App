@@ -1,15 +1,13 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignUpScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignUpScreenState extends State<SignInScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _rememberMe = false;
@@ -59,29 +57,34 @@ class _SignUpScreenState extends State<SignInScreen> {
                     ),
                   ),
 
-                  Center(
-                    child: const Text(
-                        'Please enter your data to continue',
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 15,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.w400,
-                        )),
+                  const Center(
+                    child: Text(
+                      'Please enter your data to continue',
+                      style: TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 15,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                   ),
 
                   const SizedBox(height: 100),
 
                   // Username
-                  const Text(
-                    'Username',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
                   TextField(
                     controller: _usernameController,
                     decoration: InputDecoration(
-                      hintText: 'Enter your username',
-                      hintStyle: const TextStyle(color: Colors.black87),
+                      labelText: 'Username',
+                      labelStyle: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontSize: 13),
+                      hintText: 'Enter the username',
+                      hintStyle: const TextStyle(
+                        fontFamily: 'Inter',
+                        color: Colors.black87,
+                        fontSize: 15,
+                      ),
                       suffixIcon: _isUsernameValid
                           ? const Icon(
                               Icons.check,
@@ -93,7 +96,7 @@ class _SignUpScreenState extends State<SignInScreen> {
                         borderSide: BorderSide(color: Colors.grey, width: 0.5),
                       ),
                       focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green, width: 1),
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
                       ),
                     ),
                   ),
@@ -101,29 +104,30 @@ class _SignUpScreenState extends State<SignInScreen> {
                   const SizedBox(height: 35),
 
                   // Password
-                  const Text(
-                    'Password',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
                   TextField(
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your password',
-                      hintStyle: TextStyle(color: Colors.black87),
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      labelStyle: const TextStyle(fontFamily: 'Inter', fontSize: 13),
+                      hintText: 'Enter the password',
+                      hintStyle: const TextStyle(
+                        fontFamily: 'Inter',
+                        color: Colors.black87,
+                        fontSize: 15,
+                      ),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey, width: 0.5),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green, width: 1),
+                        borderSide: BorderSide(color: Colors.grey, width: 1),
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 15),
 
-
-                  //Forgot Password
+                  // Forgot Password
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
@@ -131,17 +135,13 @@ class _SignUpScreenState extends State<SignInScreen> {
                         Navigator.pushNamed(context, '/forget-password');
                       },
                       child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 15,
-                          color: Colors.red,
-                        ),
+                        'Forgot password?',
+                        style: TextStyle(fontFamily: 'Inter',fontSize: 15, color: Colors.red),
                       ),
                     ),
                   ),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 10),
 
                   // Remember me
                   Row(
@@ -149,11 +149,7 @@ class _SignUpScreenState extends State<SignInScreen> {
                     children: [
                       const Text(
                         'Remember me',
-                        style: TextStyle(
-                          fontFamily: 'Inter',
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
+                        style: TextStyle(fontFamily: 'Manrope',fontSize: 13, color: Colors.black),
                       ),
                       Switch(
                         value: _rememberMe,
@@ -173,10 +169,41 @@ class _SignUpScreenState extends State<SignInScreen> {
             ),
           ),
 
-          // Sign Up Button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: RichText(
+              textAlign: TextAlign.center,
+              text: const TextSpan(
+                style: TextStyle(
+                  fontFamily: 'Inter',
+                  fontSize: 13,
+                  color: Colors.grey,
+                  fontWeight: FontWeight.w400,
+                ),
+                children: [
+                  TextSpan(
+                    text:
+                        'By connecting your account confirm that you agree\nwith our ',
+                  ),
+                  TextSpan(
+                    text: 'Term and Condition',
+                    style: TextStyle(
+                      fontFamily: 'Inter',
+                      fontSize: 13,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
           SizedBox(
             width: double.infinity,
-            height: 55,
+            height: 75,
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -187,9 +214,8 @@ class _SignUpScreenState extends State<SignInScreen> {
                 elevation: 0,
               ),
               child: const Text(
-                'Sign Up',
+                'Login',
                 style: TextStyle(
-                  fontFamily: 'Inter',
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

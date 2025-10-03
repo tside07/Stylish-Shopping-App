@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
               const Spacer(flex: 2),
 
               Image.asset(
-                'assets/images/logo.png',
+                'assets/images/logo_dress.png',
                 width: 222,
                 height: 222,
                 fit: BoxFit.cover,

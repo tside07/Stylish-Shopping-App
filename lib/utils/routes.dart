@@ -5,7 +5,6 @@ import '../screens/sign_up_screen.dart';
 import '../screens/sign_in_screen.dart';
 import '../screens/forget_password_screen.dart';
 
-
 class AppRoutes {
   static const String splash = '/';
   static const String getStarted = '/get-started';

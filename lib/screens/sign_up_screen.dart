@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({super.key});
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -50,8 +50,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 10),
-
                   // Title
                   const Center(
                     child: Text(
@@ -63,18 +61,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 100),
 
                   // Username
-                  const Text(
-                    'Username',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
                   TextField(
                     controller: _usernameController,
                     decoration: InputDecoration(
+                      labelText: 'Username',
+                      labelStyle: const TextStyle(fontFamily: 'Inter', fontSize: 13),
                       hintText: 'Enter your username',
-                      hintStyle: const TextStyle(color: Colors.black87),
+                      hintStyle: const TextStyle(fontFamily: 'Inter', color: Colors.black87, fontSize: 15),
                       suffixIcon: _isUsernameValid
                           ? const Icon(
                               Icons.check,
@@ -94,16 +90,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 35),
 
                   // Password
-                  const Text(
-                    'Password',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
                   TextField(
                     controller: _passwordController,
                     obscureText: true,
                     decoration: const InputDecoration(
+                      labelText: 'Password',
+                      labelStyle: TextStyle(fontFamily: 'Inter', fontSize: 13),
                       hintText: 'Enter your password',
-                      hintStyle: TextStyle(color: Colors.black87),
+                      hintStyle: TextStyle(
+                        fontFamily: 'Inter',
+                        color: Colors.black87,
+                        fontSize: 15,
+                        ),
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey, width: 0.5),
                       ),
@@ -116,16 +114,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   const SizedBox(height: 35),
 
                   // Email
-                  const Text(
-                    'Email Address',
-                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                  ),
                   TextField(
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
+                      labelText: 'Email Address',
+                      labelStyle: const TextStyle(fontFamily: 'Inter', fontSize: 13),
                       hintText: 'Enter the email address',
-                      hintStyle: const TextStyle(color: Colors.black87),
+                      hintStyle: const TextStyle(fontFamily: 'Inter', color: Colors.black87, fontSize: 15),
                       suffixIcon: _isEmailValid
                           ? const Icon(
                               Icons.check,
@@ -150,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       const Text(
                         'Remember me',
-                        style: TextStyle(fontFamily: 'Inter',fontSize: 14, color: Colors.black),
+                        style: TextStyle(fontFamily: 'Manrope',fontSize: 14, color: Colors.black),
                       ),
                       Switch(
                         value: _rememberMe,
@@ -173,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           // Sign Up Button
           SizedBox(
             width: double.infinity,
-            height: 55,
+            height: 75,
             child: ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(

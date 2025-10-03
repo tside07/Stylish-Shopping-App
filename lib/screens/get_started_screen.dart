@@ -4,7 +4,7 @@ import '../utils/routes.dart';
 import '../widgets/social_login_button.dart';
 
 class GetStartedScreen extends StatelessWidget {
-  const GetStartedScreen({Key? key}) : super(key: key);
+  const GetStartedScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,6 @@ class GetStartedScreen extends StatelessWidget {
                     color: AppColors.facebook,
                     onTap: () {
                       // Handle Facebook login
-                      print('Facebook login tapped');
                     },
                   ),
 
@@ -60,7 +59,6 @@ class GetStartedScreen extends StatelessWidget {
                     color: AppColors.twitter,
                     onTap: () {
                       // Handle Twitter login
-                      print('Twitter login tapped');
                     },
                   ),
 
@@ -73,7 +71,6 @@ class GetStartedScreen extends StatelessWidget {
                     isGoogle: true,
                     onTap: () {
                       // Handle Google login
-                      print('Google login tapped');
                     },
                   ),
 

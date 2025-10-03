@@ -92,6 +92,10 @@ flutter:
         - asset: fonts/Inter_28pt-SemiBold.ttf
           weight: 700
 
+    - family: Manrope
+      fonts:
+        - asset: fonts/Manrope-Regular.ttf
+          weight: 500
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

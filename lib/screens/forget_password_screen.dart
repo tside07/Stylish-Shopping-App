@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({Key? key}) : super(key: key);
+  const ForgetPasswordScreen({super.key});
 
   @override
-  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+  State<ForgetPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+class _ForgotPasswordScreenState extends State<ForgetPasswordScreen> {
   final _emailController = TextEditingController();
   bool _isEmailValid = false;
 
@@ -39,7 +39,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 10),
 
@@ -48,50 +47,114 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     child: Text(
                       'Forgot Password',
                       style: TextStyle(
-                        fontFamily: 'Inter',
                         fontSize: 28,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
 
-                  // Instruction Text
-                  const Text(
-                    'Enter your email address below to receive password reset instructions.',
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                    textAlign: TextAlign.center,
+                  const SizedBox(height: 50),
+
+                  // Image
+                  Image.asset(
+                    'assets/images/logo_lockedcloud.png',
+                    width: 255,
+                    height: 166,
+                    fit: BoxFit.contain,
                   ),
-                  const SizedBox(height: 30),
+
+                  const SizedBox(height: 50),
 
                   // Email Input Field
-                  TextField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      labelText: 'Email Address',
-                      labelStyle: const TextStyle(fontFamily: 'Inter'),
-                      suffixIcon: _isEmailValid
-                          ? const Icon(Icons.check_circle, color: Colors.green)
-                          : null,
-                      enabledBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey, width: 0.5),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Email Address',
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green, width: 1),
+                      TextField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          hintText: '@example.com',
+                          hintStyle: const TextStyle(color: Colors.black87),
+                          suffixIcon: _isEmailValid
+                              ? const Icon(
+                                  Icons.check,
+                                  color: Colors.green,
+                                  size: 20,
+                                )
+                              : null,
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 0.5,
+                            ),
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.grey,
+                              width: 1,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
+
+                  const SizedBox(height: 20),
                 ],
+              ),
+            ),
+          ),
+
+          // Description Text - Near button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: const Text(
+              'Please write your email to receive a\nconfirmation code to set a new password.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 13, color: Colors.grey),
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          // Confirm Mail Button - Fixed at bottom
+          Container(
+            width: double.infinity,
+            height: 55,
+            margin: const EdgeInsets.only(bottom: 30, left: 16, right: 16),
+            child: ElevatedButton(
+              onPressed: () {
+                // Frontend only
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF8B5CF6),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                elevation: 0,
+              ),
+              child: const Text(
+                'Confirm Mail',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
   }
 }
