@@ -14,7 +14,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Stylish Shopping App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.purple, fontFamily: 'FiraSans'),
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        fontFamily: 'FiraSans',
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: const TextStyle(
+            fontFamily: 'Inter',
+            color: Colors.black87,
+            fontSize: 15,
+          ),
+        ),
+      ),
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.routes,
     );

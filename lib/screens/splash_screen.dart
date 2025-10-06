@@ -40,7 +40,6 @@ class SplashScreen extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: 'Sacramento',
                   fontSize: 40,
-                  
                   color: Colors.white,
                   fontWeight: FontWeight.w400,
                 ),
@@ -51,7 +50,7 @@ class SplashScreen extends StatelessWidget {
               // Arrow button to next screen
               IconButton(
                 onPressed: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute<void>(
                       builder: (context) => const GetStartedScreen(),

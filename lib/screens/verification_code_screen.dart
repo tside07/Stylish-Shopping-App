@@ -3,7 +3,7 @@ import 'package:pinput/pinput.dart';
 import 'dart:async';
 
 class VerificationCodeScreen extends StatefulWidget {
-  const VerificationCodeScreen({Key? key}) : super(key: key);
+  const VerificationCodeScreen({super.key});
 
   @override
   State<VerificationCodeScreen> createState() => _VerificationCodeScreenState();
@@ -161,7 +161,11 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
             width: double.infinity,
             height: 75,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  Navigator.pushNamed(context, '/create-new-password');
+                } 
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF8B5CF6),
                 shape: RoundedRectangleBorder(
