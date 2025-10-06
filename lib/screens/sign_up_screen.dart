@@ -150,8 +150,7 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Username',
               labelStyle: AppTextStyle.s15.copyWith(),
-              floatingLabelStyle: AppTextStyle.s13
-                  .copyWith(), //TODO: Add floatingLabelStyle
+              floatingLabelStyle: AppTextStyle.s13.copyWith(), //TODO: Add floatingLabelStyle
               suffixIcon: isUsernameValid
                   ? const Icon(Icons.check, color: Colors.green, size: 20)
                   : null,
@@ -202,7 +201,7 @@ class _Body extends StatelessWidget {
               ),
               Switch(
                 value: rememberMe,
-                activeThumbColor: Colors.green,
+                activeThumbColor: Color(0xff34C759),
                 onChanged: onRememberMeChanged,
               ),
             ],

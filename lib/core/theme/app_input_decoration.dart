@@ -6,7 +6,7 @@ abstract class AppInputDecoration {
       borderSide: BorderSide(color: Colors.grey, width: 0.5),
     ),
     focusedBorder: UnderlineInputBorder(
-      borderSide: BorderSide(color: Colors.grey, width: 1),
+      borderSide: BorderSide(color: Color(0xff34C358), width: 1),
     ),
   );
 }

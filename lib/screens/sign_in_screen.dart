@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import '../utils/routes.dart';
+
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -74,9 +76,14 @@ class _SignInScreenState extends State<SignInScreen> {
                         height: 18/13,
                       ),
                       children: [
-                        const TextSpan(
+                        TextSpan(
                           text:
                               'By connecting your account confirm that you agree\nwith our ',
+                              style: AppTextStyle.s13.copyWith(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w400,
+                                height: 18/13
+                              ),
                         ),
                         TextSpan(
                           text: 'Term and Condition',
@@ -181,11 +188,7 @@ class _Body extends StatelessWidget {
               labelStyle: AppTextStyle.s15.copyWith(
                 fontWeight: FontWeight.w400,
               ),
-              hintText: 'Enter the username',
-              hintStyle: AppTextStyle.base.copyWith(
-                color: Color(0xff1D1E20),
-                fontWeight: FontWeight.w500,
-              ),
+              floatingLabelStyle: AppTextStyle.s13.copyWith(),
               suffixIcon: isUsernameValid
                   ? const Icon(Icons.check, color: Color(0xff34C358), size: 20)
                   : null,
@@ -203,11 +206,7 @@ class _Body extends StatelessWidget {
               labelStyle: AppTextStyle.s15.copyWith(
                 fontWeight: FontWeight.w400,
               ),
-              hintText: 'Enter the password',
-              hintStyle: AppTextStyle.base.copyWith(
-                color: Color(0xff1D1E20),
-                fontWeight: FontWeight.w500,
-              ),
+            floatingLabelStyle: AppTextStyle.s13.copyWith(),
             ),
           ),
 
@@ -215,15 +214,18 @@ class _Body extends StatelessWidget {
 
           Align(
             alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/forget-password');
-              },
-              child: Text(
-                'Forgot password?',
-                style: AppTextStyle.base.copyWith(
-                  fontSize: 15,
-                  color: Color(0xffEA4335),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.forgetPw);
+                },
+                child: Text(
+                  'Forget password?',
+                  style: AppTextStyle.s15.copyWith(
+                    color: Color(0xffEA4335),
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
             ),
