@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../utils/routes.dart';
-
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -41,89 +41,77 @@ class _SignInScreenState extends State<SignInScreen> {
       child: SafeArea(
         top: false,
         child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
             backgroundColor: Colors.white,
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              elevation: 0,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
-                onPressed: () => Navigator.pop(context),
-              ),
-            ),
-            body: Column(
-              children: [
-                Expanded(
-                  child: _Body(
-                    usernameController: _usernameController,
-                    passwordController: _passwordController,
-                    isUsernameValid: _isUsernameValid,
-                    rememberMe: _rememberMe,
-                    onRememberMeChanged: (value) =>
-                        setState(() => _rememberMe = value),
-                  ),
-                ),
-        
-                const SizedBox(height: 107),
-        
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                      style: AppTextStyle.s13.copyWith(
-                        color: Colors.grey,
-                        fontWeight: FontWeight.w400,
-                        height: 18/13,
-                      ),
-                      children: [
-                        TextSpan(
-                          text:
-                              'By connecting your account confirm that you agree\nwith our ',
-                              style: AppTextStyle.s13.copyWith(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w400,
-                                height: 18/13
-                              ),
-                        ),
-                        TextSpan(
-                          text: 'Term and Condition',
-                          style: AppTextStyle.s13.copyWith(
-                            color: Color(0xff1D1E20),
-                            fontWeight: FontWeight.w500,
-                            height: 18/13,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-        
-                const SizedBox(height: 25),
-        
-                SizedBox(
-                  width: double.infinity,
-                  height: 75,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xff9775FA),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      'Login',
-                      style: AppTextStyle.s17.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            elevation: 0,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+              onPressed: () => Navigator.pop(context),
             ),
           ),
+          body: Column(
+            children: [
+              Expanded(
+                child: _Body(
+                  usernameController: _usernameController,
+                  passwordController: _passwordController,
+                  isUsernameValid: _isUsernameValid,
+                  rememberMe: _rememberMe,
+                  onRememberMeChanged: (value) =>
+                      setState(() => _rememberMe = value),
+                ),
+              ),
+
+              const SizedBox(height: 107),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: AppTextStyle.s13.copyWith(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w400,
+                      height: 18 / 13,
+                    ),
+                    children: [
+                      TextSpan(
+                        text:
+                            'By connecting your account confirm that you agree\nwith our ',
+                        style: AppTextStyle.s13.copyWith(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.w400,
+                          height: 18 / 13,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'Term and Condition',
+                        style: AppTextStyle.s13.copyWith(
+                          color: Color(0xff1D1E20),
+                          fontWeight: FontWeight.w500,
+                          height: 18 / 13,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 25),
+
+              SizedBox(
+                child: PrimaryButton(
+                  text: 'Login',
+                  color: Color(0xff9775FA),
+                  onClick: () {
+                    Navigator.pushNamed(context, AppRoutes.selectGender);
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -137,7 +125,6 @@ class _Body extends StatelessWidget {
   final ValueChanged<bool> onRememberMeChanged;
 
   const _Body({
-    super.key,
     required this.usernameController,
     required this.passwordController,
     required this.isUsernameValid,
@@ -148,7 +135,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -158,7 +145,6 @@ class _Body extends StatelessWidget {
             child: Text(
               'Welcome',
               style: AppTextStyle.base.copyWith(
-                fontFamily: 'Inter',
                 fontSize: 28,
                 color: const Color(0xff1D1E20),
                 fontWeight: FontWeight.w600,
@@ -206,7 +192,7 @@ class _Body extends StatelessWidget {
               labelStyle: AppTextStyle.s15.copyWith(
                 fontWeight: FontWeight.w400,
               ),
-            floatingLabelStyle: AppTextStyle.s13.copyWith(),
+              floatingLabelStyle: AppTextStyle.s13.copyWith(),
             ),
           ),
 

@@ -6,6 +6,7 @@ import '../screens/sign_in_screen.dart';
 import '../screens/forget_password_screen.dart';
 import '../screens/verification_code_screen.dart';
 import '../screens/create_new_password_screen.dart';
+import '../screens/gender_selection_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -15,6 +16,7 @@ class AppRoutes {
   static const String forgetPw = '/forget-password';
   static const String verificationCode = '/verification-code';
   static const String createNewPw = '/create-new-password';
+  static const String selectGender = '/select-gender';
 
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => const SplashScreen(),
@@ -24,6 +26,7 @@ class AppRoutes {
     forgetPw: (context) => const ForgetPasswordScreen(),
     verificationCode: (context) => const VerificationCodeScreen(),
     createNewPw: (context) => const CreateNewPasswordScreen(),
+    selectGender: (context) => const GenderSelectionScreen(),
   };
 }
 

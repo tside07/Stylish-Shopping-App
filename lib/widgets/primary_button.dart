@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-class SocialLoginButton extends StatelessWidget {
+class PrimaryButton extends StatelessWidget {
   final String text;
   final Color color;
-  final VoidCallback onTap;
-  final Widget icon;
+  final VoidCallback onClick;
 
-  const SocialLoginButton({
+  const PrimaryButton({
     super.key,
-    required this.icon,
     required this.text,
     required this.color,
-    required this.onTap,
+    required this.onClick,
   });
 
   @override
@@ -19,26 +17,24 @@ class SocialLoginButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: onTap,
+        onPressed: onClick,
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
           elevation: 0,
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 14),
+          padding: const EdgeInsets.symmetric(vertical: 28),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              icon,
-              const SizedBox(width: 10),
               Text(
                 text,
                 style: const TextStyle(
-                  fontFamily: 'SFPro',
-                  color: Color(0xffFFFFFF),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Inter',
+                  color: Color(0xffFEFEFE),
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],

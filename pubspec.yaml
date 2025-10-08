@@ -100,6 +100,11 @@ flutter:
       fonts:
         - asset: fonts/Manrope-Regular.ttf
           weight: 500
+
+    - family: SFPro
+      fonts:
+        - asset: fonts/SF-Pro-Display-Regular.otf
+          weight: 600
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

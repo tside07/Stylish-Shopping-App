@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'dart:async';
+import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/widgets/primary_button.dart';
+import '../utils/routes.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key});
@@ -12,6 +15,23 @@ class VerificationCodeScreen extends StatefulWidget {
 class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   late Timer timer;
   Duration duration = const Duration(seconds: 20);
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final String validPin = "1234";
+
+  final defaultPinTheme = PinTheme(
+    width: 77,
+    height: 98,
+    textStyle: const TextStyle(
+      fontFamily: 'Inter',
+      fontSize: 20,
+      color: Color.fromRGBO(29, 30, 32, 1),
+      fontWeight: FontWeight.w600,
+    ),
+    decoration: BoxDecoration(
+      border: Border.all(color: Color(0xffE7E8EA)),
+      borderRadius: BorderRadius.circular(10),
+    ),
+  );
 
   @override
   void initState() {
@@ -37,151 +57,140 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
     return time < 10 ? '0$time' : '$time';
   }
 
-  final defaultPinTheme = PinTheme(
-    width: 77,
-    height: 98,
-    textStyle: const TextStyle(
-      fontFamily: 'Inter',
-      fontSize: 20,
-      color: Color.fromRGBO(29, 30, 32, 1),
-      fontWeight: FontWeight.w600,
-    ),
-    decoration: BoxDecoration(
-      border: Border.all(color: Color.fromRGBO(231, 232, 234, 1)),
-      borderRadius: BorderRadius.circular(10),
-    ),
-  );
-
-  GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  String validPin = "1234";
-
   @override
   Widget build(BuildContext context) {
     final minutes = getFormattedTime(duration.inMinutes);
     final seconds = getFormattedTime(duration.inSeconds.remainder(60));
     final isTimeUp = duration.inSeconds == 0;
 
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black),
-          onPressed: () => Navigator.pop(context),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+              onPressed: () => Navigator.pop(context),
+            ),
+          ),
+          body: Column(
+            children: [
+              Expanded(
+                child: _Body(
+                  formKey: formKey,
+                  defaultPinTheme: defaultPinTheme,
+                  validPin: validPin,
+                ),
+              ),
+
+              // Resend Code
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    style: AppTextStyle.s13.copyWith(),
+                    children: [
+                      if (!isTimeUp)
+                        TextSpan(
+                          text: '$minutes:$seconds ',
+                          style: AppTextStyle.base.copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      TextSpan(
+                        text: 'resend confirmation code',
+                        style: AppTextStyle.base.copyWith(
+                          color: isTimeUp ? Colors.black : Colors.grey,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Button
+              SizedBox(
+                child: PrimaryButton(
+                  text: 'Confirm Code',
+                  color: Color(0xff9775FA),
+                  onClick: () {
+                    Navigator.pushNamed(context, AppRoutes.createNewPw);
+                  },
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-      body: Column(
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  final GlobalKey<FormState> formKey;
+  final PinTheme defaultPinTheme;
+  final String validPin;
+
+  const _Body({
+    super.key,
+    required this.formKey,
+    required this.defaultPinTheme,
+    required this.validPin,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
         children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                children: [
-                  const SizedBox(height: 10),
+          const SizedBox(height: 15),
 
-                  // Title
-                  const Center(
-                    child: Text(
-                      'Verification Code',
-                      style: TextStyle(
-                        fontFamily: 'Inter',
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 50),
-
-                  // Image
-                  Image.asset(
-                    'assets/images/logo_lockedcloud.png',
-                    width: 225,
-                    height: 166,
-                    fit: BoxFit.contain,
-                  ),
-
-                  const SizedBox(height: 50),
-
-                  // 4 Verification Code Boxes
-                  Form(
-                    key: formKey,
-                    child: Pinput(
-                      defaultPinTheme: defaultPinTheme,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter the code';
-                        } else if (value != validPin) {
-                          return 'Invalid code';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ],
+          // Title
+          Center(
+            child: Text(
+              'Verification Code',
+              style: AppTextStyle.base.copyWith(
+                fontSize: 28,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
 
-          // Resend Code 
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                style: const TextStyle(fontSize: 13),
-                children: [
-                  if (!isTimeUp)
-                    TextSpan(
-                      text: '$minutes:$seconds ',
-                      style: const TextStyle(
-                        fontFamily: 'Inter',
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  TextSpan(
-                    text: 'resend confirmation code',
-                    style: TextStyle(
-                      fontFamily: 'Inter',
-                      color: isTimeUp ? Colors.black : Colors.grey,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          const SizedBox(height: 68),
+
+          // Image
+          Image.asset(
+            'assets/images/logo_lockedcloud.png',
+            width: 225,
+            height: 166,
+            fit: BoxFit.contain,
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 60),
 
-          // Confirm Code Button
-          SizedBox(
-            width: double.infinity,
-            height: 75,
-            child: ElevatedButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  Navigator.pushNamed(context, '/create-new-password');
-                } 
+          // 4 Verification Code Boxes
+          Form(
+            key: formKey,
+            child: Pinput(
+              defaultPinTheme: defaultPinTheme,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter the code';
+                } else if (value != validPin) {
+                  return 'Invalid code';
+                }
+                return null;
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF8B5CF6),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
-                ),
-                elevation: 0,
-              ),
-              child: const Text(
-                'Confirm Code',
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
             ),
           ),
         ],

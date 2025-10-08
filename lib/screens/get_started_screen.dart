@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../utils/colors.dart';
 import '../utils/routes.dart';
 import '../widgets/social_login_button.dart';
@@ -29,27 +30,35 @@ class GetStartedScreen extends StatelessWidget {
               //TODO : Split this and name is Body for other screens
             ),
 
+            // Already have an account
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Already have an account? ',
+                  style: AppTextStyle.s15.copyWith(color: Colors.grey),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRoutes.signin);
+                  },
+                  child: Text(
+                    'Signin',
+                    style: AppTextStyle.s15.copyWith(color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 25),
+
             SizedBox(
-              width: double.infinity,
-              height: 75,
-              child: ElevatedButton(
-                onPressed: () {
+              child: PrimaryButton(
+                text: 'Create an Account',
+                color: Color(0xff9775FA),
+                onClick: () {
                   Navigator.pushNamed(context, AppRoutes.signup);
                 },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromRGBO(151, 117, 250, 1),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  elevation: 0,
-                ),
-                child: Text(
-                  'Create an Account',
-                  style: AppTextStyle.s17.copyWith(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
               ),
             ),
           ],
@@ -64,11 +73,11 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
 
           // Title
           Text(
@@ -80,88 +89,61 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 80),
+          const SizedBox(height: 185),
 
           // Facebook Button
-          SocialLoginButton(
-            icon: SvgPicture.asset(
-              'assets/icons/Facebook.svg',
-              width: 20,
-              height: 20,
+          SizedBox(
+            child: SocialLoginButton(
+              icon: SvgPicture.asset(
+                'assets/icons/Facebook.svg',
+                width: 20,
+                height: 20,
+              ),
+              text: 'Facebook',
+              color: AppColors.facebook,
+              onTap: () {
+                // Handle Facebook login
+              },
             ),
-            text: 'Facebook',
-            color: AppColors.facebook,
-            onTap: () {
-              // Handle Facebook login
-            },
           ),
 
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
 
           // Twitter Button
-          SocialLoginButton(
-            icon: SvgPicture.asset(
-              'assets/icons/Twitter.svg',
-              width: 20,
-              height: 20,
+          SizedBox(
+            child: SocialLoginButton(
+              icon: SvgPicture.asset(
+                'assets/icons/Twitter.svg',
+                width: 20,
+                height: 20,
+              ),
+              text: 'Twitter',
+              color: AppColors.twitter,
+              onTap: () {
+                // Handle Twitter login
+              },
             ),
-            text: 'Twitter',
-            color: AppColors.twitter,
-            onTap: () {
-              // Handle Twitter login
-            },
           ),
 
-          const SizedBox(height: 15),
+          const SizedBox(height: 10),
 
           // Google Button
-          SocialLoginButton(
-            icon: SvgPicture.asset(
-              'assets/icons/Google.svg',
-              width: 20,
-              height: 20,
+          SizedBox(
+            child: SocialLoginButton(
+              icon: SvgPicture.asset(
+                'assets/icons/Google.svg',
+                width: 20,
+                height: 20,
+              ),
+              text: 'Google',
+              color: AppColors.google,
+              onTap: () {
+                // Handle Google login
+              },
             ),
-            text: 'Google',
-            color: AppColors.google,
-            onTap: () {
-              // Handle Google login
-            },
           ),
-
-          const Spacer(),
-
-          // Already have an account
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Already have an account? ',
-                style: AppTextStyle.base.copyWith(
-                  color: AppColors.grey,
-                  fontSize: 14,
-                ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.signin);
-                },
-                child: Text(
-                  'Signin',
-                  style: AppTextStyle.base.copyWith(
-                    fontFamily: 'Inter',
-                    color: AppColors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-            ],
-          ),
-
-          const SizedBox(height: 20),
         ],
       ),
     );
   }
 }
-
