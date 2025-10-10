@@ -95,7 +95,7 @@ class _Body extends StatelessWidget {
           SizedBox(
             child: SocialLoginButton(
               icon: SvgPicture.asset(
-                'assets/icons/Facebook.svg',
+                'assets/icons/platforms/Facebook.svg',
                 width: 20,
                 height: 20,
               ),
@@ -113,7 +113,7 @@ class _Body extends StatelessWidget {
           SizedBox(
             child: SocialLoginButton(
               icon: SvgPicture.asset(
-                'assets/icons/Twitter.svg',
+                'assets/icons/platforms/Twitter.svg',
                 width: 20,
                 height: 20,
               ),
@@ -131,7 +131,7 @@ class _Body extends StatelessWidget {
           SizedBox(
             child: SocialLoginButton(
               icon: SvgPicture.asset(
-                'assets/icons/Google.svg',
+                'assets/icons/platforms/Google.svg',
                 width: 20,
                 height: 20,
               ),

@@ -141,7 +141,6 @@ class _Body extends StatelessWidget {
   final String validPin;
 
   const _Body({
-    super.key,
     required this.formKey,
     required this.defaultPinTheme,
     required this.validPin,

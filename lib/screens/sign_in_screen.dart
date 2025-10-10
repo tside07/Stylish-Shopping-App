@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/screens/gender_selection_screen.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../utils/routes.dart';
 
@@ -105,7 +106,13 @@ class _SignInScreenState extends State<SignInScreen> {
                   text: 'Login',
                   color: Color(0xff9775FA),
                   onClick: () {
-                    Navigator.pushNamed(context, AppRoutes.selectGender);
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GenderSelectionScreen(),
+                      ),
+                      (route) => false, // remove hết các route trước đó
+                    );
                   },
                 ),
               ),
