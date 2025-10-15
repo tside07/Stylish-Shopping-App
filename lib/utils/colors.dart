@@ -9,3 +9,14 @@ class AppColors {
   static const Color black = Colors.black;
   static const Color grey = Colors.grey;
 }
+
+class ProductColors {
+  static const List<Map<String, String>> colors = [
+    {'name': 'Blue', 'hex': '#6786FE'},
+    {'name': 'Grey', 'hex': '#D8D8D8'},
+    {'name': 'Pink', 'hex': '#952C58'},
+    {'name': 'White', 'hex': '#FFFFFF'},
+    {'name': 'Mint', 'hex': '#C2E3CF'},
+    {'name': 'Black', 'hex': '#000000'},
+  ];
+}

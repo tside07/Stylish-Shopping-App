@@ -27,7 +27,6 @@ class GetStartedScreen extends StatelessWidget {
           children: [
             Expanded(
               child: const _Body(),
-              //TODO : Split this and name is Body for other screens
             ),
 
             // Already have an account

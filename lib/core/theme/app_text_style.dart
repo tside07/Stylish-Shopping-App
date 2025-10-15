@@ -7,5 +7,7 @@ class AppTextStyle {
   static const TextStyle s17 = TextStyle(fontFamily: fontFamily, fontSize: 17, height: 19/17, fontWeight: FontWeight.w500); //button
   static const TextStyle s15 = TextStyle(fontFamily: fontFamily, fontSize: 15, height: 17/15, fontWeight: FontWeight.w500); //input
   static const TextStyle s13 = TextStyle(fontFamily: fontFamily, fontSize: 13, height: 14/13, fontWeight: FontWeight.w400); //floatLabelStyle
+  static const TextStyle s11 = TextStyle(fontFamily: fontFamily, fontSize: 11, height: 12/11, fontWeight: FontWeight.w500);
+
   
 }

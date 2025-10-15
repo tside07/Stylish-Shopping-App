@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import '../core/theme/app_text_style.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../screens/product_detail_screen.dart';
+import 'package:stylish_shopping_app/data/products_data.dart';
+import 'package:stylish_shopping_app/models/product_detail_model.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -36,60 +40,159 @@ class _MainScreenState extends State<MainScreen> {
             backgroundColor: Colors.white,
             elevation: 0,
             leading: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: IconButton(
-                onPressed: () {
-                  // Open drawer
-                },
-                icon: const Icon(Icons.menu, color: Color(0xff1D1E20)),
+              padding: const EdgeInsets.only(left: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0xffF5F6FA),
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    // Open drawer
+                  },
+                  icon: SvgPicture.asset(
+                    'assets/icons/app_icons/Menu.svg',
+                    width: 24,
+                    height: 24,
+                  ),
+                ),
               ),
             ),
             actions: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: IconButton(
-                  onPressed: () {
-                    // Navigate to cart
-                  },
-                  icon: const Icon(
-                    Icons.shopping_bag_outlined,
-                    color: Color(0xff1D1E20),
+                padding: const EdgeInsets.only(right: 20),
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0xffF5F6FA),
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      // Navigate to cart
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/app_icons/Bag.svg',
+                      width: 24,
+                      height: 24,
+                    ),
                   ),
                 ),
               ),
             ],
           ),
           body: _pages[_selectedIndex],
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: const Color(0xff9775FA),
-            unselectedItemColor: const Color(0xff8F959E),
-            selectedLabelStyle: AppTextStyle.s13,
-            unselectedLabelStyle: AppTextStyle.s13,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                activeIcon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.favorite_border),
-                activeIcon: Icon(Icons.favorite),
-                label: 'Wishlist',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag_outlined),
-                activeIcon: Icon(Icons.shopping_bag),
-                label: 'Cart',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.wallet_outlined),
-                activeIcon: Icon(Icons.wallet),
-                label: 'Wallet',
-              ),
-            ],
+          bottomNavigationBar: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0x1D1E2014),
+                  blurRadius: 20,
+                  offset: const Offset(0, -4),
+                ),
+              ],
+            ),
+            child: BottomNavigationBar(
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: const Color(0xff9775FA),
+              unselectedItemColor: const Color(0xff8F959E),
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              items: [
+                BottomNavigationBarItem(
+                  icon: _selectedIndex == 0
+                      ? Text(
+                          'Home',
+                          style: AppTextStyle.s11.copyWith(
+                            color: const Color(0xff9775FA),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                      : SvgPicture.asset(
+                          'assets/icons/app_icons/Home.svg',
+                          width: 25,
+                          height: 25,
+                          colorFilter: const ColorFilter.mode(
+                            Color(0xff8F959E),
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: _selectedIndex == 1
+                      ? Text(
+                          'Wishlist',
+                          style: AppTextStyle.s11.copyWith(
+                            color: const Color(0xff9775FA),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                      : SvgPicture.asset(
+                          'assets/icons/app_icons/Heart.svg',
+                          width: 25,
+                          height: 25,
+                          colorFilter: const ColorFilter.mode(
+                            Color(0xff8F959E),
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: _selectedIndex == 2
+                      ? Text(
+                          'Cart',
+                          style: AppTextStyle.s11.copyWith(
+                            color: const Color(0xff9775FA),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                      : SvgPicture.asset(
+                          'assets/icons/app_icons/Bag.svg',
+                          width: 25,
+                          height: 25,
+                          colorFilter: const ColorFilter.mode(
+                            Color(0xff8F959E),
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                  label: '',
+                ),
+                BottomNavigationBarItem(
+                  icon: _selectedIndex == 3
+                      ? Text(
+                          'My Cards',
+                          style: AppTextStyle.s11.copyWith(
+                            color: const Color(0xff9775FA),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )
+                      : SvgPicture.asset(
+                          'assets/icons/app_icons/Wallet.svg',
+                          width: 25,
+                          height: 25,
+                          colorFilter: const ColorFilter.mode(
+                            Color(0xff8F959E),
+                            BlendMode.srcIn,
+                          ),
+                        ),
+                  label: '',
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -97,7 +200,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-// ===== HOME PAGE =====
+// homepage
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -174,11 +277,7 @@ class HomePage extends StatelessWidget {
                   color: const Color(0xff9775FA),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Icon(
-                  Icons.mic,
-                  color: Color(0xffFEFEFE),
-                  size: 24,
-                ),
+                child: Icon(Icons.mic, color: Color(0xffFEFEFE), size: 24),
               ),
             ],
           ),
@@ -208,7 +307,7 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 15),
 
           // Brand logos
-          SingleChildScrollView( //TODO: Change logo puma and icons
+          SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
@@ -235,7 +334,7 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 25),
+          const SizedBox(height: 15),
 
           // New Arrival
           Row(
@@ -270,25 +369,10 @@ class HomePage extends StatelessWidget {
               crossAxisSpacing: 15,
               mainAxisSpacing: 15,
             ),
-            itemCount: 4,
+            itemCount: products.length,
             itemBuilder: (context, index) {
-              return _ProductItem(
-                image: 'assets/images/products/product${index + 1}.png',
-                name: index == 0
-                    ? 'Nike Sportswear Club Fleece'
-                    : index == 1
-                    ? 'Trail Running Jacket Nike Windrunner'
-                    : index == 2
-                    ? 'Training Top Nike Sport Clash'
-                    : 'Trail Running Jacket Nike Windrunner',
-                price: index == 0
-                    ? '\$99'
-                    : index == 1
-                    ? '\$99'
-                    : index == 2
-                    ? '\$100'
-                    : '\$70',
-              );
+              final product = products[index];
+              return _ProductItem(product: product);
             },
           ),
 
@@ -340,83 +424,96 @@ class _BrandItem extends StatelessWidget {
 }
 
 class _ProductItem extends StatelessWidget {
-  final String image;
-  final String name;
-  final String price;
+  final ProductDetail product;
 
-  const _ProductItem({
-    required this.image,
-    required this.name,
-    required this.price,
-  });
+  const _ProductItem({required this.product});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Container(
-                height: 203,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Color(0xffF5F6FA),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
-                ),
-                child: ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(15),
-                  ),
-                  child: Image.asset(image, fit: BoxFit.contain),
-                ),
-              ),
-              const Positioned(
-                top: 10,
-                right: 10,
-                child: Icon(
-                  Icons.favorite_border,
-                  size: 20,
-                  color: Color(0xff8F959E),
-                ),
-              ),
-            ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailScreen(product: product),
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    name,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: AppTextStyle.base.copyWith(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xff1D1E20),
-                      height: 15 / 11,
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: 203,
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Color(0xffF5F6FA),
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(15),
                     ),
                   ),
-                  Text(
-                    price,
-                    style: AppTextStyle.s13.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xff1D1E20),
+                  child: ClipRRect(
+                    borderRadius: const BorderRadius.vertical(
+                      top: Radius.circular(15),
+                    ),
+                    child: Image.asset(
+                      product.productImage,
+                      fit: BoxFit.contain,
                     ),
                   ),
-                ],
+                ),
+                Positioned(
+                  top: 10,
+                  right: 10,
+                  child: SvgPicture.asset(
+                    'assets/icons/app_icons/Heart.svg',
+                    width: 20,
+                    height: 20,
+                    colorFilter: ColorFilter.mode(
+                      Color(0xff8F959E),
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      product.productName,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: AppTextStyle.base.copyWith(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xff1D1E20),
+                        height: 15 / 11,
+                      ),
+                    ),
+                    Text(
+                      product.productPrice,
+                      style: AppTextStyle.s13.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xff1D1E20),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -456,12 +553,7 @@ class WalletPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Wallet Page',
-        style: AppTextStyle.base.copyWith(fontSize: 24),
-      ),
+      child: Text('My Cards', style: AppTextStyle.base.copyWith(fontSize: 24)),
     );
   }
 }
-
-

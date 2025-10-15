@@ -71,7 +71,7 @@ class _ForgotPasswordScreenState extends State<ForgetPasswordScreen> {
 
               const SizedBox(height: 25),
 
-              // Confirm Mail Button - Fixed at bottom
+              // confirm
               SizedBox(
                 child: PrimaryButton(
                   text: 'Confirm Mail',

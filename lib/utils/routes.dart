@@ -18,7 +18,8 @@ class AppRoutes {
   static const String verificationCode = '/verification-code';
   static const String createNewPw = '/create-new-password';
   static const String selectGender = '/select-gender';
-  static const String mainScreen = '/main-screen';
+  static const String main = '/main-screen';
+
 
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => const SplashScreen(),
@@ -29,7 +30,7 @@ class AppRoutes {
     verificationCode: (context) => const VerificationCodeScreen(),
     createNewPw: (context) => const CreateNewPasswordScreen(),
     selectGender: (context) => const GenderSelectionScreen(),
-    mainScreen: (context) => const MainScreen(),
+    main: (context) => const MainScreen(),
   };
 }
 
