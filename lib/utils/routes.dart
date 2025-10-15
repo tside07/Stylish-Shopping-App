@@ -7,7 +7,7 @@ import '../screens/forget_password_screen.dart';
 import '../screens/verification_code_screen.dart';
 import '../screens/create_new_password_screen.dart';
 import '../screens/gender_selection_screen.dart';
-import '../screens/main_screen.dart';
+import '../screens/home_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';

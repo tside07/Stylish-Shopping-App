@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stylish_shopping_app/screens/main_screen.dart';
+import 'package:stylish_shopping_app/screens/home_screen.dart';
 import '../core/theme/app_text_style.dart';
 
 class GenderSelectionScreen extends StatefulWidget {
