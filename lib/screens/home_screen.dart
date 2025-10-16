@@ -2,24 +2,25 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../screens/product_detail_screen.dart';
+import 'cart/cart_screen.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = <Widget>[
-    const HomePage(),
-    const WishlistPage(),
-    const CartPage(),
-    const WalletPage(),
+  final List<Widget> _screens = <Widget>[
+    const _HomePage(),
+    const _WishlistScreen(),
+    const CartScreen(),
+    const _MyCardScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -35,62 +36,66 @@ class _MainScreenState extends State<MainScreen> {
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0xffF5F6FA),
-                      offset: const Offset(0, 2),
+          backgroundColor: Color(0xffFEFEFE),
+          appBar: _selectedIndex == 0
+              ? AppBar(
+                  backgroundColor: Color(0xffFEFEFE),
+                  elevation: 0,
+                  leading: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0xffF5F6FA),
+                            offset: const Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: IconButton(
+                        onPressed: () {
+                          // Open drawer
+                        },
+                        icon: SvgPicture.asset(
+                          'assets/icons/app_icons/Menu.svg',
+                          width: 24,
+                          height: 24,
+                        ),
+                      ),
+                    ),
+                  ),
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xffF5F6FA),
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _selectedIndex = 2; // Navigate to Cart tab
+                            });
+                          },
+                          icon: SvgPicture.asset(
+                            'assets/icons/app_icons/Bag.svg',
+                            width: 24,
+                            height: 24,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    // Open drawer
-                  },
-                  icon: SvgPicture.asset(
-                    'assets/icons/app_icons/Menu.svg',
-                    width: 24,
-                    height: 24,
-                  ),
-                ),
-              ),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0xffF5F6FA),
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: IconButton(
-                    onPressed: () {
-                      // Navigate to cart
-                    },
-                    icon: SvgPicture.asset(
-                      'assets/icons/app_icons/Bag.svg',
-                      width: 24,
-                      height: 24,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          body: _pages[_selectedIndex],
+                )
+              : null,
+          body: _screens[_selectedIndex],
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -110,6 +115,8 @@ class _MainScreenState extends State<MainScreen> {
               unselectedItemColor: const Color(0xff8F959E),
               showSelectedLabels: false,
               showUnselectedLabels: false,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
               items: [
                 BottomNavigationBarItem(
                   icon: _selectedIndex == 0
@@ -200,9 +207,9 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-// homepage
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+// Homepage
+class _HomePage extends StatelessWidget {
+  const _HomePage();
 
   @override
   Widget build(BuildContext context) {
@@ -519,9 +526,9 @@ class _ProductItem extends StatelessWidget {
   }
 }
 
-// wishlist page
-class WishlistPage extends StatelessWidget {
-  const WishlistPage({super.key});
+// Wishlist page
+class _WishlistScreen extends StatelessWidget {
+  const _WishlistScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -534,21 +541,9 @@ class WishlistPage extends StatelessWidget {
   }
 }
 
-// cart page
-class CartPage extends StatelessWidget {
-  const CartPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('Cart Page', style: AppTextStyle.base.copyWith(fontSize: 24)),
-    );
-  }
-}
-
-// wallet page
-class WalletPage extends StatelessWidget {
-  const WalletPage({super.key});
+// Wallet page
+class _MyCardScreen extends StatelessWidget {
+  const _MyCardScreen();
 
   @override
   Widget build(BuildContext context) {

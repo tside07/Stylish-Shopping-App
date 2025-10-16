@@ -95,7 +95,7 @@ class _Body extends StatelessWidget {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const MainScreen(),
+                              builder: (context) => const HomeScreen(),
                             ),
                             (route) => false,
                           );
@@ -123,7 +123,7 @@ class _Body extends StatelessWidget {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const MainScreen(),
+                              builder: (context) => const HomeScreen(),
                             ),
                             (route) => false,
                           );
@@ -155,7 +155,7 @@ class _Body extends StatelessWidget {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const MainScreen(),
+                        builder: (context) => const HomeScreen(),
                       ),
                       (route) => false,
                     );

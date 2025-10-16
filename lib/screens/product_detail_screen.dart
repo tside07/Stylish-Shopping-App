@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stylish_shopping_app/utils/routes.dart';
 import '../core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/utils/colors.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
@@ -53,7 +54,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, AppRoutes.cart);
+                },
                 icon: SvgPicture.asset(
                   'assets/icons/app_icons/Bag.svg',
                   width: 25,
@@ -522,8 +525,7 @@ class _ProductImage extends StatelessWidget {
 class ExpandableDescription extends StatefulWidget {
   final String content;
 
-  const ExpandableDescription({Key? key, required this.content})
-    : super(key: key);
+  const ExpandableDescription({super.key, required this.content});
 
   @override
   State<ExpandableDescription> createState() => _ExpandableDescriptionState();

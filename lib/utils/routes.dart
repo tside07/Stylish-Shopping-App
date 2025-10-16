@@ -8,6 +8,7 @@ import '../screens/verification_code_screen.dart';
 import '../screens/create_new_password_screen.dart';
 import '../screens/gender_selection_screen.dart';
 import '../screens/home_screen.dart';
+import '../screens/cart/cart_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -18,7 +19,8 @@ class AppRoutes {
   static const String verificationCode = '/verification-code';
   static const String createNewPw = '/create-new-password';
   static const String selectGender = '/select-gender';
-  static const String main = '/main-screen';
+  static const String home = '/home-screen';
+  static const String cart = '/cart-screen';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -30,7 +32,9 @@ class AppRoutes {
     verificationCode: (context) => const VerificationCodeScreen(),
     createNewPw: (context) => const CreateNewPasswordScreen(),
     selectGender: (context) => const GenderSelectionScreen(),
-    main: (context) => const MainScreen(),
+    home: (context) => const HomeScreen(),
+    cart: (context) => const CartScreen(),
+  
   };
 }
 
