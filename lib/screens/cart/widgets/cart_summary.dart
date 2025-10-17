@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../core/theme/app_text_style.dart';
 import '../../../widgets/primary_button.dart';
+import 'package:stylish_shopping_app/utils/routes.dart';
 
 class CartSummary extends StatelessWidget {
   final double subtotal;
@@ -34,13 +35,14 @@ class CartSummary extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 // delivery
+                const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                    // TODO: Navigate to address selection
+                    Navigator.pushNamed(context, AppRoutes.address);
                   },
                   child: SizedBox(
                     width: double.infinity,
@@ -242,25 +244,21 @@ class _OrderInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        children: [
-          _PriceRow(
-            label: 'Subtotal',
-            value: '\$${subtotal.toStringAsFixed(0)}',
-          ),
-          const SizedBox(height: 10),
-          _PriceRow(
-            label: 'Delivery Charge',
-            value: '\$${deliveryCharge.toStringAsFixed(0)}',
-          ),
+      children: [
+        _PriceRow(label: 'Subtotal', value: '\$${subtotal.toStringAsFixed(0)}'),
+        const SizedBox(height: 10),
+        _PriceRow(
+          label: 'Delivery Charge',
+          value: '\$${deliveryCharge.toStringAsFixed(0)}',
+        ),
         const SizedBox(height: 15),
-          _PriceRow(
-            label: 'Total',
-            value: '\$${total.toStringAsFixed(0)}',
-            isTotal: true,
-          ),
-        ],
-      );
-    
+        _PriceRow(
+          label: 'Total',
+          value: '\$${total.toStringAsFixed(0)}',
+          isTotal: true,
+        ),
+      ],
+    );
   }
 }
 
