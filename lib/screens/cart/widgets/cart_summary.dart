@@ -121,7 +121,7 @@ class CartSummary extends StatelessWidget {
                 // payment
                 GestureDetector(
                   onTap: () {
-                    // TODO: Navigate to payment method selection
+                    Navigator.pushNamed(context, AppRoutes.payment);
                   },
                   child: SizedBox(
                     width: double.infinity,

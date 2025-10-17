@@ -10,6 +10,7 @@ import '../screens/gender_selection_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/cart/cart_screen.dart';
 import '../screens/delivery_address_screen.dart';
+import '../screens/payment_method_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -23,6 +24,7 @@ class AppRoutes {
   static const String home = '/home-screen';
   static const String cart = '/cart-screen';
   static const String address = '/address';
+  static const String payment = '/payment';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -36,7 +38,8 @@ class AppRoutes {
     selectGender: (context) => const GenderSelectionScreen(),
     home: (context) => const HomeScreen(),
     cart: (context) => const CartScreen(),
-    address: (context) => const DeliveryAddressScreen()
+    address: (context) => const DeliveryAddressScreen(),
+    payment: (context) => const PaymentMethodScreen(),
   };
 }
 

@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
-import '../widgets/primary_button.dart';
-import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
+import 'package:stylish_shopping_app/utils/routes.dart';
+import 'package:stylish_shopping_app/widgets/primary_button.dart';
 
-class DeliveryAddressScreen extends StatefulWidget {
-  const DeliveryAddressScreen({super.key});
+class PaymentMethodScreen extends StatefulWidget {
+  const PaymentMethodScreen({super.key});
 
   @override
-  State<DeliveryAddressScreen> createState() => _DeliveryAddressScreenState();
+  State<PaymentMethodScreen> createState() => _PaymentMethodScreenState();
 }
 
-class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
+class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
   bool _save = false;
 
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _countryController = TextEditingController();
-  final TextEditingController _cityController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _numberController = TextEditingController();
+  final TextEditingController _expController = TextEditingController();
+  final TextEditingController _cvvController = TextEditingController();
 
   @override
   void dispose() {
     _nameController.dispose();
-    _countryController.dispose();
-    _cityController.dispose();
-    _phoneController.dispose();
-    _addressController.dispose();
+    _numberController.dispose();
+    _expController.dispose();
+    _cvvController.dispose();
     super.dispose();
   }
 
@@ -44,7 +43,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
           ),
           centerTitle: true,
           title: Text(
-            'Address',
+            'Payment',
             style: AppTextStyle.s17.copyWith(
               color: const Color(0xff1D1E20),
               fontWeight: FontWeight.w600,
@@ -56,10 +55,9 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
             Expanded(
               child: _Body(
                 nameController: _nameController,
-                countryController: _countryController,
-                cityController: _cityController,
-                phoneController: _phoneController,
-                addressController: _addressController,
+                numberController: _numberController,
+                expController: _expController,
+                cvvController: _cvvController,
                 save: _save,
                 onSaveChanged: (value) {
                   setState(() {
@@ -68,11 +66,10 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
                 },
               ),
             ),
-      
-            // Save Address Button
             SizedBox(
+
               child: PrimaryButton(
-                text: 'Save Address',
+                text: 'Save Card',
                 color: const Color(0xff9775FA),
                 onClick: () {
                   Navigator.pop(context);
@@ -88,19 +85,17 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
 
 class _Body extends StatelessWidget {
   final TextEditingController nameController;
-  final TextEditingController countryController;
-  final TextEditingController cityController;
-  final TextEditingController phoneController;
-  final TextEditingController addressController;
+  final TextEditingController numberController;
+  final TextEditingController expController;
+  final TextEditingController cvvController;
   final bool save;
   final ValueChanged<bool> onSaveChanged;
 
   const _Body({
     required this.nameController,
-    required this.countryController,
-    required this.cityController,
-    required this.phoneController,
-    required this.addressController,
+    required this.numberController,
+    required this.expController,
+    required this.cvvController,
     required this.save,
     required this.onSaveChanged,
   });
@@ -114,19 +109,86 @@ class _Body extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 25),
+
+            // Card Images
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  _CardItem(card: 'assets/images/cards/Card1.png'),
+                  const SizedBox(width: 20),
+                  _CardItem(card: 'assets/images/cards/Card2.png'),
+                  const SizedBox(width: 20),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            // Add new card button
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: () {
+                  // TODO: Add new card logic
+                },
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: const Color(0xffF6F2FF),
+                  side: const BorderSide(color: Color(0xff9775FA), width: 1.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  elevation: 0,
+                  padding: const EdgeInsets.symmetric(vertical: 15.5),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      'assets/icons/app_icons/Plus.svg',
+                      colorFilter: const ColorFilter.mode(
+                        Color(0xff9775FA),
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      'Add new card',
+                      style: AppTextStyle.s17.copyWith(
+                        color: const Color(0xff9775FA),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
             const SizedBox(height: 20),
-      
-            // Name
-            _buildLabel('Name'),
+
+            // Card Owner
+            _buildLabel('Card Owner'),
             const SizedBox(height: 10),
             _buildTextField(
               controller: nameController,
               hintText: 'Hemendra Mali',
             ),
-      
-            const SizedBox(height: 25),
-      
-            // Country and City
+
+            const SizedBox(height: 15),
+
+            // Card Number
+            _buildLabel('Card Number'),
+            const SizedBox(height: 10),
+            _buildTextField(
+              controller: numberController,
+              hintText: '5254 7634 8734 7690',
+              keyboardType: TextInputType.number,
+            ),
+
+            const SizedBox(height: 15),
+
+            // EXP and CVV
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -134,11 +196,11 @@ class _Body extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildLabel('Country'),
+                      _buildLabel('EXP'),
                       const SizedBox(height: 10),
                       _buildTextField(
-                        controller: countryController,
-                        hintText: 'India',
+                        controller: expController,
+                        hintText: '24/24',
                       ),
                     ],
                   ),
@@ -148,47 +210,27 @@ class _Body extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildLabel('City'),
+                      _buildLabel('CVV'),
                       const SizedBox(height: 10),
                       _buildTextField(
-                        controller: cityController,
-                        hintText: 'Bangalore',
+                        controller: cvvController,
+                        hintText: '7763',
+                        keyboardType: TextInputType.number,
                       ),
                     ],
                   ),
                 ),
               ],
             ),
-      
-            const SizedBox(height: 25),
-      
-            // Phone Number
-            _buildLabel('Phone Number'),
-            const SizedBox(height: 10),
-            _buildTextField(
-              controller: phoneController,
-              hintText: '+91-800 301 0108',
-              keyboardType: TextInputType.phone,
-            ),
-      
-            const SizedBox(height: 25),
-      
-            // Address
-            _buildLabel('Address'),
-            const SizedBox(height: 10),
-            _buildTextField(
-              controller: addressController,
-              hintText: '43, Electronics City Phase 1, Electronic City',
-            ),
-      
-            const SizedBox(height: 30),
-      
+
+            const SizedBox(height: 20),
+
             // Save switch
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Save as primary address',
+                  'Save card info',
                   style: AppTextStyle.s15.copyWith(
                     color: const Color(0xff1D1E20),
                   ),
@@ -200,11 +242,26 @@ class _Body extends StatelessWidget {
                 ),
               ],
             ),
-      
+
             const SizedBox(height: 20),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CardItem extends StatelessWidget {
+  final String card;
+
+  const _CardItem({required this.card});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 185,
+      width: 300,
+      child: Image.asset(card, fit: BoxFit.contain),
     );
   }
 }
