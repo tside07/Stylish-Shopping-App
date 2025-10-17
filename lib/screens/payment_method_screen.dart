@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
+import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   const PaymentMethodScreen({super.key});
@@ -131,7 +132,7 @@ class _Body extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () {
-                  // TODO: Add new card logic
+                  // Navigator.pushNamed(context, AppRoutes.addCard);
                 },
                 style: OutlinedButton.styleFrom(
                   backgroundColor: const Color(0xffF6F2FF),
@@ -292,7 +293,7 @@ Widget _buildTextField({
         fontWeight: FontWeight.w400,
         color: const Color(0xff1D1E20),
       ),
-      decoration: InputDecoration(
+      decoration: AppInputDecoration.outline.copyWith(
         hintText: hintText,
         hintStyle: AppTextStyle.s15.copyWith(
           fontWeight: FontWeight.w400,
@@ -301,18 +302,6 @@ Widget _buildTextField({
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 15,
           vertical: 16.5,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Color(0xff9775FA), width: 1.5),
         ),
       ),
     ),

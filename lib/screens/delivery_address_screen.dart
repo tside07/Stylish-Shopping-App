@@ -235,7 +235,7 @@ Widget _buildTextField({
         fontWeight: FontWeight.w400,
         color: const Color(0xff1D1E20),
       ),
-      decoration: InputDecoration(
+      decoration: AppInputDecoration.outline.copyWith(
         hintText: hintText,
         hintStyle: AppTextStyle.s15.copyWith(
           fontWeight: FontWeight.w400,
@@ -244,18 +244,6 @@ Widget _buildTextField({
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 15,
           vertical: 16.5,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Color(0xff9775FA), width: 1.5),
         ),
       ),
     ),
