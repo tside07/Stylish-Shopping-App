@@ -380,8 +380,10 @@ class _BodyState extends State<_Body> {
                         color: const Color(0xff1D1E20),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
+                    GestureDetector(  
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.viewReview);
+                      },
                       child: Text(
                         'View All',
                         style: AppTextStyle.s13.copyWith(
