@@ -11,6 +11,8 @@ import '../screens/home_screen.dart';
 import '../screens/cart/cart_screen.dart';
 import '../screens/delivery_address_screen.dart';
 import '../screens/payment_method_screen.dart';
+import '../screens/new_card/add_new_card_screen.dart';
+import '../screens/order_success_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -25,6 +27,8 @@ class AppRoutes {
   static const String cart = '/cart-screen';
   static const String address = '/address';
   static const String payment = '/payment';
+  static const String addCard = '/addCard';
+  static const String orderSuccess = '/orderSuccess';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -40,6 +44,8 @@ class AppRoutes {
     cart: (context) => const CartScreen(),
     address: (context) => const DeliveryAddressScreen(),
     payment: (context) => const PaymentMethodScreen(),
+    addCard: (context) => const AddNewCardScreen(),
+    orderSuccess: (context) => const OrderSuccessScreen(),
   };
 }
 

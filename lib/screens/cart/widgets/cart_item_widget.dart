@@ -1,4 +1,3 @@
-// File: lib/screens/cart/widgets/cart_item_widget.dart
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/models/cart_item_model.dart';

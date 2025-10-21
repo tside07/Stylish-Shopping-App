@@ -132,7 +132,7 @@ class _Body extends StatelessWidget {
               width: double.infinity,
               child: OutlinedButton(
                 onPressed: () {
-                  // Navigator.pushNamed(context, AppRoutes.addCard);
+                  Navigator.pushNamed(context, AppRoutes.addCard);
                 },
                 style: OutlinedButton.styleFrom(
                   backgroundColor: const Color(0xffF6F2FF),

@@ -128,7 +128,9 @@ class _CartScreenState extends State<CartScreen> {
                     subtotal: subtotal,
                     deliveryCharge: deliveryCharge,
                     total: total,
-                    onCheckout: () {},
+                    onCheckout: () {
+                      Navigator.pushNamed(context, AppRoutes.orderSuccess);
+                    },
                   ),
                 ],
               ),
