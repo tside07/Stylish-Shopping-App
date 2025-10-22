@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/utils/routes.dart';
 import '../core/theme/app_text_style.dart';
 import '../widgets/star_rating.dart';
 import '../data/reviews_data.dart';
@@ -83,7 +84,7 @@ class _Body extends StatelessWidget {
               ),
               ElevatedButton.icon(
                 onPressed: () {
-                  // Add review
+                  Navigator.pushNamed(context, AppRoutes.addReview);
                 },
                 icon: SvgPicture.asset('assets/icons/app_icons/Edit.svg'),
                 label: Text(
@@ -120,7 +121,7 @@ class _Body extends StatelessWidget {
                 avatar: review['avatar'],
               ),
             );
-          }).toList(),
+          }),
         ],
       ),
     );

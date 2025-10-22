@@ -3,7 +3,8 @@ import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/models/payment_method_model.dart';
 import 'payment_method_item.dart';
-import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
+import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
+import 'package:stylish_shopping_app/widgets/form_label.dart';
 
 class AddNewCardScreen extends StatefulWidget {
   const AddNewCardScreen({super.key});
@@ -111,18 +112,18 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
 
                       const SizedBox(height: 32),
 
-                      _buildLabel('Card Owner'),
+                      const FormLabel(text: 'Card Owner'),
                       const SizedBox(height: 12),
-                      _buildTextField(
+                      CustomTextField(
                         controller: _nameController,
                         hintText: 'Mrh Raju',
                       ),
 
                       const SizedBox(height: 24),
 
-                      _buildLabel('Card Number'),
+                      const FormLabel(text: 'Card Number'),
                       const SizedBox(height: 12),
-                      _buildTextField(
+                      CustomTextField(
                         controller: _numberController,
                         hintText: '5254 7634 8734 7690',
                         keyboardType: TextInputType.number,
@@ -137,9 +138,9 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                _buildLabel('EXP'),
+                                const FormLabel(text: 'EXP'),
                                 const SizedBox(height: 12),
-                                _buildTextField(
+                                CustomTextField(
                                   controller: _expController,
                                   hintText: '24/24',
                                 ),
@@ -151,9 +152,9 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                _buildLabel('CVV'),
+                                const FormLabel(text: 'CVV'),
                                 const SizedBox(height: 12),
-                                _buildTextField(
+                                CustomTextField(
                                   controller: _cvvController,
                                   hintText: '7763',
                                   keyboardType: TextInputType.number,
@@ -182,48 +183,6 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLabel(String text) {
-    return Text(
-      text,
-      style: AppTextStyle.s17.copyWith(
-        color: const Color(0xff1D1E20),
-        fontWeight: FontWeight.w600,
-      ),
-    );
-  }
-
-  Widget _buildTextField({
-    required TextEditingController controller,
-    required String hintText,
-    TextInputType keyboardType = TextInputType.text,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xffF5F6FA),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: TextField(
-        controller: controller,
-        keyboardType: keyboardType,
-        style: AppTextStyle.s15.copyWith(
-          fontWeight: FontWeight.w400,
-          color: const Color(0xff1D1E20),
-        ),
-        decoration: AppInputDecoration.outline.copyWith(
-          hintText: hintText,
-          hintStyle: AppTextStyle.s15.copyWith(
-            fontWeight: FontWeight.w400,
-            color: const Color(0xff8F959E),
-          ),
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 16.5,
-          ),
         ),
       ),
     );

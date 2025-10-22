@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import '../core/theme/app_text_style.dart';
 import '../widgets/primary_button.dart';
-import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
+import '../widgets/form_label.dart';
+import '../widgets/custom_text_field.dart';
 
 class DeliveryAddressScreen extends StatefulWidget {
   const DeliveryAddressScreen({super.key});
@@ -68,15 +69,19 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
                 },
               ),
             ),
-      
+
             // Save Address Button
-            SizedBox(
-              child: PrimaryButton(
-                text: 'Save Address',
-                color: const Color(0xff9775FA),
-                onClick: () {
-                  Navigator.pop(context);
-                },
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: SizedBox(
+                height: 55,
+                child: PrimaryButton(
+                  text: 'Save Address',
+                  color: const Color(0xff9775FA),
+                  onClick: () {
+                    Navigator.pop(context);
+                  },
+                ),
               ),
             ),
           ],
@@ -115,17 +120,17 @@ class _Body extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-      
+
             // Name
-            _buildLabel('Name'),
+            const FormLabel(text: 'Name'),
             const SizedBox(height: 10),
-            _buildTextField(
+            CustomTextField(
               controller: nameController,
               hintText: 'Hemendra Mali',
             ),
-      
+
             const SizedBox(height: 25),
-      
+
             // Country and City
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,9 +139,9 @@ class _Body extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildLabel('Country'),
+                      const FormLabel(text: 'Country'),
                       const SizedBox(height: 10),
-                      _buildTextField(
+                      CustomTextField(
                         controller: countryController,
                         hintText: 'India',
                       ),
@@ -148,9 +153,9 @@ class _Body extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildLabel('City'),
+                      const FormLabel(text: 'City'),
                       const SizedBox(height: 10),
-                      _buildTextField(
+                      CustomTextField(
                         controller: cityController,
                         hintText: 'Bangalore',
                       ),
@@ -159,30 +164,30 @@ class _Body extends StatelessWidget {
                 ),
               ],
             ),
-      
+
             const SizedBox(height: 25),
-      
+
             // Phone Number
-            _buildLabel('Phone Number'),
+            const FormLabel(text: 'Phone Number'),
             const SizedBox(height: 10),
-            _buildTextField(
+            CustomTextField(
               controller: phoneController,
               hintText: '+91-800 301 0108',
               keyboardType: TextInputType.phone,
             ),
-      
+
             const SizedBox(height: 25),
-      
+
             // Address
-            _buildLabel('Address'),
+            FormLabel(text: 'Address'),
             const SizedBox(height: 10),
-            _buildTextField(
+            CustomTextField(
               controller: addressController,
               hintText: '43, Electronics City Phase 1, Electronic City',
             ),
-      
+
             const SizedBox(height: 30),
-      
+
             // Save switch
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,52 +205,11 @@ class _Body extends StatelessWidget {
                 ),
               ],
             ),
-      
+
             const SizedBox(height: 20),
           ],
         ),
       ),
     );
   }
-}
-
-Widget _buildLabel(String text) {
-  return Text(
-    text,
-    style: AppTextStyle.s17.copyWith(
-      color: const Color(0xff1D1E20),
-    ),
-  );
-}
-
-Widget _buildTextField({
-  required TextEditingController controller,
-  required String hintText,
-  TextInputType keyboardType = TextInputType.text,
-}) {
-  return Container(
-    decoration: BoxDecoration(
-      color: const Color(0xffF5F6FA),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: TextField(
-      controller: controller,
-      keyboardType: keyboardType,
-      style: AppTextStyle.s15.copyWith(
-        fontWeight: FontWeight.w400,
-        color: const Color(0xff1D1E20),
-      ),
-      decoration: AppInputDecoration.outline.copyWith(
-        hintText: hintText,
-        hintStyle: AppTextStyle.s15.copyWith(
-          fontWeight: FontWeight.w400,
-          color: const Color(0xff8F959E),
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 16.5,
-        ),
-      ),
-    ),
-  );
 }

@@ -3,7 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
-import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
+import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
+import 'package:stylish_shopping_app/widgets/form_label.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   const PaymentMethodScreen({super.key});
@@ -169,9 +170,9 @@ class _Body extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Card Owner
-            _buildLabel('Card Owner'),
+            const FormLabel(text: 'Card Owner'),
             const SizedBox(height: 10),
-            _buildTextField(
+            CustomTextField(
               controller: nameController,
               hintText: 'Hemendra Mali',
             ),
@@ -179,9 +180,9 @@ class _Body extends StatelessWidget {
             const SizedBox(height: 15),
 
             // Card Number
-            _buildLabel('Card Number'),
+            const FormLabel(text: 'Card Number'),
             const SizedBox(height: 10),
-            _buildTextField(
+            CustomTextField(
               controller: numberController,
               hintText: '5254 7634 8734 7690',
               keyboardType: TextInputType.number,
@@ -197,9 +198,9 @@ class _Body extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildLabel('EXP'),
+                      const FormLabel(text: 'EXP'),
                       const SizedBox(height: 10),
-                      _buildTextField(
+                      CustomTextField(
                         controller: expController,
                         hintText: '24/24',
                       ),
@@ -211,9 +212,9 @@ class _Body extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildLabel('CVV'),
+                      const FormLabel(text: 'CVV'),
                       const SizedBox(height: 10),
-                      _buildTextField(
+                      CustomTextField(
                         controller: cvvController,
                         hintText: '7763',
                         keyboardType: TextInputType.number,
@@ -267,43 +268,3 @@ class _CardItem extends StatelessWidget {
   }
 }
 
-Widget _buildLabel(String text) {
-  return Text(
-    text,
-    style: AppTextStyle.s17.copyWith(
-      color: const Color(0xff1D1E20),
-    ),
-  );
-}
-
-Widget _buildTextField({
-  required TextEditingController controller,
-  required String hintText,
-  TextInputType keyboardType = TextInputType.text,
-}) {
-  return Container(
-    decoration: BoxDecoration(
-      color: const Color(0xffF5F6FA),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: TextField(
-      controller: controller,
-      keyboardType: keyboardType,
-      style: AppTextStyle.s15.copyWith(
-        fontWeight: FontWeight.w400,
-        color: const Color(0xff1D1E20),
-      ),
-      decoration: AppInputDecoration.outline.copyWith(
-        hintText: hintText,
-        hintStyle: AppTextStyle.s15.copyWith(
-          fontWeight: FontWeight.w400,
-          color: const Color(0xff8F959E),
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 16.5,
-        ),
-      ),
-    ),
-  );
-}

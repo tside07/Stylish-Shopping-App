@@ -14,6 +14,7 @@ import '../screens/payment_method_screen.dart';
 import '../screens/new_card/add_new_card_screen.dart';
 import '../screens/order_success_screen.dart';
 import '../screens/view_review_screen.dart';
+import '../screens/add_review_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -31,6 +32,7 @@ class AppRoutes {
   static const String addCard = '/addCard';
   static const String orderSuccess = '/orderSuccess';
   static const String viewReview = '/viewReview';
+  static const String addReview = '/addReview';
 
 
   static Map<String, WidgetBuilder> routes = {
@@ -49,6 +51,8 @@ class AppRoutes {
     addCard: (context) => const AddNewCardScreen(),
     orderSuccess: (context) => const OrderSuccessScreen(),
     viewReview: (context) => const ViewReviewScreen(),
+    addReview: (context) => const AddReviewScreen(),
+    
   };
 }
 

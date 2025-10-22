@@ -12,7 +12,7 @@ class StarRating extends StatelessWidget {
   final Function(double)? onValueChanged;
 
   const StarRating({
-    Key? key,
+    super.key,
     required this.value,
     this.starCount = 5,
     this.starSize = 13,
@@ -21,7 +21,7 @@ class StarRating extends StatelessWidget {
     this.showValue = false,
     this.valueTextStyle,
     this.onValueChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
