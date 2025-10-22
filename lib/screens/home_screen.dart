@@ -5,6 +5,7 @@ import '../screens/product_detail_screen.dart';
 import 'cart/cart_screen.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
+import 'package:stylish_shopping_app/widgets/app_side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,6 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
         top: false,
         child: Scaffold(
           backgroundColor: Color(0xffFEFEFE),
+          drawer: Drawer(
+            child: const AppSideMenu(),
+          ),
           appBar: _selectedIndex == 0
               ? AppBar(
                   backgroundColor: Color(0xffFEFEFE),
@@ -49,19 +53,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         boxShadow: [
                           BoxShadow(
                             color: Color(0xffF5F6FA),
-                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),
-                      child: IconButton(
-                        onPressed: () {
-                          // Open drawer
-                        },
-                        icon: SvgPicture.asset(
-                          'assets/icons/app_icons/Menu.svg',
-                          width: 24,
-                          height: 24,
-                        ),
+                      child: Builder(
+                        builder: (context) {
+                          return IconButton(
+                            onPressed: () {
+                              Scaffold.of(context).openDrawer();
+                            },
+                            icon: SvgPicture.asset(
+                              'assets/icons/app_icons/Menu.svg',
+                            ),
+                          );
+                        }
                       ),
                     ),
                   ),

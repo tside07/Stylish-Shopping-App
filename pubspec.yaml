@@ -72,6 +72,7 @@ flutter:
     - assets/images/products/gallery_images/
     - assets/icons/platforms/
     - assets/icons/app_icons/
+    - assets/icons/app_icons/side_menu_icons/
 
 
 
