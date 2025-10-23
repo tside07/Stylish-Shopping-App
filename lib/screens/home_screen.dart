@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import '../core/theme/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../screens/product_detail_screen.dart';
+import '../screens/brand_detail_screen.dart';
 import 'cart/cart_screen.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
+import 'package:stylish_shopping_app/models/brand_model.dart';
 import 'package:stylish_shopping_app/widgets/app_side_menu.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -37,13 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: Color(0xffFEFEFE),
-          drawer: Drawer(
-            child: const AppSideMenu(),
-          ),
+          backgroundColor: const Color(0xffFEFEFE),
+          drawer: Drawer(child: const AppSideMenu()),
           appBar: _selectedIndex == 0
               ? AppBar(
-                  backgroundColor: Color(0xffFEFEFE),
+                  backgroundColor: const Color(0xffFEFEFE),
                   elevation: 0,
                   leading: Padding(
                     padding: const EdgeInsets.only(left: 20),
@@ -52,7 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                            color: Color(0xffF5F6FA),
+                            color: const Color(0xffF5F6FA),
+                            blurRadius: 10,
+                            offset: const Offset(0, 2),
                           ),
                         ],
                       ),
@@ -64,9 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             icon: SvgPicture.asset(
                               'assets/icons/app_icons/Menu.svg',
+                              width: 24,
+                              height: 24,
                             ),
+                            padding: EdgeInsets.zero,
+                            constraints: const BoxConstraints(),
                           );
-                        }
+                        },
                       ),
                     ),
                   ),
@@ -78,7 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: Color(0xffF5F6FA),
+                              color: const Color(0xffF5F6FA),
+                              blurRadius: 10,
                               offset: const Offset(0, 2),
                             ),
                           ],
@@ -94,6 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 24,
                             height: 24,
                           ),
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
                         ),
                       ),
                     ),
@@ -106,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
               boxShadow: [
                 BoxShadow(
-                  color: Color(0x1D1E2014),
+                  color: const Color(0x1D1E2014),
                   blurRadius: 20,
                   offset: const Offset(0, -4),
                 ),
@@ -289,7 +298,11 @@ class _HomePage extends StatelessWidget {
                   color: const Color(0xff9775FA),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Icon(Icons.mic, color: Color(0xffFEFEFE), size: 24),
+                child: const Icon(
+                  Icons.mic,
+                  color: Color(0xffFEFEFE),
+                  size: 24,
+                ),
               ),
             ],
           ),
@@ -322,27 +335,16 @@ class _HomePage extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: [
-                _BrandItem(
-                  logo: 'assets/images/brands/logo_adidas.png',
-                  name: 'Adidas',
-                ),
-                const SizedBox(width: 10),
-                _BrandItem(
-                  logo: 'assets/images/brands/logo_nike.png',
-                  name: 'Nike',
-                ),
-                const SizedBox(width: 10),
-                _BrandItem(
-                  logo: 'assets/images/brands/logo_fila.png',
-                  name: 'Fila',
-                ),
-                const SizedBox(width: 10),
-                _BrandItem(
-                  logo: 'assets/images/brands/logo_puma.png',
-                  name: 'Puma',
-                ),
-              ],
+              children: brands.asMap().entries.map((entry) {
+                int index = entry.key;
+                Brand brand = entry.value;
+                return Padding(
+                  padding: EdgeInsets.only(
+                    right: index != brands.length - 1 ? 10 : 0,
+                  ),
+                  child: _BrandItem(brand: brand),
+                );
+              }).toList(),
             ),
           ),
 
@@ -396,40 +398,50 @@ class _HomePage extends StatelessWidget {
 }
 
 class _BrandItem extends StatelessWidget {
-  final String logo;
-  final String name;
+  final Brand brand;
 
-  const _BrandItem({required this.logo, required this.name});
+  const _BrandItem({required this.brand});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: const Color(0xffF5F6FA),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(5),
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: const Color(0xffFEFEFE),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.asset(logo, width: 25, height: 17),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) =>
+                BrandDetailScreen(brandName: brand.name, brandLogo: brand.logo),
           ),
-          const SizedBox(width: 10),
-          Text(
-            name,
-            style: AppTextStyle.s15.copyWith(
-              fontWeight: FontWeight.w500,
-              color: const Color(0xff1D1E20),
+        );
+      },
+      child: Container(
+        padding: const EdgeInsets.all(5),
+        decoration: BoxDecoration(
+          color: const Color(0xffF5F6FA),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(5),
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: const Color(0xffFEFEFE),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Image.asset(brand.logo, width: 25, height: 17),
             ),
-          ),
-        ],
+            const SizedBox(width: 10),
+            Text(
+              brand.name,
+              style: AppTextStyle.s15.copyWith(
+                fontWeight: FontWeight.w500,
+                color: const Color(0xff1D1E20),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -487,7 +499,7 @@ class _ProductItem extends StatelessWidget {
                     'assets/icons/app_icons/Heart.svg',
                     width: 20,
                     height: 20,
-                    colorFilter: ColorFilter.mode(
+                    colorFilter: const ColorFilter.mode(
                       Color(0xff8F959E),
                       BlendMode.srcIn,
                     ),
