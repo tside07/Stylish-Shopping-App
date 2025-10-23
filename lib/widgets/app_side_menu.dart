@@ -40,8 +40,8 @@ class _AppSideMenuState extends State<AppSideMenu> {
                     onPressed: () => Navigator.pop(context),
                     icon: SvgPicture.asset(
                       'assets/icons/app_icons/side_menu_icons/SideMenu.svg',
-                      width: 24,
-                      height: 24,
+                      width: 25,
+                      height: 25,
                     ),
                     padding: const EdgeInsets.all(10),
                     constraints: const BoxConstraints(),
@@ -163,7 +163,7 @@ class _AppSideMenuState extends State<AppSideMenu> {
                 icon: 'assets/icons/app_icons/side_menu_icons/Lock.svg',
                 title: 'Change Password',
                 onTap: () {
-                  //Navigator.pushNamed(context, AppRoutes.changePw);
+                  Navigator.pushNamed(context, AppRoutes.changePw);
                 },
               ),
             ),
