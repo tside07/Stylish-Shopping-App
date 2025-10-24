@@ -9,13 +9,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double? elevation;
 
   const CustomAppBar({
-    Key? key,
+    super.key,
     this.leading,
     this.title,
     this.action,
     this.backgroundColor,
     this.elevation,
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -73,7 +73,7 @@ class AppBarIconButton extends StatelessWidget {
   final Color? color;
 
   const AppBarIconButton({
-    Key? key,
+    super.key,
     this.svgPath,
     this.pngPath,
     this.icon,
@@ -81,7 +81,7 @@ class AppBarIconButton extends StatelessWidget {
     this.width,
     this.height,
     this.color,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

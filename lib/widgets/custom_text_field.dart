@@ -9,6 +9,7 @@ class CustomTextField extends StatelessWidget {
   final bool obscureText;
   final Widget? suffixIcon;
   final int maxLines;
+  final ValueChanged<String>? onChanged;
 
   const CustomTextField({
     super.key,
@@ -18,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.obscureText = false,
     this.suffixIcon,
     this.maxLines = 1,
+    this.onChanged,
   });
 
   @override
@@ -32,6 +34,7 @@ class CustomTextField extends StatelessWidget {
         keyboardType: keyboardType,
         obscureText: obscureText,
         maxLines: maxLines,
+        onChanged: onChanged, // 👈 thêm dòng này
         style: AppTextStyle.s15.copyWith(
           fontWeight: FontWeight.w400,
           color: const Color(0xff1D1E20),

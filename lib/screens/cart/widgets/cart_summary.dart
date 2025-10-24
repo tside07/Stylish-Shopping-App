@@ -102,10 +102,19 @@ class CartSummary extends StatelessWidget {
                                     ),
                                   ),
                                   const SizedBox(width: 10),
-                                  const Icon(
-                                    Icons.check_circle,
-                                    color: Color(0xff4AC76D),
-                                    size: 25,
+                                  Container(
+                                    width: 25,
+                                    height: 25,
+                                    padding: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Color(0xff4AC76D),
+                                    ),
+                                    child: SvgPicture.asset(
+                                      'assets/icons/app_icons/Check1.svg',
+                                      height: 6.875,
+                                      width: 10,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -190,10 +199,19 @@ class CartSummary extends StatelessWidget {
                                       ],
                                     ),
                                   ),
-                                  const Icon(
-                                    Icons.check_circle,
-                                    color: Color(0xff4AC76D),
-                                    size: 25,
+                                  Container(
+                                    width: 25,
+                                    height: 25,
+                                    padding: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Color(0xff4AC76D),
+                                    ),
+                                    child: SvgPicture.asset(
+                                      'assets/icons/app_icons/Check1.svg',
+                                      height: 6.875,
+                                      width: 10,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -280,24 +298,11 @@ class _PriceRow extends StatelessWidget {
       children: [
         Text(
           label,
-          style: isTotal
-              ? AppTextStyle.s17.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff1D1E20),
-                )
-              : AppTextStyle.s15.copyWith(color: const Color(0xff8F959E)),
+          style: AppTextStyle.s15.copyWith(color: const Color(0xff8F959E)),
         ),
         Text(
           value,
-          style: isTotal
-              ? AppTextStyle.s17.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff1D1E20),
-                )
-              : AppTextStyle.s15.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff1D1E20),
-                ),
+          style: AppTextStyle.s15.copyWith(color: const Color(0xff1D1E20)),
         ),
       ],
     );

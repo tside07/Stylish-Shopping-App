@@ -4,6 +4,8 @@ import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/screens/product_detail_screen.dart';
+import 'package:stylish_shopping_app/widgets/filter_bottom_sheet.dart';
+import 'package:stylish_shopping_app/widgets/sort_bottom_sheet.dart';
 
 class BrandDetailScreen extends StatelessWidget {
   final String brandName;
@@ -115,7 +117,12 @@ class _Body extends StatelessWidget {
                     icon: 'assets/icons/app_icons/Filter.svg',
                     label: '',
                     onTap: () {
-                      // Show filter
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const FilterBottomSheet(),
+                      );
                     },
                   ),
                   const SizedBox(width: 10),
@@ -123,7 +130,12 @@ class _Body extends StatelessWidget {
                     icon: 'assets/icons/app_icons/Sort.svg',
                     label: 'Sort',
                     onTap: () {
-                      // Show sort
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const SortBottomSheet(),
+                      );
                     },
                   ),
                 ],

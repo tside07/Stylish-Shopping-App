@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/models/cart_item_model.dart';
 
@@ -40,7 +41,7 @@ class CartItemWidget extends StatelessWidget {
               child: Image.asset(item.productImage, fit: BoxFit.contain),
             ),
             const SizedBox(width: 15),
-        
+
             // Product Info
             Expanded(
               child: Padding(
@@ -77,7 +78,7 @@ class CartItemWidget extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 10),
-        
+
                     // Quantity Controls
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,11 +86,13 @@ class CartItemWidget extends StatelessWidget {
                         Row(
                           children: [
                             _QuantityButton(
-                              icon: Icons.keyboard_arrow_down,
+                              icon: 'assets/icons/app_icons/Arrow_Down.svg',
                               onTap: onDecrement,
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 20),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                              ),
                               child: Text(
                                 '${item.quantity}',
                                 style: AppTextStyle.s13.copyWith(
@@ -99,20 +102,16 @@ class CartItemWidget extends StatelessWidget {
                               ),
                             ),
                             _QuantityButton(
-                              icon: Icons.keyboard_arrow_up,
+                              icon: 'assets/icons/app_icons/Arrow_Up.svg',
                               onTap: onIncrement,
                             ),
                           ],
                         ),
-        
+
                         // Delete Button
-                        IconButton(
-                          onPressed: onRemove,
-                          icon: const Icon(
-                            Icons.delete_outline,
-                            color: Color(0xff8F959E),
-                            size: 15,
-                          ),
+                        _QuantityButton(
+                          onTap: onRemove,
+                          icon: 'assets/icons/app_icons/Delete.svg',
                         ),
                       ],
                     ),
@@ -128,7 +127,7 @@ class CartItemWidget extends StatelessWidget {
 }
 
 class _QuantityButton extends StatelessWidget {
-  final IconData icon;
+  final String icon;
   final VoidCallback onTap;
 
   const _QuantityButton({required this.icon, required this.onTap});
@@ -141,10 +140,10 @@ class _QuantityButton extends StatelessWidget {
         width: 25,
         height: 25,
         decoration: BoxDecoration(
-          color: const Color(0xffDEDEDE),
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: const Color(0xffDEDEDE)),
         ),
-        child: Icon(icon, size: 15, color: const Color(0xff1D1E20)),
+        child: Center(child: SvgPicture.asset(icon)),
       ),
     );
   }
