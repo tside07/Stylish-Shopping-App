@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
+import '../widgets/custom_app_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class OrderSuccessScreen extends StatefulWidget {
   const OrderSuccessScreen({super.key});
@@ -12,17 +14,18 @@ class OrderSuccessScreen extends StatefulWidget {
 
 class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
   @override
-  Widget build(BuildContext context) { //TODO: Fix Stack 'mask_group'
+  Widget build(BuildContext context) {
+    //TODO: Fix Stack 'mask_group'
     return SafeArea(
       top: false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
+        appBar: CustomAppBar(
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
           ),
         ),
         body: Column(
@@ -40,7 +43,9 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Color(0xffF5F5F5),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(10),
+                    ),
                     elevation: 0,
                   ),
                   child: Padding(

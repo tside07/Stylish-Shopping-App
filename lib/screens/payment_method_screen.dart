@@ -5,6 +5,7 @@ import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
+import '../widgets/custom_app_bar.dart';
 
 class PaymentMethodScreen extends StatefulWidget {
   const PaymentMethodScreen({super.key});
@@ -36,14 +37,13 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
       top: false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
+        appBar: CustomAppBar(
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
           ),
-          centerTitle: true,
           title: Text(
             'Payment',
             style: AppTextStyle.s17.copyWith(
@@ -69,7 +69,6 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
               ),
             ),
             SizedBox(
-
               child: PrimaryButton(
                 text: 'Save Card',
                 color: const Color(0xff9775FA),
@@ -267,4 +266,3 @@ class _CardItem extends StatelessWidget {
     );
   }
 }
-

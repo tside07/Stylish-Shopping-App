@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../utils/routes.dart';
+import '../widgets/custom_app_bar.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -56,12 +59,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
         top: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
+          appBar: CustomAppBar(
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
               onPressed: () => Navigator.pop(context),
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
             ),
           ),
           body: Column(
@@ -150,7 +153,7 @@ class _Body extends StatelessWidget {
               labelText: 'Username',
               labelStyle: AppTextStyle.s15.copyWith(),
               floatingLabelStyle: AppTextStyle.s13
-                  .copyWith(), //TODO: Add floatingLabelStyle
+                  .copyWith(),
               suffixIcon: isUsernameValid
                   ? const Icon(Icons.check, color: Color(0xff34C358), size: 20)
                   : null,
@@ -162,7 +165,7 @@ class _Body extends StatelessWidget {
           // Password
           TextField(
             controller: passwordController,
-            keyboardType: TextInputType.visiblePassword, // TODO: Add keyboard type
+            keyboardType: TextInputType.visiblePassword,
             obscureText: true,
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Password',

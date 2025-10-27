@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/screens/home_screen.dart';
 import '../core/theme/app_text_style.dart';
+import 'dart:ui' as ui;
+
 
 class GenderSelectionScreen extends StatefulWidget {
   const GenderSelectionScreen({super.key});
@@ -12,16 +14,73 @@ class GenderSelectionScreen extends StatefulWidget {
 class _GenderSelectionScreenState extends State<GenderSelectionScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return SafeArea( //TODO: blur
       top: false,
       child: Scaffold(
-        backgroundColor: const Color(0xff9775FA),
-        appBar: AppBar(
-          backgroundColor: const Color(0xff9775FA),
-          elevation: 0,
-          automaticallyImplyLeading: false,
+        backgroundColor: Color(0xff9775FA),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Positioned(
+              top: -81,
+              left: -42,
+              child: BackdropFilter(
+                filter: ui.ImageFilter.blur(
+                  sigmaX: 1,
+                  sigmaY: 1
+                ),
+                child: Container(
+                  width: 250,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      colors: [Colors.white, Colors.white.withValues(alpha: 0)],
+                      begin: Alignment.center,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            Positioned(
+              top: 381,
+              left: -74,
+              child: Container(
+                width: 148,
+                height: 148,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    colors: [Colors.white, Colors.white.withValues(alpha: 0)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ),
+            ),
+
+            Positioned(
+              top: 503,
+              left: 194,
+              child: Container(
+                width: 250,
+                height: 250,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    colors: [Colors.white, Colors.white.withValues(alpha: 0)],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ),
+            ),
+
+            Column(children: [Expanded(child: _Body())]),
+          ],
         ),
-        body: Column(children: [Expanded(child: _Body())]),
       ),
     );
   }
@@ -34,7 +93,7 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 35),
+        const SizedBox(height: 140),
 
         // Image
         Image.asset(

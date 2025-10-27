@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/utils/routes.dart';
 import '../core/theme/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../screens/product_detail_screen.dart';
@@ -8,6 +9,7 @@ import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/models/brand_model.dart';
 import 'package:stylish_shopping_app/widgets/app_side_menu.dart';
+import '../widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -42,71 +44,69 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: const Color(0xffFEFEFE),
           drawer: Drawer(child: const AppSideMenu()),
           appBar: _selectedIndex == 0
-              ? AppBar(
-                  backgroundColor: const Color(0xffFEFEFE),
-                  elevation: 0,
-                  leading: Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: const Color(0xffF5F6FA),
-                            blurRadius: 10,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Builder(
-                        builder: (context) {
-                          return IconButton(
-                            onPressed: () {
-                              Scaffold.of(context).openDrawer();
-                            },
-                            icon: SvgPicture.asset(
-                              'assets/icons/app_icons/Menu.svg',
-                              width: 24,
-                              height: 24,
-                            ),
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                          );
+              ? CustomAppBar(
+                  leading: Builder(
+                    builder: (context) {
+                      return IconButton(
+                        onPressed: () {
+                          Scaffold.of(context).openDrawer();
                         },
-                      ),
+                        icon: SvgPicture.asset(
+                          'assets/icons/app_icons/Menu.svg',
+                          width: 25,
+                          height: 25,
+                        ),
+                        padding: EdgeInsets.zero,
+                        constraints: const BoxConstraints(),
+                      );
+                    },
+                  ),
+                  action: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 2; // Navigate to Cart tab
+                      });
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/app_icons/Bag.svg',
+                    ),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                )
+              // Wishlist screen
+              : _selectedIndex == 1
+              ? CustomAppBar(
+                  leading: IconButton(
+                    onPressed: () {
+                      Navigator.popAndPushNamed(context, AppRoutes.home);
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/app_icons/Arrow_Left.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
+                  title: Text(
+                    'Wishlist',
+                    style: AppTextStyle.s17.copyWith(
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  actions: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color(0xffF5F6FA),
-                              blurRadius: 10,
-                              offset: const Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              _selectedIndex = 2; // Navigate to Cart tab
-                            });
-                          },
-                          icon: SvgPicture.asset(
-                            'assets/icons/app_icons/Bag.svg',
-                            width: 24,
-                            height: 24,
-                          ),
-                          padding: EdgeInsets.zero,
-                          constraints: const BoxConstraints(),
-                        ),
-                      ),
+                  action: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _selectedIndex = 2; // Navigate to Cart tab
+                      });
+                    },
+                    icon: SvgPicture.asset(
+                      'assets/icons/app_icons/Bag.svg',
                     ),
-                  ],
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                  ),
                 )
               : null,
           body: _screens[_selectedIndex],
@@ -549,11 +549,80 @@ class _WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Wishlist Page',
-        style: AppTextStyle.base.copyWith(fontSize: 24),
-      ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${products.length} Items',
+                    style: AppTextStyle.s17.copyWith(
+                      color: const Color(0xff1D1E20),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'in wishlist',
+                    style: AppTextStyle.s15.copyWith(
+                      color: const Color(0xff8F959E),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      //Navigate to edit wishlist
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(11),
+                      decoration: BoxDecoration(
+                        color: Color(0xffF5F6FA),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/icons/app_icons/Edit1.svg',
+                            width: 15,
+                            height: 15,
+                          ),
+                          const SizedBox(width: 5),
+                          Text('Edit', style: AppTextStyle.s15.copyWith()),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+
+        // Products grid
+        Expanded(
+          child: GridView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.65,
+              crossAxisSpacing: 15,
+              mainAxisSpacing: 15,
+            ),
+            itemCount: products.length,
+            itemBuilder: (context, index) {
+              final product = products[index];
+              return _ProductItem(product: product);
+            },
+          ),
+        ),
+      ],
     );
   }
 }

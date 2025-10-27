@@ -4,6 +4,7 @@ import 'package:stylish_shopping_app/utils/routes.dart';
 import '../core/theme/app_text_style.dart';
 import '../widgets/star_rating.dart';
 import '../data/reviews_data.dart';
+import '../widgets/custom_app_bar.dart';
 
 class ViewReviewScreen extends StatefulWidget {
   const ViewReviewScreen({super.key});
@@ -17,13 +18,12 @@ class _ViewReviewScreenState extends State<ViewReviewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        centerTitle: true,
+      appBar: CustomAppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+          icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
           onPressed: () => Navigator.pop(context),
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(),
         ),
         title: Text(
           'Reviews',

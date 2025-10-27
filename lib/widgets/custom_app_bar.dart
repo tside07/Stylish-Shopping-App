@@ -30,25 +30,32 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? Padding(
               padding: const EdgeInsets.only(left: 20),
               child: Container(
-                width: 45,
-                height: 45,
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: const Color(0xffF5F6FA))],
+                  color: Color(0xffF5F6FA),
                 ),
                 child: leading,
               ),
             )
           : null,
       centerTitle: true,
-      title: title,
+      title: title != null
+          ? Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Color(0xffF5F6FA),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: title,
+            )
+          : null,
       actions: action != null
           ? [
               Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: Container(
-                  width: 45,
-                  height: 45,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     boxShadow: [BoxShadow(color: const Color(0xffF5F6FA))],
@@ -90,8 +97,8 @@ class AppBarIconButton extends StatelessWidget {
     if (svgPath != null) {
       iconWidget = SvgPicture.asset(
         svgPath!,
-        width: width ?? 24,
-        height: height ?? 24,
+        width: width ?? 25,
+        height: height ?? 25,
         colorFilter: color != null
             ? ColorFilter.mode(color!, BlendMode.srcIn)
             : null,
@@ -99,13 +106,14 @@ class AppBarIconButton extends StatelessWidget {
     } else if (pngPath != null) {
       iconWidget = Image.asset(
         pngPath!,
-        width: width ?? 24,
-        height: height ?? 24,
+        width: width ?? 48,
+        height: height ?? 25,
+        fit: BoxFit.contain,
       );
     } else if (icon != null) {
       iconWidget = Icon(
         icon,
-        size: width ?? 24,
+        size: width ?? 25,
         color: color ?? const Color(0xff1D1E20),
       );
     } else {
@@ -120,5 +128,3 @@ class AppBarIconButton extends StatelessWidget {
     );
   }
 }
-
-

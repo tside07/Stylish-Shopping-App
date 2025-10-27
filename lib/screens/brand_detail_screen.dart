@@ -4,8 +4,10 @@ import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/screens/product_detail_screen.dart';
+import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/filter_bottom_sheet.dart';
 import 'package:stylish_shopping_app/widgets/sort_bottom_sheet.dart';
+import '../widgets/custom_app_bar.dart';
 
 class BrandDetailScreen extends StatelessWidget {
   final String brandName;
@@ -23,25 +25,13 @@ class BrandDetailScreen extends StatelessWidget {
       top: false,
       child: Scaffold(
         backgroundColor: const Color(0xffFEFEFE),
-        appBar: AppBar(
-          backgroundColor: const Color(0xffFEFEFE),
-          elevation: 0,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                boxShadow: [BoxShadow(color: const Color(0xffF5F6FA))],
-              ),
-              child: IconButton(
-                onPressed: () => Navigator.pop(context),
-                icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
-            ),
+        appBar: CustomAppBar(
+          leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
           ),
-          centerTitle: true,
           title: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
@@ -50,29 +40,14 @@ class BrandDetailScreen extends StatelessWidget {
             ),
             child: Image.asset(brandLogo, height: 30),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: const Color(0xffF5F6FA))],
-                ),
-                child: IconButton(
-                  onPressed: () {
-                    // Navigate to cart
-                  },
-                  icon: SvgPicture.asset(
-                    'assets/icons/app_icons/Bag.svg',
-                    width: 24,
-                    height: 24,
-                  ),
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-                ),
-              ),
-            ),
-          ],
+          action: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, AppRoutes.cart);
+            },
+            icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+          ),
         ),
         body: _Body(),
       ),
@@ -88,7 +63,7 @@ class _Body extends StatelessWidget {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -98,7 +73,6 @@ class _Body extends StatelessWidget {
                   Text(
                     '${products.length} Items',
                     style: AppTextStyle.s17.copyWith(
-                      fontWeight: FontWeight.w600,
                       color: const Color(0xff1D1E20),
                     ),
                   ),

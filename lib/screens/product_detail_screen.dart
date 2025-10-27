@@ -6,6 +6,7 @@ import 'package:stylish_shopping_app/utils/colors.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:flutter/gestures.dart';
+import '../widgets/custom_app_bar.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   //TODO: Fix appbars, reviews stars, quantities
@@ -43,28 +44,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       top: false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
+        appBar: CustomAppBar(
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
             onPressed: () => Navigator.pop(context),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.cart);
-                },
-                icon: SvgPicture.asset(
-                  'assets/icons/app_icons/Bag.svg',
-                  width: 25,
-                  height: 25,
-                ),
-              ),
-            ),
-          ],
+
+          action: IconButton(
+            onPressed: () => Navigator.pushNamed(context, AppRoutes.cart),
+            icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
+            )
         ),
         body: _Body(
           product: widget.product,
@@ -91,7 +84,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    backgroundColor: Color(0x000000D1),
+                    backgroundColor: Color(0xff1D1E20),
                   ),
                 );
                 return;
@@ -380,7 +373,7 @@ class _BodyState extends State<_Body> {
                         color: const Color(0xff1D1E20),
                       ),
                     ),
-                    GestureDetector(  
+                    GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, AppRoutes.viewReview);
                       },

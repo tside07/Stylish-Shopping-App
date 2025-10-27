@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../utils/routes.dart';
+import '../widgets/custom_app_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class VerificationCodeScreen extends StatefulWidget {
   const VerificationCodeScreen({super.key});
@@ -21,10 +23,9 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   final defaultPinTheme = PinTheme(
     width: 77,
     height: 98,
-    textStyle: const TextStyle(
-      fontFamily: 'Inter',
+    textStyle: AppTextStyle.base.copyWith(
       fontSize: 20,
-      color: Color.fromRGBO(29, 30, 32, 1),
+      color: Color(0xff1D1E20),
       fontWeight: FontWeight.w600,
     ),
     decoration: BoxDecoration(
@@ -69,12 +70,12 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
         top: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
+          appBar: CustomAppBar(
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+              icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
               onPressed: () => Navigator.pop(context),
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
             ),
           ),
           body: Column(

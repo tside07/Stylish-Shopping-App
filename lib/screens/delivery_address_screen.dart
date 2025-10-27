@@ -3,6 +3,8 @@ import '../core/theme/app_text_style.dart';
 import '../widgets/primary_button.dart';
 import '../widgets/form_label.dart';
 import '../widgets/custom_text_field.dart';
+import '../widgets/custom_app_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DeliveryAddressScreen extends StatefulWidget {
   const DeliveryAddressScreen({super.key});
@@ -36,14 +38,13 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
       top: false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
+        appBar: CustomAppBar(
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
           ),
-          centerTitle: true,
           title: Text(
             'Address',
             style: AppTextStyle.s17.copyWith(
@@ -71,17 +72,13 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
             ),
 
             // Save Address Button
-            Padding(
-              padding: const EdgeInsets.all(20),
-              child: SizedBox(
-                height: 55,
-                child: PrimaryButton(
-                  text: 'Save Address',
-                  color: const Color(0xff9775FA),
-                  onClick: () {
-                    Navigator.pop(context);
-                  },
-                ),
+            SizedBox(
+              child: PrimaryButton(
+                text: 'Save Address',
+                color: const Color(0xff9775FA),
+                onClick: () {
+                  Navigator.pop(context);
+                },
               ),
             ),
           ],

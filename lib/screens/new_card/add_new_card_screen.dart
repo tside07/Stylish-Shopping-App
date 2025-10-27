@@ -5,6 +5,8 @@ import 'package:stylish_shopping_app/models/payment_method_model.dart';
 import 'payment_method_item.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
+import '/widgets/custom_app_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AddNewCardScreen extends StatefulWidget {
   const AddNewCardScreen({super.key});
@@ -21,7 +23,8 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
   final TextEditingController _expController = TextEditingController();
   final TextEditingController _cvvController = TextEditingController();
 
-  final List<PaymentMethodModel> paymentMethods = [ //TODO: Fix svg icons
+  final List<PaymentMethodModel> paymentMethods = [
+    //TODO: Fix svg icons
     PaymentMethodModel(
       id: '1',
       name: 'Mastercard',
@@ -54,14 +57,13 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
       top: false,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 0,
+        appBar: CustomAppBar(
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
           ),
-          centerTitle: true,
           title: Text(
             'Add New Card',
             style: AppTextStyle.s17.copyWith(

@@ -5,6 +5,7 @@ import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../utils/colors.dart';
 import '../utils/routes.dart';
 import '../widgets/social_login_button.dart';
+import '../widgets/custom_app_bar.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
@@ -15,13 +16,7 @@ class GetStartedScreen extends StatelessWidget {
       top: false,
       child: Scaffold(
         backgroundColor: AppColors.white,
-        appBar: AppBar(
-          backgroundColor: AppColors.white,
-          elevation: 0,
-          //   leading: IconButton(
-          //     icon: const Icon(Icons.arrow_back, color: AppColors.black),
-          //     onPressed: () => Navigator.pop(context),
-          //   ),
+        appBar: CustomAppBar(
         ),
         body: Column(
           children: [

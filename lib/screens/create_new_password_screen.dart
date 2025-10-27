@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
+import '../widgets/custom_app_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 
 class CreateNewPasswordScreen extends StatefulWidget {
   const CreateNewPasswordScreen({super.key});
@@ -39,12 +42,12 @@ class _CreateNewPasswordState extends State<CreateNewPasswordScreen> {
         top: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
+          appBar: CustomAppBar(
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
               onPressed: () => Navigator.pop(context),
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
             ),
           ),
           body: Column(
@@ -57,7 +60,7 @@ class _CreateNewPasswordState extends State<CreateNewPasswordScreen> {
                   isConfirmPasswordValid: _isConfirmPasswordValid,
                 ),
               ),
-              
+
               // Text
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -70,9 +73,9 @@ class _CreateNewPasswordState extends State<CreateNewPasswordScreen> {
                   ),
                 ),
               ),
-        
+
               const SizedBox(height: 25),
-        
+
               // Button
               SizedBox(
                 child: PrimaryButton(
@@ -131,7 +134,7 @@ class _Body extends StatelessWidget {
           TextField(
             controller: newPasswordController,
             keyboardType: TextInputType.visiblePassword,
-            decoration: InputDecoration(
+            decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Password',
               labelStyle: AppTextStyle.s13.copyWith(),
             ),
@@ -143,13 +146,11 @@ class _Body extends StatelessWidget {
           TextField(
             controller: confirmPasswordController,
             keyboardType: TextInputType.visiblePassword,
-            decoration: InputDecoration(
+            decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Confirm Password',
               labelStyle: AppTextStyle.s13.copyWith(),
             ),
           ),
-
-          const SizedBox(height: 30),
         ],
       ),
     );

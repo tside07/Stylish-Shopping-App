@@ -3,6 +3,8 @@ import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../utils/routes.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/custom_app_bar.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
   const ForgetPasswordScreen({super.key});
@@ -39,12 +41,12 @@ class _ForgotPasswordScreenState extends State<ForgetPasswordScreen> {
         top: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
+          appBar: CustomAppBar(
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+              icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
               onPressed: () => Navigator.pop(context),
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
             ),
           ),
           body: Column(
@@ -123,7 +125,7 @@ class _Body extends StatelessWidget {
             'assets/images/logo_lockedcloud.png',
             width: 225,
             height: 166,
-            fit: BoxFit.contain,
+            fit: BoxFit.cover,
           ),
 
           const SizedBox(height: 80),

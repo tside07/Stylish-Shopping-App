@@ -4,6 +4,8 @@ import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/screens/gender_selection_screen.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../utils/routes.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/custom_app_bar.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -43,12 +45,12 @@ class _SignInScreenState extends State<SignInScreen> {
         top: false,
         child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            elevation: 0,
+          appBar: CustomAppBar(
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Color(0xff1D1E20)),
+              icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
               onPressed: () => Navigator.pop(context),
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
             ),
           ),
           body: Column(
@@ -179,7 +181,6 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Username',
               labelStyle: AppTextStyle.s15.copyWith(
-                fontWeight: FontWeight.w400,
               ),
               floatingLabelStyle: AppTextStyle.s13.copyWith(),
               suffixIcon: isUsernameValid
@@ -197,7 +198,6 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Password',
               labelStyle: AppTextStyle.s15.copyWith(
-                fontWeight: FontWeight.w400,
               ),
               floatingLabelStyle: AppTextStyle.s13.copyWith(),
             ),
