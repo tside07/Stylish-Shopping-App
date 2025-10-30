@@ -16,39 +16,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-  List<CartItem> cartItems = [
-    CartItem(
-      id: '1',
-      productName: "Men's Tie-Dye T-Shirt Nike Sportswear",
-      productImage: 'assets/images/products/product1.png',
-      price: '\$90',
-      taxPrice: ' (+\$4.00 Tax)', // Tax
-      size: 'S',
-      color: 'Red',
-      quantity: 1,
-    ),
-    CartItem(
-      id: '2',
-      productName: "Men's Tie-Dye T-Shirt Nike Sportswear",
-      productImage: 'assets/images/products/product7.png',
-      price: '\$45',
-      taxPrice: ' (+\$4.00 Tax)', // Tax
-      size: 'S',
-      color: 'Red',
-      quantity: 1,
-    ),
-    CartItem(
-      id: '3',
-      productName: "Men's Tie-Dye T-Shirt Nike Sportswear",
-      productImage: 'assets/images/products/product4.png',
-      price: '\$45',
-      taxPrice: ' (+\$4.00 Tax)', // Tax
-      size: 'S',
-      color: 'Red',
-      quantity: 1,
-    ),
-  ];
-
   void _incrementQuantity(int index) {
     setState(() {
       cartItems[index].quantity++;

@@ -32,14 +32,14 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
           children: [
             Expanded(child: _Body()),
 
-            // Go to Orders button
+            // Order
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
-                    //TODO: Navigate to Order screen
+                    // Navigate to Order screen
                   },
                   style: OutlinedButton.styleFrom(
                     backgroundColor: Color(0xffF5F5F5),
@@ -121,7 +121,6 @@ class _Body extends StatelessWidget {
 
             const SizedBox(height: 40),
 
-            // Order Confirmed text
             Text(
               'Order Confirmed!',
               style: AppTextStyle.base.copyWith(

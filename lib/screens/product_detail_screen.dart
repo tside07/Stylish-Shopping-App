@@ -9,7 +9,6 @@ import 'package:flutter/gestures.dart';
 import '../widgets/custom_app_bar.dart';
 
 class ProductDetailScreen extends StatefulWidget {
-  //TODO: Fix appbars, reviews stars, quantities
   final ProductDetail product;
 
   const ProductDetailScreen({super.key, required this.product});
@@ -38,6 +37,28 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     return Color(int.parse(buffer.toString(), radix: 16));
   }
 
+  // TODO: Fix snackbar
+  void _showFloatingSnackBar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: AppTextStyle.base.copyWith(
+            fontSize: 16,
+            height: 18 / 16,
+            fontWeight: FontWeight.w400,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: const Color(0xff1D1E20),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        margin: const EdgeInsets.only(bottom: 20),
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,13 +72,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(),
           ),
-
           action: IconButton(
             onPressed: () => Navigator.pushNamed(context, AppRoutes.cart),
             icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(),
-            )
+          ),
         ),
         body: _Body(
           product: widget.product,
@@ -74,27 +94,10 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             color: const Color(0xff9775FA),
             onClick: () {
               if (_selectedSize.isEmpty || _selectedColor.isEmpty) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      'Please select size and color',
-                      style: AppTextStyle.base.copyWith(
-                        fontSize: 16,
-                        height: 18 / 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    backgroundColor: Color(0xff1D1E20),
-                  ),
-                );
+                _showFloatingSnackBar('Please select size and color');
                 return;
               }
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Added to cart'),
-                  backgroundColor: Color(0xff9775FA),
-                ),
-              );
+              _showFloatingSnackBar('Added to cart');
             },
           ),
         ),
@@ -551,10 +554,8 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
 
         textPainter.layout(maxWidth: constraints.maxWidth);
 
-        // Check if text is cut
         final didExceedMaxLines = textPainter.didExceedMaxLines;
 
-        // Update state
         if (showReadMore != didExceedMaxLines) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             if (mounted) {
@@ -588,12 +589,10 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
           );
         }
 
-        // No more than 3 lines
         if (!showReadMore) {
           return Text(widget.content, style: textStyle);
         }
 
-        // more than 3 lines
         final readMoreText = ' Read More...';
         final readMoreStyle = AppTextStyle.s15.copyWith(
           color: const Color(0xff1D1E20),
@@ -608,7 +607,6 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
         );
         readMorePainter.layout();
 
-        // Cut text
         final pos = textPainter.getPositionForOffset(
           Offset(
             constraints.maxWidth - readMorePainter.width,
@@ -618,7 +616,6 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
 
         final endIndex = textPainter.getOffsetBefore(pos.offset) ?? pos.offset;
 
-        // Remove space
         String truncatedText = widget.content
             .substring(0, endIndex)
             .trimRight();

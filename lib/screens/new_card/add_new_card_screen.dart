@@ -24,7 +24,6 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
   final TextEditingController _cvvController = TextEditingController();
 
   final List<PaymentMethodModel> paymentMethods = [
-    //TODO: Fix svg icons
     PaymentMethodModel(
       id: '1',
       name: 'Mastercard',
@@ -179,7 +178,6 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                 text: 'Add Card',
                 color: const Color(0xff9775FA),
                 onClick: () {
-                  // TODO: Add card logic
                   Navigator.pop(context);
                 },
               ),

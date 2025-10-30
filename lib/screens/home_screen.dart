@@ -18,8 +18,31 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
+  late AnimationController _animationController;
+  late Animation<Offset> _slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+
+    _slideAnimation =
+        Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero).animate(
+          CurvedAnimation(parent: _animationController, curve: Curves.easeOut),
+        );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   final List<Widget> _screens = <Widget>[
     const _HomePage(),
@@ -29,6 +52,10 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   void _onItemTapped(int index) {
+    if (index == 2 && _selectedIndex != 2) {
+      _animationController.forward(from: 0.0);
+    }
+
     setState(() {
       _selectedIndex = index;
     });
@@ -63,13 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   action: IconButton(
                     onPressed: () {
-                      setState(() {
-                        _selectedIndex = 2; // Navigate to Cart tab
-                      });
+                      _onItemTapped(2);
                     },
-                    icon: SvgPicture.asset(
-                      'assets/icons/app_icons/Bag.svg',
-                    ),
+                    icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),
@@ -97,19 +120,20 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   action: IconButton(
                     onPressed: () {
-                      setState(() {
-                        _selectedIndex = 2; // Navigate to Cart tab
-                      });
+                      _onItemTapped(2);
                     },
-                    icon: SvgPicture.asset(
-                      'assets/icons/app_icons/Bag.svg',
-                    ),
+                    icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
                     padding: EdgeInsets.zero,
                     constraints: const BoxConstraints(),
                   ),
                 )
               : null,
-          body: _screens[_selectedIndex],
+          body: _selectedIndex == 2
+              ? SlideTransition(
+                  position: _slideAnimation,
+                  child: _screens[_selectedIndex],
+                )
+              : _screens[_selectedIndex],
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -274,10 +298,10 @@ class _HomePage extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      const Icon(
-                        Icons.search,
-                        color: Color(0xff8F959E),
-                        size: 20,
+                      SvgPicture.asset(
+                        'assets/icons/app_icons/Search.svg',
+                        width: 20,
+                        height: 20,
                       ),
                       const SizedBox(width: 10),
                       Text(
@@ -298,10 +322,10 @@ class _HomePage extends StatelessWidget {
                   color: const Color(0xff9775FA),
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: const Icon(
-                  Icons.mic,
-                  color: Color(0xffFEFEFE),
-                  size: 24,
+                child: SvgPicture.asset(
+                  'assets/icons/app_icons/Voice.svg',
+                  width: 24,
+                  height: 24,
                 ),
               ),
             ],
