@@ -28,19 +28,18 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     if (start.isEmpty && end.isEmpty) {
       return 'From - to - ';
     } else if (start.isNotEmpty && end.isEmpty) {
-      return 'From $start to -   ';
+      return 'From \$$start to -   ';
     } else if (start.isEmpty && end.isNotEmpty) {
-      return 'From - to $end   ';
+      return 'From - to \$$end   ';
     } else {
-      return 'From $start to $end   ';
+      return 'From \$$start to \$$end   ';
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
-      height: MediaQuery.of(context).size.height * 0.45,
+      height: MediaQuery.of(context).size.height * 0.4,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -52,46 +51,50 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           child: Column(
             children: [
               // Header
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Filter',
-                    style: AppTextStyle.s17.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xff1D1E20),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      //Reset all
-                      setState(() {
-                        _startController.clear();
-                        _endController.clear();
-                      });
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: const Color(0xff00FFEA),
-                        borderRadius: BorderRadius.circular(10),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Filter',
+                      style: AppTextStyle.s17.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: const Color(0xff1D1E20),
                       ),
-                      child: Text(
-                        'Reset',
-                        style: AppTextStyle.s15.copyWith(
-                          color: Color(0xff1D1E20),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        //Reset all
+                        setState(() {
+                          _startController.clear();
+                          _endController.clear();
+                        });
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: const Color(0xff00FFEA),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          'Reset',
+                          style: AppTextStyle.s15.copyWith(
+                            color: Color(0xff1D1E20),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 12),
 
               // Content
               Expanded(
                 child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -162,52 +165,61 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
               ),
 
               // Bottom Buttons
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.pop(context),
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 13.5),
-                        elevation: 0,
-                        backgroundColor: Color(0xffF5F6FA),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 17.5,
+                  vertical: 20,
+                ),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xffF5F6FA)),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 13.5),
+                          elevation: 0,
+                          backgroundColor: Color(0xffF5F6FA),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        'Cancel',
-                        style: AppTextStyle.s17.copyWith(
-                          color: const Color(0xff8F959E),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 15),
-                  Expanded(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.symmetric(vertical: 13.5),
-                        backgroundColor: const Color(0xff9775FA),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        elevation: 0,
-                      ),
-                      child: Text(
-                        'Confirm',
-                        style: AppTextStyle.s17.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
+                        child: Text(
+                          'Cancel',
+                          style: AppTextStyle.s17.copyWith(
+                            color: const Color(0xff8F959E),
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 15),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 13.5),
+                          backgroundColor: const Color(0xff9775FA),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: Text(
+                          'Confirm',
+                          style: AppTextStyle.s17.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

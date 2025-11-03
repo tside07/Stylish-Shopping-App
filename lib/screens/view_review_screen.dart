@@ -62,7 +62,7 @@ class _Body extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    '245 Reviews',
+                    '${reviews.length} Reviews',
                     style: AppTextStyle.s15.copyWith(
                       color: const Color(0xff1D1E20),
                     ),
@@ -233,7 +233,7 @@ class _ReviewCard extends StatelessWidget {
                   const SizedBox(width: 10),
 
                   // Stars
-                  StarRating(value: rating, starSize: 14),
+                  StarRating(value: rating, starSize: 13),
                 ],
               ),
             ],

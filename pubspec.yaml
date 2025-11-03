@@ -39,6 +39,7 @@ dependencies:
   flutter_rating_stars: ^1.1.0  
   flutter_rating_bar: ^4.0.1
   blurrycontainer: ^2.1.0
+  connectivity_plus: ^7.0.0
 
   
 dev_dependencies:
@@ -117,6 +118,12 @@ flutter:
       fonts:
         - asset: fonts/SF-Pro-Display-Regular.otf
           weight: 600
+
+    - family: Geist
+      fonts:
+        - asset: fonts/Geist-Bold.ttf
+          weight: 700
+
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

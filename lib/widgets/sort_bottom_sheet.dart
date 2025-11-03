@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 
 class SortBottomSheet extends StatefulWidget {
@@ -12,16 +13,15 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
   String _selectedSort = 'Most Recent';
 
   final List<String> _sortOptions = [
-    'From Lowest to Highest',
-    'From Highest to Lowest',
+    'Price From Lowest to Highest',
+    'Price From Highest to Lowest',
     'Product Name (A-Z)',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      height: MediaQuery.of(context).size.height * 0.45,
+      height: MediaQuery.of(context).size.height * 0.42,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -44,130 +44,118 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
             const SizedBox(height: 20),
 
             // Title
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Sort By',
-                    style: AppTextStyle.s17.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xff1D1E20),
+            Center(
+              child: Text(
+                'Sort',
+                style: AppTextStyle.s17.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff1D1E20),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 32),
+
+            // Sort options
+            Expanded(
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: _sortOptions.length,
+                separatorBuilder: (context, index) => const SizedBox(height: 8),
+                itemBuilder: (context, index) {
+                  final option = _sortOptions[index];
+                  final isSelected = _selectedSort == option;
+
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedSort = option;
+                      });
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 16,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: const Color(0xffF5F6FA),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(option, style: AppTextStyle.s15.copyWith()),
+                          if (isSelected)
+                            SvgPicture.asset(
+                              "assets/icons/app_icons/Check2.svg",
+                            ),
+                        ],
+                      ),
                     ),
-                  ),
-                  IconButton(
-                    onPressed: () => Navigator.pop(context),
-                    icon: const Icon(Icons.close, color: Color(0xff8F959E)),
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
 
             const SizedBox(height: 20),
 
-            // Sort options
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              itemCount: _sortOptions.length,
-              separatorBuilder: (context, index) => const SizedBox(height: 15),
-              itemBuilder: (context, index) {
-                final option = _sortOptions[index];
-                final isSelected = _selectedSort == option;
-
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _selectedSort = option;
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(15),
-                    decoration: BoxDecoration(
-                      color: isSelected
-                          ? const Color(0xff9775FA)
-                          : const Color(0xffF5F6FA),
-                      
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        color: isSelected
-                            ? const Color(0xff9775FA)
-                            : Colors.transparent,
-                        width: 1.5,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          option,
-                          style: AppTextStyle.s15.copyWith(),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                vertical: 20,
+                horizontal: 17.5,
+              ),
+              decoration: BoxDecoration(
+                border: Border.all(color: Color(0xffF5F6FA)),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.pop(context),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 13.5),
+                        elevation: 0,
+                        backgroundColor: const Color(0xffF5F6FA),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                        if (isSelected)
-                          const Icon(
-                            Icons.check_circle,
-                            color: Color(0xff4AC76D),
-                            size: 20,
-                          ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-
-            const SizedBox(height: 30),
-
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 13.5),
-                      elevation: 0,
-                      backgroundColor: Color(0xffF5F6FA),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
                       ),
-                    ),
-                    child: Text(
-                      'Cancel',
-                      style: AppTextStyle.s17.copyWith(
-                        color: const Color(0xff8F959E),
-                        fontWeight: FontWeight.w500,
+                      child: Text(
+                        'Cancel',
+                        style: AppTextStyle.s17.copyWith(
+                          color: const Color(0xff8F959E),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 15),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 13.5),
-                      backgroundColor: const Color(0xff9775FA),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(vertical: 13.5),
+                        backgroundColor: const Color(0xff9775FA),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        elevation: 0,
                       ),
-                      elevation: 0,
-                    ),
-                    child: Text(
-                      'Confirm',
-                      style: AppTextStyle.s17.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
+                      child: Text(
+                        'Confirm',
+                        style: AppTextStyle.s17.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
-import 'package:stylish_shopping_app/screens/product_detail_screen.dart';
+import 'package:stylish_shopping_app/modules/product/screens/product_detail_screen.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/filter_bottom_sheet.dart';
 import 'package:stylish_shopping_app/widgets/sort_bottom_sheet.dart';

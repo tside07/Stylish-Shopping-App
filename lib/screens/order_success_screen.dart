@@ -15,7 +15,6 @@ class OrderSuccessScreen extends StatefulWidget {
 class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
   @override
   Widget build(BuildContext context) {
-    //TODO: Fix Stack 'mask_group'
     return SafeArea(
       top: false,
       child: Scaffold(
@@ -32,7 +31,7 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
           children: [
             Expanded(child: _Body()),
 
-            // Order
+            // Go to Orders Button
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SizedBox(
@@ -41,25 +40,20 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
                   onPressed: () {
                     // Navigate to Order screen
                   },
-                  style: OutlinedButton.styleFrom(
-                    backgroundColor: Color(0xffF5F5F5),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffF5F5F5),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(10),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     elevation: 0,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Go to Orders',
-                          style: AppTextStyle.s17.copyWith(
-                            color: Color(0xff8F959E),
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      'Go to Orders',
+                      style: AppTextStyle.s17.copyWith(
+                        color: const Color(0xff8F959E),
+                      ),
                     ),
                   ),
                 ),
@@ -68,6 +62,7 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
 
             const SizedBox(height: 30),
 
+            // Continue Shopping Button
             SizedBox(
               child: PrimaryButton(
                 text: 'Continue Shopping',
@@ -99,27 +94,33 @@ class _Body extends StatelessWidget {
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
-                Container(
-                  width: double.infinity,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Image.asset('assets/images/mask_group.png'),
-                ),
+                // Container(
+                //   width: double.infinity,
+                //   height: 300,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(20),
+                //   ),
+                //   child: Image.asset('assets/images/mask_group.png'),
+                // ),
 
-                Positioned(
-                  child: Image.asset(
-                    'assets/images/phone.png',
-                    width: 279,
-                    height: 232,
-                    fit: BoxFit.contain,
-                  ),
+                // Positioned(
+                //   child: Image.asset(
+                //     'assets/images/phone.png',
+                //     width: 279,
+                //     height: 232,
+                //     fit: BoxFit.contain,
+                //   ),
+                // ),
+
+                Image.asset('assets/images/mask_group.png'),
+                Image.asset(
+                  'assets/images/phone.png',
+                  fit: BoxFit.contain,
                 ),
               ],
             ),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 20),
 
             Text(
               'Order Confirmed!',

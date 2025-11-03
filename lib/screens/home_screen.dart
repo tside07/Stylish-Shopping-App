@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/screens/hub_screen.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../core/theme/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../screens/product_detail_screen.dart';
+import '../modules/product/screens/product_detail_screen.dart';
 import '../screens/brand_detail_screen.dart';
-import 'cart/cart_screen.dart';
+import '../modules/product/screens/cart_screen.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/models/brand_model.dart';
@@ -63,6 +64,12 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    // return HubScreen(child: selectedIndex == 2
+    //           ? SlideTransition(
+    //               position: _slideAnimation,
+    //               child: _screens[_selectedIndex],
+    //             )
+    //           : _screens[_selectedIndex],)
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: SafeArea(
@@ -135,6 +142,7 @@ class _HomeScreenState extends State<HomeScreen>
                 )
               : _screens[_selectedIndex],
           bottomNavigationBar: Container(
+            height: 80,
             decoration: BoxDecoration(
               color: Colors.white,
               boxShadow: [
@@ -167,8 +175,8 @@ class _HomeScreenState extends State<HomeScreen>
                         )
                       : SvgPicture.asset(
                           'assets/icons/app_icons/Home.svg',
-                          width: 25,
-                          height: 25,
+                          width: 20,
+                          height: 20,
                           colorFilter: const ColorFilter.mode(
                             Color(0xff8F959E),
                             BlendMode.srcIn,
@@ -187,8 +195,8 @@ class _HomeScreenState extends State<HomeScreen>
                         )
                       : SvgPicture.asset(
                           'assets/icons/app_icons/Heart.svg',
-                          width: 25,
-                          height: 25,
+                          width: 20,
+                          height: 20,
                           colorFilter: const ColorFilter.mode(
                             Color(0xff8F959E),
                             BlendMode.srcIn,
@@ -207,8 +215,8 @@ class _HomeScreenState extends State<HomeScreen>
                         )
                       : SvgPicture.asset(
                           'assets/icons/app_icons/Bag.svg',
-                          width: 25,
-                          height: 25,
+                          width: 20,
+                          height: 20,
                           colorFilter: const ColorFilter.mode(
                             Color(0xff8F959E),
                             BlendMode.srcIn,
@@ -227,8 +235,8 @@ class _HomeScreenState extends State<HomeScreen>
                         )
                       : SvgPicture.asset(
                           'assets/icons/app_icons/Wallet.svg',
-                          width: 25,
-                          height: 25,
+                          width: 20,
+                          height: 20,
                           colorFilter: const ColorFilter.mode(
                             Color(0xff8F959E),
                             BlendMode.srcIn,

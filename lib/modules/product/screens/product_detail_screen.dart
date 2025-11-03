@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
-import '../core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/widgets/star_rating.dart';
+import '../../../core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/utils/colors.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:flutter/gestures.dart';
-import '../widgets/custom_app_bar.dart';
+import '../../../widgets/custom_app_bar.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductDetail product;
@@ -43,6 +44,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       SnackBar(
         content: Text(
           message,
+          textAlign: TextAlign.center,
           style: AppTextStyle.base.copyWith(
             fontSize: 16,
             height: 18 / 16,
@@ -88,18 +90,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           colors: colors,
           hexToColor: _hexToColor,
         ),
-        bottomNavigationBar: SizedBox(
-          child: PrimaryButton(
-            text: 'Add to Cart',
-            color: const Color(0xff9775FA),
-            onClick: () {
-              if (_selectedSize.isEmpty || _selectedColor.isEmpty) {
-                _showFloatingSnackBar('Please select size and color');
-                return;
-              }
-              _showFloatingSnackBar('Added to cart');
-            },
-          ),
+        bottomNavigationBar: PrimaryButton(
+          text: 'Add to Cart',
+          color: const Color(0xff9775FA),
+          onClick: () {
+            if (_selectedSize.isEmpty || _selectedColor.isEmpty) {
+              _showFloatingSnackBar('Please select size and color');
+              return;
+            }
+            _showFloatingSnackBar('Added to cart');
+          },
         ),
       ),
     );
@@ -459,18 +459,7 @@ class _BodyState extends State<_Body> {
                                       ),
                                     ],
                                   ),
-                                  Row(
-                                    children: List.generate(
-                                      5,
-                                      (index) => Icon(
-                                        index < 4
-                                            ? Icons.star_rounded
-                                            : Icons.star_border_rounded,
-                                        size: 14,
-                                        color: const Color(0xffFFC107),
-                                      ),
-                                    ),
-                                  ),
+                                  const StarRating(value: 4.8, starSize: 13),
                                 ],
                               ),
                             ],
