@@ -32,18 +32,21 @@ class ProductImageSection extends StatelessWidget {
           ),
         ),
         SafeArea(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _IconButton(
-                icon: 'assets/icons/app_icons/Arrow_Left.svg',
-                onPressed: onBackPressed,
-              ),
-              _IconButton(
-                icon: 'assets/icons/app_icons/Bag.svg',
-                onPressed: onCartPressed,
-              ),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _IconButton(
+                  icon: 'assets/icons/app_icons/Arrow_Left.svg',
+                  onPressed: onBackPressed,
+                ),
+                _IconButton(
+                  icon: 'assets/icons/app_icons/Bag.svg',
+                  onPressed: onCartPressed,
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -62,7 +65,7 @@ class _IconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 15),
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Color(0xffF5F6FA),
@@ -164,6 +167,7 @@ class GalleryImages extends StatelessWidget {
             onTap: () => onImageTapped(0),
           ),
           const SizedBox(width: 10),
+
           ...galleryImages.asMap().entries.map((entry) {
             int index = entry.key + 1;
             String image = entry.value;
@@ -599,7 +603,7 @@ class _ReviewItem extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CircleAvatar(radius: 20, backgroundColor: Color(0xffE0E0E0)),
+            const CircleAvatar(radius: 20, backgroundColor: Color(0xffCCD9E0)),
             const SizedBox(width: 10),
             Expanded(
               child: Column(

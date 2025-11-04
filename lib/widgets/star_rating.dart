@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
 class StarRating extends StatelessWidget {
@@ -36,6 +37,17 @@ class StarRating extends StatelessWidget {
       maxValueVisibility: false,
       starSpacing: 2,
       animationDuration: const Duration(milliseconds: 300),
+      starBuilder: (index, color) {
+        bool isFilled = color == starColor;
+
+        return SvgPicture.asset(
+          isFilled
+              ? 'assets/icons/app_icons/Star_Filled.svg'
+              : 'assets/icons/app_icons/Star.svg',
+          width: starSize,
+          height: starSize,
+        );
+      }
     );
   }
 }

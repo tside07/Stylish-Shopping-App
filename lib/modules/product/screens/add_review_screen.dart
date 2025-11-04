@@ -3,9 +3,9 @@ import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../../widgets/custom_app_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/modules/product/widgets/add_review_widget.dart';
 
 class AddReviewScreen extends StatefulWidget {
   const AddReviewScreen({super.key});
@@ -36,6 +36,8 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
           leading: IconButton(
             icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
             onPressed: () => Navigator.pop(context),
+            padding: EdgeInsets.zero,
+            constraints: const BoxConstraints(),
           ),
           title: Text(
             'Add Review',
@@ -126,34 +128,7 @@ class _Body extends StatelessWidget {
             const SizedBox(height: 15),
 
             // Star Rating with value display
-            Row(
-              children: [
-                RatingBar.builder(
-                  initialRating: starValue,
-                  minRating: 0,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemSize: 25,
-                  itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
-                  itemBuilder: (context, _) =>
-                      const Icon(Icons.star, color: Color(0xffFFC833)),
-                  unratedColor: const Color(0xffE7E8EA),
-                  onRatingUpdate: onStarChanged,
-                  updateOnDrag: true,
-                  glow: false,
-                ),
-                const SizedBox(width: 15),
-
-                Text(
-                  starValue.toStringAsFixed(1),
-                  style: AppTextStyle.s17.copyWith(
-                    color: const Color(0xff1D1E20),
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
+            RatingField(starValue: starValue, onStarChanged: onStarChanged),
 
             const SizedBox(height: 30),
           ],
