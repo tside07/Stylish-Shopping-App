@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
-import '../core/theme/app_text_style.dart';
-import '../widgets/star_rating.dart';
-import '../data/reviews_data.dart';
-import '../widgets/custom_app_bar.dart';
+import '../../../core/theme/app_text_style.dart';
+import '../../../widgets/star_rating.dart';
+import '../../../data/reviews_data.dart';
+import '../../../widgets/custom_app_bar.dart';
 
 class ViewReviewScreen extends StatefulWidget {
   const ViewReviewScreen({super.key});

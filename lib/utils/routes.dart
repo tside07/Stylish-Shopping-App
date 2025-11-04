@@ -13,8 +13,8 @@ import '../screens/delivery_address_screen.dart';
 import '../screens/payment_method_screen.dart';
 import '../screens/new_card/add_new_card_screen.dart';
 import '../screens/order_success_screen.dart';
-import '../screens/view_review_screen.dart';
-import '../screens/add_review_screen.dart';
+import '../modules/product/screens/view_review_screen.dart';
+import '../modules/product/screens/add_review_screen.dart';
 import '../screens/change_password_screen.dart';
 
 class AppRoutes {

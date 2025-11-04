@@ -4,7 +4,7 @@ import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import '../widgets/custom_app_bar.dart';
+import '../../../widgets/custom_app_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AddReviewScreen extends StatefulWidget {
@@ -60,13 +60,11 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
               ),
             ),
 
-            // Submit Review Button
             SizedBox(
               child: PrimaryButton(
                 text: 'Submit Review',
                 color: const Color(0xff9775FA),
                 onClick: () {
-                  // Handle submit review
                   Navigator.pop(context);
                 },
               ),
