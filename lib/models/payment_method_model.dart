@@ -52,3 +52,22 @@ class PaymentMethodModel {
     return 'PaymentMethodType(id: $id, name: $name)';
   }
 }
+
+
+final List<PaymentMethodModel> paymentMethods = [
+  PaymentMethodModel(
+    id: '1',
+    name: 'Mastercard',
+    icon: 'assets/icons/app_icons/Mastercard.svg',
+  ),
+  PaymentMethodModel(
+    id: '2',
+    name: 'Paypal',
+    icon: 'assets/icons/app_icons/Paypal.svg',
+  ),
+  PaymentMethodModel(
+    id: '3',
+    name: 'Bank',
+    icon: 'assets/icons/app_icons/Bank.svg',
+  ),
+];

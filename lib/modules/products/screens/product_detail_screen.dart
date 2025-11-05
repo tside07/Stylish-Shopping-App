@@ -4,7 +4,7 @@ import '../../../core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/utils/colors.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
-import 'package:stylish_shopping_app/modules/product/widgets/product_detail_widget.dart';
+import 'package:stylish_shopping_app/modules/products/widgets/product_detail_widget.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final ProductDetail product;

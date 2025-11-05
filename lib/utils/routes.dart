@@ -8,13 +8,13 @@ import '../screens/verification_code_screen.dart';
 import '../screens/create_new_password_screen.dart';
 import '../screens/gender_selection_screen.dart';
 import '../screens/home_screen.dart';
-import '../modules/product/screens/cart_screen.dart';
+import '../modules/products/screens/cart_screen.dart';
 import '../screens/delivery_address_screen.dart';
 import '../screens/payment_method_screen.dart';
-import '../screens/new_card/add_new_card_screen.dart';
+import '../modules/products/screens/add_new_card_screen.dart';
 import '../screens/order_success_screen.dart';
-import '../modules/product/screens/view_review_screen.dart';
-import '../modules/product/screens/add_review_screen.dart';
+import '../modules/products/screens/view_review_screen.dart';
+import '../modules/products/screens/add_review_screen.dart';
 import '../screens/change_password_screen.dart';
 
 class AppRoutes {

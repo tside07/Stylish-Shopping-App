@@ -40,16 +40,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : null,
       centerTitle: true,
-      title: title != null
-          ? Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: Color(0xffF5F6FA),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: title,
-            )
-          : null,
+      title: title,
       actions: action != null
           ? [
               Padding(

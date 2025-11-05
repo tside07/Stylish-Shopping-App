@@ -5,7 +5,7 @@ import 'package:stylish_shopping_app/widgets/form_label.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../../widgets/custom_app_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:stylish_shopping_app/modules/product/widgets/add_review_widget.dart';
+import 'package:stylish_shopping_app/modules/products/widgets/add_review_widget.dart';
 
 class AddReviewScreen extends StatefulWidget {
   const AddReviewScreen({super.key});

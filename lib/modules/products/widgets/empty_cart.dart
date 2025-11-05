@@ -20,7 +20,7 @@ class EmptyCart extends StatelessWidget {
 }
 
 class _EmptyText extends StatelessWidget {
-  const _EmptyText({super.key});
+  const _EmptyText();
 
   @override
   Widget build(BuildContext context) {
