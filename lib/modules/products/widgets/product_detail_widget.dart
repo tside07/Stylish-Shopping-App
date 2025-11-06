@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/star_rating.dart';
+import 'package:stylish_shopping_app/widgets/view_all_button.dart';
 import '../../../core/theme/app_text_style.dart';
 import 'package:flutter/gestures.dart';
 // import 'package:stylish_shopping_app/widgets/custom_app_bar.dart';
@@ -562,28 +563,12 @@ class ProductReviewsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Reviews',
-              style: AppTextStyle.s17.copyWith(
-                fontWeight: FontWeight.w600,
-                color: const Color(0xff1D1E20),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.pushNamed(context, AppRoutes.viewReview);
-              },
-              child: Text(
-                'View All',
-                style: AppTextStyle.s13.copyWith(
-                  color: const Color(0xff8F959E),
-                ),
-              ),
-            ),
-          ],
+        ViewAllButton(
+          header: 'Reviews',
+          button: 'View All',
+          onTap: () {
+            Navigator.pushNamed(context, AppRoutes.viewReview);
+          },
         ),
         const SizedBox(height: 15),
         const _ReviewItem(),
@@ -679,7 +664,7 @@ class _Reviewer extends StatelessWidget {
               style: AppTextStyle.s15.copyWith(fontWeight: FontWeight.w600),
             ),
             const SizedBox(width: 5),
-            
+
             Text(
               'rating',
               style: AppTextStyle.s11.copyWith(

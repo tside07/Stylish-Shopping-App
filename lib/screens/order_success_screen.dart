@@ -69,7 +69,7 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
                 text: 'Continue Shopping',
                 color: const Color(0xff9775FA),
                 onClick: () {
-                  Navigator.pushNamed(context, AppRoutes.home);
+                  Navigator.pushNamed(context, AppRoutes.homepage);
                 },
               ),
             ),

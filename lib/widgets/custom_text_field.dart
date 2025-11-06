@@ -10,16 +10,18 @@ class CustomTextField extends StatelessWidget {
   final Widget? suffixIcon;
   final int maxLines;
   final ValueChanged<String>? onChanged;
+  final Color color;
 
   const CustomTextField({
     super.key,
     required this.controller,
-    required this.hintText,
+    this.hintText ='',
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.suffixIcon,
     this.maxLines = 1,
     this.onChanged,
+    this.color = const Color(0xff1D1E20),
   });
 
   @override
@@ -34,10 +36,10 @@ class CustomTextField extends StatelessWidget {
         keyboardType: keyboardType,
         obscureText: obscureText,
         maxLines: maxLines,
-        onChanged: onChanged, // 👈 thêm dòng này
+        onChanged: onChanged,
         style: AppTextStyle.s15.copyWith(
           fontWeight: FontWeight.w400,
-          color: const Color(0xff1D1E20),
+          color: color,
         ),
         decoration: AppInputDecoration.outline.copyWith(
           hintText: hintText,
