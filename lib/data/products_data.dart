@@ -20,7 +20,8 @@ final List<ProductDetail> products = [
     productName: 'Trail Running Jacket Nike Windrunner',
     productPrice: '\$80',
     productCategory: 'Men\'s Lightweight Down Jacket',
-    productDescription: 'This ultra-light down jacket offers exceptional warmth and comfort while remaining easy to carry and layer.',
+    productDescription:
+        'This ultra-light down jacket offers exceptional warmth and comfort while remaining easy to carry and layer.',
     galleryImages: [
       'assets/images/products/gallery_images/product2_1.png',
       'assets/images/products/gallery_images/product2_2.png',

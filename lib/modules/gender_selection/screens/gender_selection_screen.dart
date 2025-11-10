@@ -12,13 +12,12 @@ class GenderSelectionScreen extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Positioned(
-            top: -81,
-            left: -42,
+          Align(
+            alignment: Alignment(-1.3, -1.1),
             child: ImageFiltered(
               imageFilter: ui.ImageFilter.blur(sigmaX: 120, sigmaY: 120),
               child: Opacity(
-                opacity: 0.6,
+                opacity: 0.8,
                 child: Container(
                   width: 250,
                   height: 250,
@@ -35,13 +34,12 @@ class GenderSelectionScreen extends StatelessWidget {
             ),
           ),
 
-          Positioned(
-            top: 381,
-            left: -74,
+          Align(
+            alignment: Alignment(-1.5, 0),
             child: ImageFiltered(
               imageFilter: ui.ImageFilter.blur(sigmaX: 120, sigmaY: 120),
               child: Opacity(
-                opacity: 0.6,
+                opacity: 0.8,
                 child: Container(
                   width: 148,
                   height: 148,
@@ -58,9 +56,8 @@ class GenderSelectionScreen extends StatelessWidget {
             ),
           ),
 
-          Positioned(
-            top: 503,
-            left: 194,
+          Align(
+            alignment: Alignment(1, 0.6),
             child: ImageFiltered(
               imageFilter: ui.ImageFilter.blur(sigmaX: 120, sigmaY: 120),
               child: Opacity(
@@ -117,7 +114,7 @@ class _Body extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(
-              children: [ 
+              children: [
                 // Title
                 const SizedBox(height: 25),
 
@@ -144,4 +141,3 @@ class _Body extends StatelessWidget {
     );
   }
 }
-

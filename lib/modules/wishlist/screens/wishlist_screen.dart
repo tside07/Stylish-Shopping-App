@@ -21,7 +21,6 @@ class _WishlistScreenState extends State<WishlistScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // AvailableItem
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -40,13 +39,10 @@ class _WishlistScreenState extends State<WishlistScreen> {
                   ),
                 ],
               ),
-
               EditButton(),
             ],
           ),
         ),
-
-        // Products grid
         Expanded(
           child: GridView.builder(
             padding: const EdgeInsets.symmetric(horizontal: 20),

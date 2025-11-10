@@ -11,12 +11,14 @@ class ProductImageSection extends StatelessWidget {
   final String mainImage;
   final VoidCallback onBackPressed;
   final VoidCallback onCartPressed;
+  final String? brandLogo;
 
   const ProductImageSection({
     super.key,
     required this.mainImage,
     required this.onBackPressed,
     required this.onCartPressed,
+    this.brandLogo,
   });
 
   @override
@@ -29,7 +31,29 @@ class ProductImageSection extends StatelessWidget {
             width: double.infinity,
             height: 356,
             color: const Color(0xffF2F2F2),
-            child: Image.asset(mainImage, fit: BoxFit.contain),
+            child: Stack(
+              children: [
+                // Hình sản phẩm
+                Positioned.fill(
+                  child: Image.asset(mainImage, fit: BoxFit.contain),
+                ),
+
+                Align(
+                  alignment: Alignment(0, 1),
+                  child: Image.asset('assets/images/background_brand.png'),
+                ),
+
+                  Align(
+                    alignment: Alignment(0, 0.95),
+                    child: Image.asset(
+                      'assets/images/brands/logo_nike.png', // brand logo
+                      width: 48,
+                      height: 25,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
         SafeArea(

@@ -4,9 +4,8 @@ import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/modules/products/screens/product_detail_screen.dart';
-import 'package:stylish_shopping_app/modules/products/widgets/filter_bottom_sheet.dart';
-import 'package:stylish_shopping_app/modules/products/widgets/sort_bottom_sheet.dart';
-
+import 'package:stylish_shopping_app/modules/brands/widgets/filter_bottom_sheet.dart';
+import 'package:stylish_shopping_app/modules/brands/widgets/sort_bottom_sheet.dart';
 
 class _IconButton extends StatelessWidget {
   final String icon;
@@ -40,10 +39,15 @@ class _IconButton extends StatelessWidget {
   }
 }
 
-class _ProductItem extends StatelessWidget {
+class ProductItem extends StatelessWidget {
   final ProductDetail product;
+  final String brandLogo;
 
-  const _ProductItem({required this.product});
+  const ProductItem({
+    super.key,
+    required this.product,
+    required this.brandLogo,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +154,9 @@ class _ProductItem extends StatelessWidget {
 }
 
 class ProductGrid extends StatelessWidget {
-  const ProductGrid({super.key});
+  final String brandLogo;
+
+  const ProductGrid({super.key, required this.brandLogo});
 
   @override
   Widget build(BuildContext context) {
@@ -166,7 +172,7 @@ class ProductGrid extends StatelessWidget {
         itemCount: products.length,
         itemBuilder: (context, index) {
           final product = products[index];
-          return _ProductItem(product: product);
+          return ProductItem(product: product, brandLogo: brandLogo);
         },
       ),
     );

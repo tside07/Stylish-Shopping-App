@@ -1,104 +1,32 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../../core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/modules/home/widgets/app_side_menu.dart';
-import 'package:stylish_shopping_app/modules/homepage/screens/home_page_screen.dart';
-import 'package:stylish_shopping_app/modules/wishlist/screens/wishlist_screen.dart';
-import '../../cart/screens/cart_screen.dart';
-import '../../../widgets/custom_app_bar.dart';
+import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/widgets/custom_app_bar.dart';
 
-class HubScreen extends StatefulWidget {
-  final int initialIndex;
+class HubScreen extends StatelessWidget {
+  final Widget child;
+  final int selectedIndex;
+  final Function(int) onNavigationTap;
+  final VoidCallback? onBackPressed;
+  final String? title;
+  final bool showDrawer;
+  final bool showBackButton;
 
-  const HubScreen({super.key, this.initialIndex = 0});
+  const HubScreen({
+    super.key,
+    required this.child,
+    required this.selectedIndex,
+    required this.onNavigationTap,
+    this.onBackPressed,
+    this.title,
+    this.showDrawer = false,
+    this.showBackButton = false,
+  });
 
-  @override
-  State<HubScreen> createState() => _HubScreenState();
-}
-
-class _HubScreenState extends State<HubScreen>
-    with SingleTickerProviderStateMixin {
-  late int _selectedIndex;
-  late AnimationController _animationController;
-  late Animation<Offset> _slideAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _selectedIndex = widget.initialIndex;
-
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
-
-    _slideAnimation =
-        Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero).animate(
-          CurvedAnimation(parent: _animationController, curve: Curves.easeOut),
-        );
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  final List<Widget> _screens = <Widget>[
-    const HomePageScreen(),
-    const WishlistScreen(),
-    const CartScreen(),
-    const _MyCardScreen(),
-  ];
-
-  void _onItemTapped(int index) {
-    if (index == 2 && _selectedIndex != 2) {
-      _animationController.forward(from: 0.0);
-    }
-
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: Scaffold(
-        resizeToAvoidBottomInset: true,
-        backgroundColor: const Color(0xffFEFEFE),
-        drawer: SafeArea(
-          top: false,
-          child: Stack(
-            children: [
-              BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                child: const SizedBox.expand(),
-              ),
-              const Drawer(child: AppSideMenu()),
-            ],
-          ),
-        ),
-        appBar: _buildAppBar(),
-        body: SafeArea(
-          top: false,
-          child: _selectedIndex == 2
-              ? SlideTransition(
-                  position: _slideAnimation,
-                  child: _screens[_selectedIndex],
-                )
-              : _screens[_selectedIndex],
-        ),
-        bottomNavigationBar: _buildBottomNavigationBar(),
-      ),
-    );
-  }
-
-  PreferredSizeWidget? _buildAppBar() {
-    // Home screen
-    if (_selectedIndex == 0) {
+  PreferredSizeWidget? buildAppBar(BuildContext context) {
+    if (selectedIndex == 0) {
       return CustomAppBar(
         leading: Builder(
           builder: (context) {
@@ -117,18 +45,18 @@ class _HubScreenState extends State<HubScreen>
           },
         ),
         action: IconButton(
-          onPressed: () => _onItemTapped(2),
+          onPressed: () => onNavigationTap(2), // Navigate to Cart
           icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
         ),
       );
     }
-    // Wishlist screen
-    else if (_selectedIndex == 1) {
+
+    if (showBackButton || title != null) {
       return CustomAppBar(
         leading: IconButton(
-          onPressed: () => _onItemTapped(0),
+          onPressed: onBackPressed ?? () => onNavigationTap(0),
           icon: SvgPicture.asset(
             'assets/icons/app_icons/Arrow_Left.svg',
             width: 25,
@@ -137,23 +65,70 @@ class _HubScreenState extends State<HubScreen>
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
         ),
-        title: Text(
-          'Wishlist',
-          style: AppTextStyle.s17.copyWith(fontWeight: FontWeight.w600),
-        ),
-        action: IconButton(
-          onPressed: () => _onItemTapped(2),
-          icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-        ),
+        title: title != null
+            ? Text(
+                title!,
+                style: AppTextStyle.s17.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff1D1E20),
+                ),
+              )
+            : null,
+        action: selectedIndex != 2
+            ? IconButton(
+                onPressed: () => onNavigationTap(2),
+                icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              )
+            : null,
       );
     }
-    // Cart và My Cards không có app bar
+
     return null;
   }
 
-  Widget _buildBottomNavigationBar() {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: const Color(0xffFEFEFE),
+
+          drawer: showDrawer
+              ? SafeArea(
+                  top: false,
+                  child: Stack(
+                    children: [
+                      BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                        child: const SizedBox.expand(),
+                      ),
+                      Drawer(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.zero,
+                        ),
+                        child: AppSideMenu(onNavigateToTab: onNavigationTap),
+                      ),
+                    ],
+                  ),
+                )
+              : null,
+
+          appBar: buildAppBar(context),
+
+          body: child,
+
+          bottomNavigationBar: buildBottomNavBar(),
+        ),
+      ),
+    );
+  }
+
+  Widget buildBottomNavBar() {
     return Container(
       height: 80,
       decoration: BoxDecoration(
@@ -167,8 +142,8 @@ class _HubScreenState extends State<HubScreen>
         ],
       ),
       child: BottomNavigationBar(
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+        currentIndex: selectedIndex,
+        onTap: onNavigationTap,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: const Color(0xff9775FA),
         unselectedItemColor: const Color(0xff8F959E),
@@ -177,100 +152,41 @@ class _HubScreenState extends State<HubScreen>
         elevation: 0,
         backgroundColor: Colors.transparent,
         items: [
-          BottomNavigationBarItem(
-            icon: _selectedIndex == 0
-                ? Text(
-                    'Home',
-                    style: AppTextStyle.s11.copyWith(
-                      color: const Color(0xff9775FA),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                : SvgPicture.asset(
-                    'assets/icons/app_icons/Home.svg',
-                    width: 20,
-                    height: 20,
-                    colorFilter: const ColorFilter.mode(
-                      Color(0xff8F959E),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: _selectedIndex == 1
-                ? Text(
-                    'Wishlist',
-                    style: AppTextStyle.s11.copyWith(
-                      color: const Color(0xff9775FA),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                : SvgPicture.asset(
-                    'assets/icons/app_icons/Heart.svg',
-                    width: 20,
-                    height: 20,
-                    colorFilter: const ColorFilter.mode(
-                      Color(0xff8F959E),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: _selectedIndex == 2
-                ? Text(
-                    'Cart',
-                    style: AppTextStyle.s11.copyWith(
-                      color: const Color(0xff9775FA),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                : SvgPicture.asset(
-                    'assets/icons/app_icons/Bag.svg',
-                    width: 20,
-                    height: 20,
-                    colorFilter: const ColorFilter.mode(
-                      Color(0xff8F959E),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: _selectedIndex == 3
-                ? Text(
-                    'My Cards',
-                    style: AppTextStyle.s11.copyWith(
-                      color: const Color(0xff9775FA),
-                      fontWeight: FontWeight.w500,
-                    ),
-                  )
-                : SvgPicture.asset(
-                    'assets/icons/app_icons/Wallet.svg',
-                    width: 20,
-                    height: 20,
-                    colorFilter: const ColorFilter.mode(
-                      Color(0xff8F959E),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-            label: '',
-          ),
+          buildNavItem(0, 'Home', 'assets/icons/app_icons/Home.svg'),
+          buildNavItem(1, 'Wishlist', 'assets/icons/app_icons/Heart.svg'),
+          buildNavItem(2, 'Cart', 'assets/icons/app_icons/Bag.svg'),
+          buildNavItem(3, 'My Cards', 'assets/icons/app_icons/Wallet.svg'),
         ],
       ),
     );
   }
-}
 
-// Wallet page
-class _MyCardScreen extends StatelessWidget {
-  const _MyCardScreen();
+  BottomNavigationBarItem buildNavItem(
+    int index,
+    String label,
+    String iconPath,
+  ) {
+    final isSelected = selectedIndex == index;
 
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text('My Cards', style: AppTextStyle.base.copyWith(fontSize: 24)),
+    return BottomNavigationBarItem(
+      icon: isSelected
+          ? Text(
+              label,
+              style: AppTextStyle.s11.copyWith(
+                color: const Color(0xff9775FA),
+                fontWeight: FontWeight.w500,
+              ),
+            )
+          : SvgPicture.asset(
+              iconPath,
+              width: 20,
+              height: 20,
+              colorFilter: const ColorFilter.mode(
+                Color(0xff8F959E),
+                BlendMode.srcIn,
+              ),
+            ),
+      label: '',
     );
   }
 }

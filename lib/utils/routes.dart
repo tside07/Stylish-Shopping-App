@@ -7,9 +7,7 @@ import '../modules/auth/screens/forget_password_screen.dart';
 import '../modules/auth/screens/verification_code_screen.dart';
 import '../screens/create_new_password_screen.dart';
 import '../modules/gender_selection/screens/gender_selection_screen.dart';
-import '../modules/homepage/screens/home_page_screen.dart';
-import '../modules/wishlist/screens/wishlist_screen.dart';
-import '../modules/cart/screens/cart_screen.dart';
+import '../modules/home/screens/home_screen.dart';
 import '../modules/delivery_address/screens/delivery_address_screen.dart';
 import '../modules/payment_method/screens/payment_method_screen.dart';
 import '../modules/add_card/screens/add_new_card_screen.dart';
@@ -17,6 +15,7 @@ import '../screens/order_success_screen.dart';
 import '../modules/view_review/screens/view_review_screen.dart';
 import '../modules/add_review/screens/add_review_screen.dart';
 import '../modules/auth/screens/change_password_screen.dart';
+import '../modules/cart/screens/cart_screen.dart'; // Đổi import
 
 class AppRoutes {
   static const String splash = '/';
@@ -28,7 +27,6 @@ class AppRoutes {
   static const String createNewPw = '/create-new-password';
   static const String selectGender = '/select-gender';
   static const String homepage = '/homepage-screen';
-  static const String wishlist = '/wishlist-screen';
   static const String cart = '/cart-screen';
   static const String address = '/address';
   static const String payment = '/payment';
@@ -37,7 +35,6 @@ class AppRoutes {
   static const String viewReview = '/viewReview';
   static const String addReview = '/addReview';
   static const String changePw = '/changePw';
-
 
   static Map<String, WidgetBuilder> routes = {
     splash: (context) => const SplashScreen(),
@@ -48,9 +45,8 @@ class AppRoutes {
     verificationCode: (context) => const VerificationCodeScreen(),
     createNewPw: (context) => const CreateNewPasswordScreen(),
     selectGender: (context) => const GenderSelectionScreen(),
-    homepage: (context) => const HomePageScreen(),
-    wishlist: (context) => const WishlistScreen(),
-    cart: (context) => const CartScreen(),
+    homepage: (context) => const HomeScreen(),
+    cart: (context) => const CartScreen(isInHub: false),
     address: (context) => const DeliveryAddressScreen(),
     payment: (context) => const PaymentMethodScreen(),
     addCard: (context) => const AddNewCardScreen(),
@@ -58,8 +54,5 @@ class AppRoutes {
     viewReview: (context) => const ViewReviewScreen(),
     addReview: (context) => const AddReviewScreen(),
     changePw: (context) => const ChangePasswordScreen(),
-
   };
 }
-
-

@@ -4,7 +4,12 @@ import '../../../core/theme/app_text_style.dart';
 import '../../../utils/routes.dart';
 
 class AppSideMenu extends StatefulWidget {
-  const AppSideMenu({super.key});
+  final Function(int)? onNavigateToTab;
+  
+  const AppSideMenu({
+    super.key,
+    this.onNavigateToTab,
+  });
 
   @override
   State<AppSideMenu> createState() => _AppSideMenuState();
@@ -29,7 +34,10 @@ class _AppSideMenuState extends State<AppSideMenu>
     _slideAnimation = Tween<double>(
       begin: -1.0,
       end: 0.0,
-    ).animate(CurvedAnimation(parent: _animationController, curve: Curves.easeOut));
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeOut,
+    ));
 
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -47,6 +55,11 @@ class _AppSideMenuState extends State<AppSideMenu>
     super.dispose();
   }
 
+  void _navigateToTab(int index) {
+    Navigator.pop(context);
+    widget.onNavigateToTab?.call(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -57,7 +70,7 @@ class _AppSideMenuState extends State<AppSideMenu>
           child: Opacity(
             opacity: _fadeAnimation.value,
             child: Container(
-              width: 350,
+              width: 300,
               color: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SafeArea(
@@ -97,9 +110,7 @@ class _AppSideMenuState extends State<AppSideMenu>
                           height: 45,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: const Color(
-                              0xff8F959E,
-                            ).withValues(alpha: 0.05),
+                            color: const Color(0xff8F959E).withValues(alpha: 0.05),
                           ),
                           child: Center(
                             child: SvgPicture.asset(
@@ -182,19 +193,18 @@ class _AppSideMenuState extends State<AppSideMenu>
                       ),
                     ),
 
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
 
                     // Menu Items
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
-                        icon:
-                            'assets/icons/app_icons/side_menu_icons/Info_Circle.svg',
+                        icon: 'assets/icons/app_icons/side_menu_icons/Info_Circle.svg',
                         title: 'Account Information',
                         onTap: () => Navigator.pop(context),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -202,56 +212,51 @@ class _AppSideMenuState extends State<AppSideMenu>
                         icon: 'assets/icons/app_icons/side_menu_icons/Lock.svg',
                         title: 'Change Password',
                         onTap: () {
+                          Navigator.pop(context);
                           Navigator.pushNamed(context, AppRoutes.changePw);
                         },
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
                         icon: 'assets/icons/app_icons/Bag.svg',
                         title: 'Order',
-                        onTap: () {
-                          Navigator.pushNamed(context, AppRoutes.cart);
-                        },
+                        onTap: () => _navigateToTab(2),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
                         icon: 'assets/icons/app_icons/Wallet.svg',
                         title: 'My Cards',
-                        onTap: () {
-                          //Navigate to MyCardScreen
-                        },
+                        onTap: () => _navigateToTab(3),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
                         icon: 'assets/icons/app_icons/Heart.svg',
                         title: 'Wishlist',
-                        onTap: () {
-                          //Navigate to Wishlist screen
-                        },
+                        onTap: () => _navigateToTab(1),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 5),
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
-                        icon:
-                            'assets/icons/app_icons/side_menu_icons/Setting.svg',
+                        icon: 'assets/icons/app_icons/side_menu_icons/Setting.svg',
                         title: 'Settings',
                         onTap: () {
-                          // Navigate to setting
+                          Navigator.pop(context);
+                          // TODO: Navigate to settings screen
                         },
                       ),
                     ),
@@ -289,7 +294,7 @@ class _AppSideMenuState extends State<AppSideMenu>
                       ),
                     ),
 
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 60),
                   ],
                 ),
               ),

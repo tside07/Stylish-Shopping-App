@@ -5,6 +5,7 @@ class ProductDetail {
   final String productCategory;
   final String productDescription;
   final List<String> galleryImages;
+  final String? brandLogo; // Để nullable
 
   ProductDetail({
     required this.productImage,
@@ -13,6 +14,7 @@ class ProductDetail {
     required this.productCategory,
     required this.productDescription,
     required this.galleryImages,
+    this.brandLogo,
   });
 
   // Factory constructor để parse từ JSON (nếu cần API sau)
@@ -24,6 +26,7 @@ class ProductDetail {
       productCategory: json['productCategory'] as String,
       productDescription: json['productDescription'] as String,
       galleryImages: List<String>.from(json['galleryImages'] as List),
+      brandLogo: json['brandLogo'] as String?,
     );
   }
 
@@ -35,6 +38,7 @@ class ProductDetail {
       'productCategory': productCategory,
       'productDescription': productDescription,
       'galleryImages': galleryImages,
+      'brandLogo': brandLogo,
     };
   }
 }

@@ -78,6 +78,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               mainImage: _currentImage,
               onBackPressed: () => Navigator.pop(context),
               onCartPressed: () => Navigator.pushNamed(context, AppRoutes.cart),
+              brandLogo: widget.product.brandLogo,
             ),
             Expanded(
               child: SingleChildScrollView(

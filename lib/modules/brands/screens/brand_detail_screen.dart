@@ -30,7 +30,7 @@ class BrandDetailScreen extends StatelessWidget {
           title: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              boxShadow: [BoxShadow(color: Color(0xffF5F6FA))],
+              boxShadow: const [BoxShadow(color: Color(0xffF5F6FA))],
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(brandLogo, height: 30),
@@ -44,14 +44,16 @@ class BrandDetailScreen extends StatelessWidget {
             constraints: const BoxConstraints(),
           ),
         ),
-        body: _Body(),
+        body: _Body(brandLogo: brandLogo),
       ),
     );
   }
 }
 
 class _Body extends StatelessWidget {
-  const _Body();
+  final String brandLogo;
+
+  const _Body({required this.brandLogo});
 
   @override
   Widget build(BuildContext context) {
@@ -63,16 +65,16 @@ class _Body extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Items
-              AvailableItem(),
+              const AvailableItem(),
 
               // Function
-              FilterSortBottomSheet(),
+              const FilterSortBottomSheet(),
             ],
           ),
         ),
 
         // Products grid
-        ProductGrid(),
+        ProductGrid(brandLogo: brandLogo),
       ],
     );
   }
