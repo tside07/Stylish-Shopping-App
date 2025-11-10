@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 
 class SortBottomSheet extends StatefulWidget {
   const SortBottomSheet({super.key});
@@ -41,7 +43,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
               ),
             ),
 
-            const SizedBox(height: 20),
+            AppGap.h20,
 
             // Title
             Center(
@@ -54,7 +56,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
               ),
             ),
 
-            const SizedBox(height: 32),
+            AppGap.h32,
 
             // Sort options
             Expanded(
@@ -63,7 +65,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: _sortOptions.length,
-                separatorBuilder: (context, index) => const SizedBox(height: 8),
+                separatorBuilder: (context, index) => AppGap.h8,
                 itemBuilder: (context, index) {
                   final option = _sortOptions[index];
                   final isSelected = _selectedSort == option;
@@ -89,7 +91,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                           Text(option, style: AppTextStyle.s15.copyWith()),
                           if (isSelected)
                             SvgPicture.asset(
-                              "assets/icons/app_icons/Check2.svg",
+                              IconPath.check2,
                             ),
                         ],
                       ),
@@ -99,7 +101,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
               ),
             ),
 
-            const SizedBox(height: 20),
+            AppGap.h20,
 
             Container(
               padding: const EdgeInsets.symmetric(
@@ -131,7 +133,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 20),
+                  AppGap.w20,
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {

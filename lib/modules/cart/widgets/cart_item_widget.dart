@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/models/cart_item_model.dart';
 
 class CartItemWidget extends StatelessWidget {
@@ -32,7 +34,7 @@ class CartItemWidget extends StatelessWidget {
           children: [
             // Product Image
             _ProductImage(item: item),
-            const SizedBox(width: 15),
+            AppGap.w15,
 
             // Product Info
             Expanded(
@@ -42,10 +44,10 @@ class CartItemWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _ProductName(item: item),
-                    const SizedBox(height: 10),
+                    AppGap.h10,
                     _ProductPrice(item: item),
 
-                    const SizedBox(height: 10),
+                    AppGap.h10,
 
                     // Quantity Controls
                     _QuantityControl(
@@ -109,7 +111,7 @@ class _QuantityControl extends StatelessWidget {
         Row(
           children: [
             _QuantityButton(
-              icon: 'assets/icons/app_icons/Arrow_Down.svg',
+              icon: IconPath.arrowDown,
               onTap: onDecrement,
             ),
             Padding(
@@ -123,7 +125,7 @@ class _QuantityControl extends StatelessWidget {
               ),
             ),
             _QuantityButton(
-              icon: 'assets/icons/app_icons/Arrow_Up.svg',
+              icon: IconPath.arrowUp,
               onTap: onIncrement,
             ),
           ],
@@ -132,7 +134,7 @@ class _QuantityControl extends StatelessWidget {
         // Delete Button
         _QuantityButton(
           onTap: onRemove,
-          icon: 'assets/icons/app_icons/Delete.svg',
+          icon: IconPath.delete,
         ),
       ],
     );

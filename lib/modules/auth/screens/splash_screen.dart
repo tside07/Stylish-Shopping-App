@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/modules/auth/screens/get_started_screen.dart';
 import '../../../utils/colors.dart';
 
@@ -72,7 +73,7 @@ class SplashScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 50),
+              AppGap.h50,
             ],
           ),
         ),

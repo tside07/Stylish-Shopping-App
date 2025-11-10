@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../widgets/custom_app_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -49,7 +51,7 @@ class _LostConnectionScreenState extends State<LostConnectionScreen> {
             onPressed: () {
               // Navigate to cart or other action
             },
-            icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
+            icon: SvgPicture.asset(IconPath.bag),
             padding: EdgeInsets.zero,
             constraints: const BoxConstraints(),
           ),
@@ -62,11 +64,10 @@ class _LostConnectionScreenState extends State<LostConnectionScreen> {
               children: [
                 // Connection icon/image
                 Image.asset(
-                  'assets/images/disconnect.png', // Thay bằng đường dẫn icon của bạn
+                  Images.disconnect,
                   width: 142,
                   height: 142,
                   errorBuilder: (context, error, stackTrace) {
-                    // Fallback icon nếu không có image
                     return Icon(
                       Icons.wifi_off_rounded,
                       size: 120,
@@ -75,7 +76,7 @@ class _LostConnectionScreenState extends State<LostConnectionScreen> {
                   },
                 ),
 
-                const SizedBox(height: 40),
+                AppGap.h40,
 
                 // Lost connection title
                 Text(
@@ -88,7 +89,7 @@ class _LostConnectionScreenState extends State<LostConnectionScreen> {
                   textAlign: TextAlign.center,
                 ),
 
-                const SizedBox(height: 30),
+                AppGap.h30,
 
                 // Retry button
                 SizedBox(

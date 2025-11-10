@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 
 class StarRating extends StatelessWidget {
   final double value;
@@ -42,8 +43,8 @@ class StarRating extends StatelessWidget {
 
         return SvgPicture.asset(
           isFilled
-              ? 'assets/icons/app_icons/Star_Filled.svg'
-              : 'assets/icons/app_icons/Star.svg',
+              ? IconPath.starFilled
+              : IconPath.star,
           width: starSize,
           height: starSize,
         );

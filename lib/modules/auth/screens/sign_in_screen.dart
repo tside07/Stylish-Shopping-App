@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/modules/gender_selection/screens/gender_selection_screen.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/widgets/save_switch.dart';
@@ -67,7 +68,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
 
-              const SizedBox(height: 107),
+              AppGap.h107,
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -102,7 +103,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
               ),
 
-              const SizedBox(height: 25),
+              AppGap.h25,
 
               SizedBox(
                 child: PrimaryButton(
@@ -149,7 +150,7 @@ class _Body extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 15),
+          AppGap.h15,
 
           Center(
             child: Text(
@@ -162,7 +163,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 5),
+          AppGap.h5,
 
           Center(
             child: Text(
@@ -174,7 +175,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 164),
+          AppGap.h165,
 
           TextField(
             controller: usernameController,
@@ -189,7 +190,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 20),
+          AppGap.h20,
 
           TextField(
             controller: passwordController,
@@ -202,7 +203,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 30),
+          AppGap.h30,
 
           Align(
             alignment: Alignment.centerRight,
@@ -223,7 +224,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 40),
+          AppGap.h40,
 
           SaveSwitch(
             text: 'Remember me',

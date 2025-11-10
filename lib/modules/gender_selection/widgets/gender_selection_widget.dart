@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/modules/home/screens/home_screen.dart';
 import '../../../core/theme/app_text_style.dart';
 
@@ -23,7 +24,7 @@ class Header extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 10),
+        AppGap.h10,
 
         // Description
         Text(
@@ -70,7 +71,7 @@ class GenderButton extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 10),
+        AppGap.w10,
 
         Expanded(
           child: ElevatedButton(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'package:gap/gap.dart';
 
-import 'responsive_sizedbox.dart';
 
 abstract final class AppGap {
   // static const Widget g2 = Gap(2);
@@ -12,26 +11,106 @@ abstract final class AppGap {
 
   static const Widget none = SizedBox.shrink();
 
+  static const Widget w1 = SizedBox(width: 1);
   static const Widget w2 = SizedBox(width: 2);
+  static const Widget w3 = SizedBox(width: 3);
   static const Widget w4 = SizedBox(width: 4);
   static const Widget w5 = SizedBox(width: 5);
   static const Widget w6 = SizedBox(width: 6);
   static const Widget w7 = SizedBox(width: 7);
   static const Widget w8 = SizedBox(width: 8);
-  static const Widget w8d5 = SizedBox(width: 8.5);
+  static const Widget w9 = SizedBox(width: 9);
   static const Widget w10 = SizedBox(width: 10);
+  static const Widget w11 = SizedBox(width: 11);
   static const Widget w12 = SizedBox(width: 12);
+  static const Widget w13 = SizedBox(width: 13);
+  static const Widget w14 = SizedBox(width: 14);
+  static const Widget w15 = SizedBox(width: 15);
   static const Widget w16 = SizedBox(width: 16);
+  static const Widget w17 = SizedBox(width: 17);
+  static const Widget w18 = SizedBox(width: 18);
+  static const Widget w19 = SizedBox(width: 19);
   static const Widget w20 = SizedBox(width: 20);
+  static const Widget w21 = SizedBox(width: 21);
   static const Widget w22 = SizedBox(width: 22);
+  static const Widget w23 = SizedBox(width: 23);
   static const Widget w24 = SizedBox(width: 24);
-
-  static const SizedBox rw4 = ResponsiveSizedbox(width: 4);
-  static const SizedBox rw7 = ResponsiveSizedbox(width: 7);
-  static const SizedBox rw8 = ResponsiveSizedbox(width: 8);
-  static const SizedBox rw8d5 = ResponsiveSizedbox(width: 8.5);
-  static const SizedBox rw10 = ResponsiveSizedbox(width: 10);
-  static const SizedBox rw16 = ResponsiveSizedbox(width: 16);
+  static const Widget w25 = SizedBox(width: 25);
+  static const Widget w26 = SizedBox(width: 26);
+  static const Widget w27 = SizedBox(width: 27);
+  static const Widget w28 = SizedBox(width: 28);
+  static const Widget w29 = SizedBox(width: 29);
+  static const Widget w30 = SizedBox(width: 30);
+  static const Widget w31 = SizedBox(width: 31);
+  static const Widget w32 = SizedBox(width: 32);
+  static const Widget w33 = SizedBox(width: 33);
+  static const Widget w34 = SizedBox(width: 34);
+  static const Widget w35 = SizedBox(width: 35);
+  static const Widget w36 = SizedBox(width: 36);
+  static const Widget w37 = SizedBox(width: 37);
+  static const Widget w38 = SizedBox(width: 38);
+  static const Widget w39 = SizedBox(width: 39);
+  static const Widget w40 = SizedBox(width: 40);
+  static const Widget w41 = SizedBox(width: 41);
+  static const Widget w42 = SizedBox(width: 42);
+  static const Widget w43 = SizedBox(width: 43);
+  static const Widget w44 = SizedBox(width: 44);
+  static const Widget w45 = SizedBox(width: 45);
+  static const Widget w46 = SizedBox(width: 46);
+  static const Widget w47 = SizedBox(width: 47);
+  static const Widget w48 = SizedBox(width: 48);
+  static const Widget w49 = SizedBox(width: 49);
+  static const Widget w50 = SizedBox(width: 50);
+  static const Widget w51 = SizedBox(width: 51);
+  static const Widget w52 = SizedBox(width: 52);
+  static const Widget w53 = SizedBox(width: 53);
+  static const Widget w54 = SizedBox(width: 54);
+  static const Widget w55 = SizedBox(width: 55);
+  static const Widget w56 = SizedBox(width: 56);
+  static const Widget w57 = SizedBox(width: 57);
+  static const Widget w58 = SizedBox(width: 58);
+  static const Widget w59 = SizedBox(width: 59);
+  static const Widget w60 = SizedBox(width: 60);
+  static const Widget w61 = SizedBox(width: 61);
+  static const Widget w62 = SizedBox(width: 62);
+  static const Widget w63 = SizedBox(width: 63);
+  static const Widget w64 = SizedBox(width: 64);
+  static const Widget w65 = SizedBox(width: 65);
+  static const Widget w66 = SizedBox(width: 66);
+  static const Widget w67 = SizedBox(width: 67);
+  static const Widget w68 = SizedBox(width: 68);
+  static const Widget w69 = SizedBox(width: 69);
+  static const Widget w70 = SizedBox(width: 70);
+  static const Widget w71 = SizedBox(width: 71);
+  static const Widget w72 = SizedBox(width: 72);
+  static const Widget w73 = SizedBox(width: 73);
+  static const Widget w74 = SizedBox(width: 74);
+  static const Widget w75 = SizedBox(width: 75);
+  static const Widget w76 = SizedBox(width: 76);
+  static const Widget w77 = SizedBox(width: 77);
+  static const Widget w78 = SizedBox(width: 78);
+  static const Widget w79 = SizedBox(width: 79);
+  static const Widget w80 = SizedBox(width: 80);
+  static const Widget w81 = SizedBox(width: 81);
+  static const Widget w82 = SizedBox(width: 82);
+  static const Widget w83 = SizedBox(width: 83);
+  static const Widget w84 = SizedBox(width: 84);
+  static const Widget w85 = SizedBox(width: 85);
+  static const Widget w86 = SizedBox(width: 86);
+  static const Widget w87 = SizedBox(width: 87);
+  static const Widget w88 = SizedBox(width: 88);
+  static const Widget w89 = SizedBox(width: 89);
+  static const Widget w90 = SizedBox(width: 90);
+  static const Widget w91 = SizedBox(width: 91);
+  static const Widget w92 = SizedBox(width: 92);
+  static const Widget w93 = SizedBox(width: 93);
+  static const Widget w94 = SizedBox(width: 94);
+  static const Widget w95 = SizedBox(width: 95);
+  static const Widget w96 = SizedBox(width: 96);
+  static const Widget w97 = SizedBox(width: 97);
+  static const Widget w98 = SizedBox(width: 98);
+  static const Widget w99 = SizedBox(width: 99);
+  static const Widget w100 = SizedBox(width: 100);
 
   // Heights: h1 to h100
 
@@ -135,7 +214,13 @@ abstract final class AppGap {
   static const Widget h98 = SizedBox(height: 98);
   static const Widget h99 = SizedBox(height: 99);
   static const Widget h100 = SizedBox(height: 100);
-  static const Widget h120 = SizedBox(height: 120);
+  static const Widget h107 = SizedBox(height: 107);
+  static const Widget h120 = SizedBox(height: 120); 
+  static const Widget h140 = SizedBox(height: 140); 
+  static const Widget h152 = SizedBox(height: 152); 
+  static const Widget h165 = SizedBox(height: 165);
+  static const Widget h185 = SizedBox(height: 185);
+
 
   static const Widget sNone = SliverToBoxAdapter(child: SizedBox.shrink());
 

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/product_detail_model.dart';
 import 'package:stylish_shopping_app/modules/products/screens/product_detail_screen.dart';
@@ -27,7 +29,7 @@ class _IconButton extends StatelessWidget {
         child: Row(
           children: [
             SvgPicture.asset(icon, width: 15, height: 15),
-            const SizedBox(width: 5),
+            AppGap.w5,
             Text(
               label,
               style: AppTextStyle.s15.copyWith(color: const Color(0xff1D1E20)),
@@ -102,7 +104,7 @@ class ProductItem extends StatelessWidget {
                     ),
                     child: Center(
                       child: SvgPicture.asset(
-                        'assets/icons/app_icons/Heart.svg',
+                        IconPath.heart,
                         width: 18,
                         height: 18,
                         colorFilter: const ColorFilter.mode(
@@ -133,7 +135,7 @@ class ProductItem extends StatelessWidget {
                         height: 15 / 11,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    AppGap.h5,
 
                     Text(
                       product.productPrice,
@@ -187,7 +189,7 @@ class FilterSortBottomSheet extends StatelessWidget {
     return Row(
       children: [
         _IconButton(
-          icon: 'assets/icons/app_icons/Filter.svg',
+          icon: IconPath.filter,
           onTap: () {
             showModalBottomSheet(
               context: context,
@@ -197,10 +199,10 @@ class FilterSortBottomSheet extends StatelessWidget {
             );
           },
         ),
-        const SizedBox(width: 10),
+        AppGap.w10,
 
         _IconButton(
-          icon: 'assets/icons/app_icons/Sort.svg',
+          icon: IconPath.sort,
           label: 'Sort',
           onTap: () {
             showModalBottomSheet(
@@ -228,7 +230,7 @@ class AvailableItem extends StatelessWidget {
           '${products.length} Items',
           style: AppTextStyle.s17.copyWith(color: const Color(0xff1D1E20)),
         ),
-        const SizedBox(height: 5),
+        AppGap.h5,
         Text(
           'Available in stock',
           style: AppTextStyle.s15.copyWith(color: const Color(0xff8F959E)),

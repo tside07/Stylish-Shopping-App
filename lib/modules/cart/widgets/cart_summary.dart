@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../../core/theme/app_text_style.dart';
 import '../../../utils/routes.dart';
@@ -61,7 +63,7 @@ class CartSummary extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        const SizedBox(height: 20),
+                        AppGap.h20,
 
                         // Delivery Address
                         GestureDetector(
@@ -71,7 +73,7 @@ class CartSummary extends StatelessWidget {
                           child: const _DeliveryAddressSection(),
                         ),
 
-                        const SizedBox(height: 20),
+                        AppGap.h20,
 
                         // Payment Method
                         GestureDetector(
@@ -81,7 +83,7 @@ class CartSummary extends StatelessWidget {
                           child: const _PaymentMethodSection(),
                         ),
 
-                        const SizedBox(height: 20),
+                        AppGap.h20,
 
                         // Order Info
                         _OrderInfoSection(
@@ -90,7 +92,7 @@ class CartSummary extends StatelessWidget {
                           total: total,
                         ),
 
-                        const SizedBox(height: 24),
+                        AppGap.h24,
                       ],
                     ),
                   ),
@@ -130,7 +132,7 @@ class _DeliveryAddressSection extends StatelessWidget {
             const Icon(Icons.keyboard_arrow_right, size: 15),
           ],
         ),
-        const SizedBox(height: 10),
+        AppGap.h10,
         Row(
           children: [
             SizedBox(
@@ -141,17 +143,17 @@ class _DeliveryAddressSection extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset('assets/images/map.png'),
+                    child: Image.asset(Images.map),
                   ),
                   Center(
                     child: SvgPicture.asset(
-                      'assets/icons/app_icons/Location.svg',
+                      IconPath.location,
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 15),
+            AppGap.w15,
             Expanded(
               child: Text(
                 '43, Electronics City Phase 1, Electronic City',
@@ -163,7 +165,7 @@ class _DeliveryAddressSection extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(width: 10),
+            AppGap.w10,
             Container(
               width: 25,
               height: 25,
@@ -173,7 +175,7 @@ class _DeliveryAddressSection extends StatelessWidget {
                 color: const Color(0xff4AC76D),
               ),
               child: SvgPicture.asset(
-                'assets/icons/app_icons/Check1.svg',
+                IconPath.check1,
                 height: 6.875,
                 width: 10,
               ),
@@ -202,7 +204,7 @@ class _PaymentMethodSection extends StatelessWidget {
             const Icon(Icons.keyboard_arrow_right, size: 15),
           ],
         ),
-        const SizedBox(height: 15),
+        AppGap.h15,
         Row(
           children: [
             SizedBox(
@@ -213,15 +215,15 @@ class _PaymentMethodSection extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset('assets/images/white_background.png'),
+                    child: Image.asset(Images.whiteBackground),
                   ),
                   Center(
-                    child: SvgPicture.asset('assets/icons/app_icons/Visa.svg'),
+                    child: SvgPicture.asset(IconPath.visa),
                   ),
                 ],
               ),
             ),
-            const SizedBox(width: 15),
+            AppGap.w15,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,7 +235,7 @@ class _PaymentMethodSection extends StatelessWidget {
                       color: const Color(0xff1D1E20),
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  AppGap.h5,
                   Text(
                     '**** 7690',
                     style: AppTextStyle.s13.copyWith(
@@ -252,7 +254,7 @@ class _PaymentMethodSection extends StatelessWidget {
                 color: const Color(0xff4AC76D),
               ),
               child: SvgPicture.asset(
-                'assets/icons/app_icons/Check1.svg',
+                IconPath.check1,
                 height: 6.875,
                 width: 10,
               ),
@@ -288,14 +290,14 @@ class _OrderInfoSection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 15),
+        AppGap.h15,
         _PriceRow(label: 'Subtotal', value: '\$${subtotal.toStringAsFixed(0)}'),
-        const SizedBox(height: 10),
+        AppGap.h10,
         _PriceRow(
           label: 'Delivery Charge',
           value: '\$${deliveryCharge.toStringAsFixed(0)}',
         ),
-        const SizedBox(height: 15),
+        AppGap.h15,
         _PriceRow(
           label: 'Total',
           value: '\$${total.toStringAsFixed(0)}',

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/star_rating.dart';
 import 'package:stylish_shopping_app/widgets/view_all_button.dart';
@@ -40,7 +42,7 @@ class ProductImageSection extends StatelessWidget {
 
                 Align(
                   alignment: Alignment(0, 1),
-                  child: Image.asset('assets/images/background_brand.png'),
+                  child: Image.asset(Images.backgroundBrand),
                 ),
 
                   Align(
@@ -63,11 +65,11 @@ class ProductImageSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _IconButton(
-                  icon: 'assets/icons/app_icons/Arrow_Left.svg',
+                  icon: IconPath.arrowLeft,
                   onPressed: onBackPressed,
                 ),
                 _IconButton(
-                  icon: 'assets/icons/app_icons/Bag.svg',
+                  icon: IconPath.bag,
                   onPressed: onCartPressed,
                 ),
               ],
@@ -126,7 +128,7 @@ class ProductInfo extends StatelessWidget {
               category,
               style: AppTextStyle.s13.copyWith(color: const Color(0xff8F959E)),
             ),
-            const SizedBox(height: 8),
+            AppGap.h8,
             SizedBox(
               width: 300,
               child: Text(
@@ -149,7 +151,7 @@ class ProductInfo extends StatelessWidget {
               'Price',
               style: AppTextStyle.s13.copyWith(color: const Color(0xff8F959E)),
             ),
-            const SizedBox(height: 8),
+            AppGap.h8,
             Text(
               price,
               style: AppTextStyle.base.copyWith(
@@ -191,7 +193,7 @@ class GalleryImages extends StatelessWidget {
             isSelected: selectedIndex == 0,
             onTap: () => onImageTapped(0),
           ),
-          const SizedBox(width: 10),
+          AppGap.w10,
 
           ...galleryImages.asMap().entries.map((entry) {
             int index = entry.key + 1;
@@ -281,7 +283,7 @@ class SizeSelection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 15),
+        AppGap.h15,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: ['S', 'M', 'L', 'XL', '2XL'].map((size) {
@@ -374,7 +376,7 @@ class ColorSelection extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 15),
+        AppGap.h15,
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -449,7 +451,7 @@ class ProductDescription extends StatelessWidget {
             color: const Color(0xff1D1E20),
           ),
         ),
-        const SizedBox(height: 10),
+        AppGap.h10,
         ExpandableDescription(content: content),
       ],
     );
@@ -594,7 +596,7 @@ class ProductReviewsSection extends StatelessWidget {
             Navigator.pushNamed(context, AppRoutes.viewReview);
           },
         ),
-        const SizedBox(height: 15),
+        AppGap.h15,
         const _ReviewItem(),
       ],
     );
@@ -613,13 +615,13 @@ class _ReviewItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CircleAvatar(radius: 20, backgroundColor: Color(0xffCCD9E0)),
-            const SizedBox(width: 10),
+            AppGap.w10,
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _Reviewer(name: 'Ronald Richards', rating: '4.8'),
-                  const SizedBox(height: 7),
+                  AppGap.h7,
 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -631,7 +633,7 @@ class _ReviewItem extends StatelessWidget {
                             size: 15,
                             color: Color(0xff8F959E),
                           ),
-                          const SizedBox(width: 5),
+                          AppGap.w5,
                           Text(
                             '13 Sep, 2020',
                             style: AppTextStyle.s11.copyWith(
@@ -648,7 +650,7 @@ class _ReviewItem extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        AppGap.h10,
         Text(
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...',
           style: AppTextStyle.s15.copyWith(
@@ -687,7 +689,7 @@ class _Reviewer extends StatelessWidget {
               rating,
               style: AppTextStyle.s15.copyWith(fontWeight: FontWeight.w600),
             ),
-            const SizedBox(width: 5),
+            AppGap.w5,
 
             Text(
               'rating',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import '../../../widgets/product_item.dart';
@@ -30,7 +31,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                       color: const Color(0xff1D1E20),
                     ),
                   ),
-                  const SizedBox(height: 5),
+                  AppGap.h5,
                   Text(
                     'in wishlist',
                     style: AppTextStyle.s15.copyWith(

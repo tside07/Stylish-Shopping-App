@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/data/products_data.dart';
 import 'package:stylish_shopping_app/models/brand_model.dart';
 import 'package:stylish_shopping_app/modules/homepage/widgets/home_page_widget.dart';
@@ -30,15 +31,15 @@ class _HomePageScreenState extends State<HomePageScreen> {
         children: [
           // Welcome banner
           const WelcomeBanner(user: 'Hemendra', banner: 'Welcome to Laza.'),
-          const SizedBox(height: 20),
+          AppGap.h20,
 
           // Search bar
           HomeSearchBar(searchController: _searchController),
-          const SizedBox(height: 25),
+          AppGap.h25,
 
           // Choose Brand
           HomeViewAll(header: 'Choose Brand', button: 'View All', onTap: () {}),
-          const SizedBox(height: 15),
+          AppGap.h15,
 
           // Brand logos
           SingleChildScrollView(
@@ -56,11 +57,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
               }).toList(),
             ),
           ),
-          const SizedBox(height: 15),
+          AppGap.h15,
 
           // New Arrival
           HomeViewAll(header: 'New Arrival', button: 'View All', onTap: () {}),
-          const SizedBox(height: 15),
+          AppGap.h15,
 
           // Products grid
           GridView.builder(
@@ -78,7 +79,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               return ProductItem(product: product);
             },
           ),
-          const SizedBox(height: 20),
+          AppGap.h20,
         ],
       ),
     );

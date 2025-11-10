@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/widgets/save_switch.dart';
 import '../../../utils/routes.dart';
@@ -130,7 +131,7 @@ class _Body extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 15),
+          AppGap.h15,
 
           // Title
           Center(
@@ -143,7 +144,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 152),
+          AppGap.h152,
 
           // Username
           TextField(
@@ -161,7 +162,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 20),
+          AppGap.h20,
 
           // Password
           TextField(
@@ -175,7 +176,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 20),
+          AppGap.h20,
 
           // Email
           TextField(
@@ -191,7 +192,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 40),
+          AppGap.h40,
 
           // Remember me
           SaveSwitch(text: 'Remember me', save: rememberMe, onSaveChanged: onRememberMeChanged)

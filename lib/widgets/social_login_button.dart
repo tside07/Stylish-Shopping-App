@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 
 class SocialLoginButton extends StatelessWidget {
   final String text;
@@ -31,7 +32,7 @@ class SocialLoginButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               icon,
-              const SizedBox(width: 10),
+              AppGap.w10,
               Text(
                 text,
                 style: const TextStyle(

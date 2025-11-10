@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/utils/colors.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
@@ -44,7 +45,7 @@ class GetStartedScreen extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 25),
+            AppGap.h25,
 
             SizedBox(
               child: PrimaryButton(
@@ -71,7 +72,7 @@ class _Body extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          const SizedBox(height: 15),
+          AppGap.h15,
 
           // Title
           Text(
@@ -83,7 +84,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 185),
+          AppGap.h185,
 
           // Facebook Button
           SizedBox(
@@ -101,7 +102,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 10),
+          AppGap.h10,
 
           // Twitter Button
           SizedBox(
@@ -119,7 +120,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 10),
+          AppGap.h10,
 
           // Google Button
           SizedBox(

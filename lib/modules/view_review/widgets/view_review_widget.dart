@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../../../core/theme/app_text_style.dart';
 import '../../../widgets/star_rating.dart';
@@ -50,7 +52,7 @@ class ReviewCard extends StatelessWidget {
                     : null,
               ),
 
-              const SizedBox(width: 10),
+              AppGap.w10,
 
               // Name and Date
               Expanded(
@@ -64,7 +66,7 @@ class ReviewCard extends StatelessWidget {
                         color: const Color(0xff1D1E20),
                       ),
                     ),
-                    const SizedBox(height: 7),
+                    AppGap.h7,
                     Row(
                       children: [
                         const Icon(
@@ -72,7 +74,7 @@ class ReviewCard extends StatelessWidget {
                           size: 15,
                           color: Color(0xff8F959E),
                         ),
-                        const SizedBox(width: 5),
+                        AppGap.w5,
                         Text(
                           date,
                           style: AppTextStyle.s11.copyWith(
@@ -97,7 +99,7 @@ class ReviewCard extends StatelessWidget {
                           color: const Color(0xff1D1E20),
                         ),
                       ),
-                      const SizedBox(width: 5),
+                      AppGap.w5,
                       Text(
                         'rating',
                         style: AppTextStyle.s11.copyWith(
@@ -108,7 +110,7 @@ class ReviewCard extends StatelessWidget {
                     ],
                   ),
 
-                  const SizedBox(width: 10),
+                  AppGap.w10,
 
                   // Stars
                   StarRating(value: rating, starSize: 13),
@@ -117,7 +119,7 @@ class ReviewCard extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 12),
+          AppGap.h12,
 
           // Comment
           Text(
@@ -152,7 +154,7 @@ class ReviewSummary extends StatelessWidget {
               '${reviews.length} Reviews',
               style: AppTextStyle.s15.copyWith(color: const Color(0xff1D1E20)),
             ),
-            const SizedBox(height: 5),
+            AppGap.h5,
             Row(
               children: [
                 Text(
@@ -161,7 +163,7 @@ class ReviewSummary extends StatelessWidget {
                     color: const Color(0xff1D1E20),
                   ),
                 ),
-                const SizedBox(width: 8),
+                AppGap.w8,
                 const StarRating(value: 4.8, starSize: 14),
               ],
             ),
@@ -171,7 +173,7 @@ class ReviewSummary extends StatelessWidget {
           onPressed: () {
             Navigator.pushNamed(context, AppRoutes.addReview);
           },
-          icon: SvgPicture.asset('assets/icons/app_icons/Edit.svg'),
+          icon: SvgPicture.asset(IconPath.edit),
           label: Text(
             'Add Review',
             style: AppTextStyle.s13.copyWith(fontWeight: FontWeight.w500),

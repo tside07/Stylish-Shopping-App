@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../core/theme/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../brands/screens/brand_detail_screen.dart';
@@ -39,7 +41,7 @@ class BrandItem extends StatelessWidget {
               ),
               child: Image.asset(brand.logo, width: 25, height: 17),
             ),
-            const SizedBox(width: 10),
+            AppGap.w10,
             Text(
               brand.name,
               style: AppTextStyle.s15.copyWith(
@@ -76,7 +78,7 @@ class WelcomeBanner extends StatelessWidget {
               color: const Color(0xff1D1E20),
             ),
           ),
-          const SizedBox(height: 5),
+          AppGap.h5,
           Text(
             banner,
             style: AppTextStyle.s15.copyWith(
@@ -110,11 +112,11 @@ class HomeSearchBar extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  'assets/icons/app_icons/Search.svg',
+                  IconPath.search,
                   width: 20,
                   height: 20,
                 ),
-                const SizedBox(width: 10),
+                AppGap.w10,
                 Expanded(
                   child: TextField(
                     controller: searchController,
@@ -137,7 +139,7 @@ class HomeSearchBar extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 10),
+        AppGap.w10,
         Container(
           padding: const EdgeInsets.all(16.5),
           decoration: BoxDecoration(
@@ -145,7 +147,8 @@ class HomeSearchBar extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           child: SvgPicture.asset(
-            'assets/icons/app_icons/Voice.svg',
+            // 'assets/icons/app_icons/Voice.svg',
+            IconPath.voice,
             width: 24,
             height: 24,
           ),

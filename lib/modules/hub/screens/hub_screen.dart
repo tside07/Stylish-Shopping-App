@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/modules/home/widgets/app_side_menu.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/widgets/custom_app_bar.dart';
@@ -35,7 +36,7 @@ class HubScreen extends StatelessWidget {
                 Scaffold.of(context).openDrawer();
               },
               icon: SvgPicture.asset(
-                'assets/icons/app_icons/Menu.svg',
+                IconPath.menu,
                 width: 25,
                 height: 25,
               ),
@@ -46,7 +47,7 @@ class HubScreen extends StatelessWidget {
         ),
         action: IconButton(
           onPressed: () => onNavigationTap(2), // Navigate to Cart
-          icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
+          icon: SvgPicture.asset(IconPath.bag),
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(),
         ),
@@ -58,7 +59,7 @@ class HubScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: onBackPressed ?? () => onNavigationTap(0),
           icon: SvgPicture.asset(
-            'assets/icons/app_icons/Arrow_Left.svg',
+            IconPath.arrowLeft,
             width: 25,
             height: 25,
           ),
@@ -77,7 +78,7 @@ class HubScreen extends StatelessWidget {
         action: selectedIndex != 2
             ? IconButton(
                 onPressed: () => onNavigationTap(2),
-                icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
+                icon: SvgPicture.asset(IconPath.bag),
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
               )
@@ -152,10 +153,10 @@ class HubScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         items: [
-          buildNavItem(0, 'Home', 'assets/icons/app_icons/Home.svg'),
-          buildNavItem(1, 'Wishlist', 'assets/icons/app_icons/Heart.svg'),
-          buildNavItem(2, 'Cart', 'assets/icons/app_icons/Bag.svg'),
-          buildNavItem(3, 'My Cards', 'assets/icons/app_icons/Wallet.svg'),
+          buildNavItem(0, 'Home', IconPath.home),
+          buildNavItem(1, 'Wishlist', IconPath.heart),
+          buildNavItem(2, 'Cart', IconPath.bag),
+          buildNavItem(3, 'My Cards', IconPath.wallet),
         ],
       ),
     );

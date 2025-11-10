@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../core/theme/app_text_style.dart';
 import '../../../utils/routes.dart';
 
@@ -76,7 +78,7 @@ class _AppSideMenuState extends State<AppSideMenu>
               child: SafeArea(
                 child: Column(
                   children: [
-                    const SizedBox(height: 10),
+                    AppGap.h10,
 
                     // Header - Menu Icon
                     Row(
@@ -89,7 +91,7 @@ class _AppSideMenuState extends State<AppSideMenu>
                           child: IconButton(
                             onPressed: () => Navigator.pop(context),
                             icon: SvgPicture.asset(
-                              'assets/icons/app_icons/side_menu_icons/SideMenu.svg',
+                              IconSideMenu.sideMenu,
                               width: 25,
                               height: 25,
                             ),
@@ -100,7 +102,7 @@ class _AppSideMenuState extends State<AppSideMenu>
                       ],
                     ),
 
-                    const SizedBox(height: 30),
+                    AppGap.h30,
 
                     // Profile Section
                     Row(
@@ -114,14 +116,14 @@ class _AppSideMenuState extends State<AppSideMenu>
                           ),
                           child: Center(
                             child: SvgPicture.asset(
-                              'assets/icons/app_icons/side_menu_icons/Person.svg',
+                              IconSideMenu.person,
                               width: 24,
                               height: 24,
                             ),
                           ),
                         ),
 
-                        const SizedBox(width: 15),
+                        AppGap.w15,
 
                         Expanded(
                           child: Row(
@@ -137,7 +139,7 @@ class _AppSideMenuState extends State<AppSideMenu>
                                       color: const Color(0xff1D1E20),
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
+                                  AppGap.h4,
                                   Row(
                                     children: [
                                       Text(
@@ -146,9 +148,9 @@ class _AppSideMenuState extends State<AppSideMenu>
                                           color: const Color(0xff8F959E),
                                         ),
                                       ),
-                                      const SizedBox(width: 5),
+                                      AppGap.w5,
                                       SvgPicture.asset(
-                                        'assets/icons/app_icons/side_menu_icons/Check.svg',
+                                        IconSideMenu.check,
                                         width: 15,
                                         height: 15,
                                       ),
@@ -176,11 +178,11 @@ class _AppSideMenuState extends State<AppSideMenu>
                       ],
                     ),
 
-                    const SizedBox(height: 30),
+                    AppGap.h30,
 
                     // Dark Mode Toggle
                     _MenuTile(
-                      icon: 'assets/icons/app_icons/side_menu_icons/Sun.svg',
+                      icon: IconSideMenu.sun,
                       title: 'Dark Mode',
                       trailing: Switch(
                         value: _isDarkMode,
@@ -193,23 +195,23 @@ class _AppSideMenuState extends State<AppSideMenu>
                       ),
                     ),
 
-                    const SizedBox(height: 5),
+                    AppGap.h5,
 
                     // Menu Items
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
-                        icon: 'assets/icons/app_icons/side_menu_icons/Info_Circle.svg',
+                        icon: IconSideMenu.infoCircle,
                         title: 'Account Information',
                         onTap: () => Navigator.pop(context),
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    AppGap.h5,
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
-                        icon: 'assets/icons/app_icons/side_menu_icons/Lock.svg',
+                        icon: IconSideMenu.lock,
                         title: 'Change Password',
                         onTap: () {
                           Navigator.pop(context);
@@ -217,42 +219,42 @@ class _AppSideMenuState extends State<AppSideMenu>
                         },
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    AppGap.h5,
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
-                        icon: 'assets/icons/app_icons/Bag.svg',
+                        icon: IconPath.bag,
                         title: 'Order',
                         onTap: () => _navigateToTab(2),
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    AppGap.h5,
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
-                        icon: 'assets/icons/app_icons/Wallet.svg',
+                        icon: IconPath.wallet,
                         title: 'My Cards',
                         onTap: () => _navigateToTab(3),
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    AppGap.h5,
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
-                        icon: 'assets/icons/app_icons/Heart.svg',
+                        icon: IconPath.heart,
                         title: 'Wishlist',
                         onTap: () => _navigateToTab(1),
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    AppGap.h5,
 
                     Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       child: _MenuTile(
-                        icon: 'assets/icons/app_icons/side_menu_icons/Setting.svg',
+                        icon: IconSideMenu.setting,
                         title: 'Settings',
                         onTap: () {
                           Navigator.pop(context);
@@ -278,9 +280,9 @@ class _AppSideMenuState extends State<AppSideMenu>
                           child: Row(
                             children: [
                               SvgPicture.asset(
-                                'assets/icons/app_icons/side_menu_icons/Logout.svg',
+                                IconSideMenu.logout,
                               ),
-                              const SizedBox(width: 15),
+                              AppGap.w15,
                               Text(
                                 'Logout',
                                 style: AppTextStyle.s15.copyWith(
@@ -294,7 +296,7 @@ class _AppSideMenuState extends State<AppSideMenu>
                       ),
                     ),
 
-                    const SizedBox(height: 60),
+                    AppGap.h60,
                   ],
                 ),
               ),
@@ -326,7 +328,7 @@ class _MenuTile extends StatelessWidget {
       child: Row(
         children: [
           SvgPicture.asset(icon, width: 25, height: 25),
-          const SizedBox(width: 10),
+          AppGap.w10,
           Expanded(
             child: Text(
               title,

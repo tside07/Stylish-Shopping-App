@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../core/theme/app_text_style.dart';
 import '../../../data/reviews_data.dart';
 import '../../../widgets/custom_app_bar.dart';
@@ -51,12 +52,12 @@ class _Body extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 25),
+          AppGap.h25,
 
           // Reviews Summary
           ReviewSummary(rating: '4.8'),
 
-          const SizedBox(height: 30),
+          AppGap.h30,
 
           // Reviews List
           ...reviews.map((review) {

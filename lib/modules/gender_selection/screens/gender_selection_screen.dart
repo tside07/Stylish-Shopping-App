@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/modules/gender_selection/widgets/gender_selection_widget.dart';
 import 'dart:ui' as ui;
 
@@ -92,11 +94,11 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 140),
+        AppGap.h140,
 
         // Image
         Image.asset(
-          'assets/images/logo_man_n_woman.png',
+          Images.logoManNWoman,
           width: 382,
           height: 430,
           fit: BoxFit.contain,
@@ -116,7 +118,7 @@ class _Body extends StatelessWidget {
             child: Column(
               children: [
                 // Title
-                const SizedBox(height: 25),
+                AppGap.h25,
 
                 Header(
                   title: 'Look Good, Feed Good',
@@ -124,11 +126,11 @@ class _Body extends StatelessWidget {
                       'Create your individual & unique style and look amazing everyday.',
                 ),
 
-                const SizedBox(height: 20),
+                AppGap.h20,
 
                 // Gender buttons
                 GenderButton(),
-                const SizedBox(height: 20),
+                AppGap.h20,
 
                 // Skip button
                 SkipButton(),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'dart:async';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../../utils/routes.dart';
 import '../../../widgets/custom_app_bar.dart';
@@ -116,7 +118,7 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              AppGap.h20,
 
               // Button
               SizedBox(
@@ -153,7 +155,7 @@ class _Body extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          const SizedBox(height: 15),
+          AppGap.h15,
 
           // Title
           Center(
@@ -166,17 +168,17 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 68),
+          AppGap.h68,
 
           // Image
           Image.asset(
-            'assets/images/logo_lockedcloud.png',
+            Images.logoLockedcloud,
             width: 225,
             height: 166,
             fit: BoxFit.contain,
           ),
 
-          const SizedBox(height: 60),
+          AppGap.h60,
 
           // 4 Verification Code Boxes
           Form(

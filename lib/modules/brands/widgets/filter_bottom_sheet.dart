@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 
 class FilterBottomSheet extends StatefulWidget {
@@ -89,7 +91,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                 ),
               ),
 
-              const SizedBox(height: 12),
+              AppGap.h12,
 
               // Content
               Expanded(
@@ -100,7 +102,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     children: [
                       // Price Range
                       const _SectionTitle(title: 'Price Range'),
-                      const SizedBox(height: 15),
+                      AppGap.h15,
                       Row(
                         children: [
                           Expanded(
@@ -111,7 +113,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                               onChanged: (value) => setState(() {}),
                             ),
                           ),
-                          const SizedBox(width: 15),
+                          AppGap.w15,
                           Expanded(
                             child: CustomTextField(
                               controller: _endController,
@@ -123,7 +125,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                         ],
                       ),
 
-                      const SizedBox(height: 15),
+                      AppGap.h15,
 
                       // from to
                       Row(
@@ -152,7 +154,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                               ),
                               child: Center(
                                 child: SvgPicture.asset(
-                                  'assets/icons/app_icons/Delete.svg',
+                                  IconPath.delete,
                                 ),
                               ),
                             ),
@@ -195,7 +197,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 15),
+                    AppGap.w15,
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {

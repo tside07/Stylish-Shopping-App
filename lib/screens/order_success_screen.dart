@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../widgets/custom_app_bar.dart';
@@ -31,7 +33,7 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
           children: [
             Expanded(child: _Body()),
 
-            const SizedBox(height: 30),
+            AppGap.h30,
             // Go to Orders Button
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -61,7 +63,7 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
               ),
             ),
 
-            const SizedBox(height: 30),
+            AppGap.h30,
 
             // Continue Shopping Button
             SizedBox(
@@ -90,7 +92,7 @@ class _Body extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
           children: [
-            const SizedBox(height: 70),
+            AppGap.h70,
             SizedBox(
               width: double.infinity,
               height: 510,
@@ -102,7 +104,7 @@ class _Body extends StatelessWidget {
                     maxWidth: 620,
                     maxHeight: 620,
                     child: Image.asset(
-                      'assets/images/mask_gr.png',
+                      Images.maskGr,
                       // color: Color(0xff1D1E20),
                     ),
                   ),
@@ -110,7 +112,7 @@ class _Body extends StatelessWidget {
                   Container(
                     alignment: Alignment(0, -0.53),
                     child: Image.asset(
-                      'assets/images/phone.png',
+                      Images.phone,
                       height: 250,
                       width: 300,
                     ),

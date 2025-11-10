@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/modules/payment_method/widgets/payment_method_widget.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
@@ -111,7 +112,7 @@ class _Body extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 25),
+            AppGap.h25,
 
             // Card Images
             SingleChildScrollView(
@@ -119,40 +120,40 @@ class _Body extends StatelessWidget {
               child: Row(
                 children: [
                   CardItem(card: 'assets/images/cards/Card1.png'),
-                  const SizedBox(width: 20),
+                  AppGap.w20,
                   CardItem(card: 'assets/images/cards/Card2.png'),
-                  const SizedBox(width: 20),
+                  AppGap.w20,
                 ],
               ),
             ),
 
-            const SizedBox(height: 15),
+            AppGap.h15,
 
             // Add new card button
             AddCard(),
 
-            const SizedBox(height: 20),
+            AppGap.h20,
 
             // Card Owner
             const FormLabel(text: 'Card Owner'),
-            const SizedBox(height: 10),
+            AppGap.h10,
             CustomTextField(
               controller: nameController,
               hintText: 'Hemendra Mali',
             ),
 
-            const SizedBox(height: 15),
+            AppGap.h15,
 
             // Card Number
             const FormLabel(text: 'Card Number'),
-            const SizedBox(height: 10),
+            AppGap.h10,
             CustomTextField(
               controller: numberController,
               hintText: '5254 7634 8734 7690',
               keyboardType: TextInputType.number,
             ),
 
-            const SizedBox(height: 15),
+            AppGap.h15,
 
             // EXP and CVV
             Row(
@@ -163,7 +164,7 @@ class _Body extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const FormLabel(text: 'EXP'),
-                      const SizedBox(height: 10),
+                      AppGap.h10,
                       CustomTextField(
                         controller: expController,
                         hintText: '24/24',
@@ -171,14 +172,14 @@ class _Body extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(width: 15),
+                AppGap.w15,
 
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const FormLabel(text: 'CVV'),
-                      const SizedBox(height: 10),
+                      AppGap.h10,
                       CustomTextField(
                         controller: cvvController,
                         hintText: '7763',
@@ -190,7 +191,7 @@ class _Body extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 20),
+            AppGap.h20,
 
             // Save switch
             SaveSwitch(text: 'Save card info', save: save, onSaveChanged: onSaveChanged),

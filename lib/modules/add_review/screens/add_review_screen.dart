@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
@@ -100,37 +101,37 @@ class _Body extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 25),
+            AppGap.h25,
 
             // Name
             const FormLabel(text: 'Name'),
-            const SizedBox(height: 10),
+            AppGap.h10,
             CustomTextField(
               controller: nameController,
               hintText: 'Type your name',
             ),
 
-            const SizedBox(height: 20),
+            AppGap.h20,
 
             // Experience
             const FormLabel(text: 'How was your experience ?'),
-            const SizedBox(height: 10),
+            AppGap.h10,
             CustomTextField(
               controller: contentController,
               hintText: 'Describe your experience?',
               maxLines: 5,
             ),
 
-            const SizedBox(height: 30),
+            AppGap.h30,
 
             // Star Rating
             const FormLabel(text: 'Star'),
-            const SizedBox(height: 15),
+            AppGap.h15,
 
             // Star Rating with value display
             RatingField(starValue: starValue, onStarChanged: onStarChanged),
 
-            const SizedBox(height: 30),
+            AppGap.h30,
           ],
         ),
       ),

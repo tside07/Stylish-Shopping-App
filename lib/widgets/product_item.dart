@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../core/theme/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/modules/products/screens/product_detail_screen.dart';
@@ -53,7 +55,7 @@ class ProductItem extends StatelessWidget {
                   top: 10,
                   right: 10,
                   child: SvgPicture.asset(
-                    'assets/icons/app_icons/Heart.svg',
+                    IconPath.heart,
                     width: 20,
                     height: 20,
                     colorFilter: const ColorFilter.mode(
@@ -81,7 +83,7 @@ class ProductItem extends StatelessWidget {
                         height: 15 / 11,
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    AppGap.h5,
                     Text(
                       product.productPrice,
                       style: AppTextStyle.s13.copyWith(

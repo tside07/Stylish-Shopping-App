@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../../core/theme/app_text_style.dart';
 import '../../../../utils/routes.dart';
 
@@ -67,7 +68,7 @@ class _Notif extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(icon, size: 100, color: Color(0xff8F959E)),
-        const SizedBox(height: 20),
+        AppGap.h20,
         Text(
           content,
           style: AppTextStyle.s17.copyWith(
@@ -75,7 +76,7 @@ class _Notif extends StatelessWidget {
             color: const Color(0xff1D1E20),
           ),
         ),
-        const SizedBox(height: 10),
+        AppGap.h10,
         _EmptyText(),
       ],
     );

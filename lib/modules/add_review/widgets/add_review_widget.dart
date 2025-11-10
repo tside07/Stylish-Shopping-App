@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 
 class RatingField extends StatelessWidget {
   final double starValue;
@@ -31,7 +32,7 @@ class RatingField extends StatelessWidget {
           updateOnDrag: true,
           glow: false,
         ),
-        const SizedBox(width: 15),
+        AppGap.w15,
 
         Text(
           starValue.toStringAsFixed(1),

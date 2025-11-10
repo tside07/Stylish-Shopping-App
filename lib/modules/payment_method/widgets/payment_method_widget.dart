@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 
 class CardItem extends StatelessWidget {
@@ -42,13 +44,13 @@ class AddCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(
-              'assets/icons/app_icons/Plus.svg',
+              IconPath.plus,
               colorFilter: const ColorFilter.mode(
                 Color(0xff9775FA),
                 BlendMode.srcIn,
               ),
             ),
-            const SizedBox(width: 5),
+            AppGap.w5,
             Text(
               'Add new card',
               style: AppTextStyle.s17.copyWith(

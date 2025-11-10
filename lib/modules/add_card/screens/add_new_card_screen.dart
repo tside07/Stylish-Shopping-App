@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../products/widgets/payment_method_item.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
@@ -90,7 +91,7 @@ class _BodyState extends State<_Body> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 25),
+              AppGap.h25,
 
               // Payment method item
               PaymentItem(
@@ -102,29 +103,29 @@ class _BodyState extends State<_Body> {
                 },
               ),
 
-              const SizedBox(height: 32),
+              AppGap.h32,
 
               // Name
               const FormLabel(text: 'Card Owner'),
-              const SizedBox(height: 12),
+              AppGap.h12,
               CustomTextField(
                 controller: _nameController,
                 hintText: 'Mrh Raju',
                 keyboardType: TextInputType.name,
               ),
 
-              const SizedBox(height: 24),
+              AppGap.h24,
 
               // Number
               const FormLabel(text: 'Card Number'),
-              const SizedBox(height: 12),
+              AppGap.h12,
               CustomTextField(
                 controller: _numberController,
                 hintText: '5254 7634 8734 7690',
                 keyboardType: TextInputType.number,
               ),
 
-              const SizedBox(height: 24),
+              AppGap.h24,
 
               // EXP
               Row(
@@ -135,7 +136,7 @@ class _BodyState extends State<_Body> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const FormLabel(text: 'EXP'),
-                        const SizedBox(height: 12),
+                        AppGap.h12,
                         CustomTextField(
                           controller: _expController,
                           hintText: '24/24',
@@ -143,14 +144,14 @@ class _BodyState extends State<_Body> {
                       ],
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  AppGap.w16,
                   // CVV
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const FormLabel(text: 'CVV'),
-                        const SizedBox(height: 12),
+                        AppGap.h12,
                         CustomTextField(
                           controller: _cvvController,
                           hintText: '7763',
@@ -162,7 +163,7 @@ class _BodyState extends State<_Body> {
                 ],
               ),
 
-              const SizedBox(height: 32),
+              AppGap.h32,
             ],
           ),
         ),

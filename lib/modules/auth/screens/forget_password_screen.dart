@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../../utils/routes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -71,7 +73,7 @@ class _ForgotPasswordScreenState extends State<ForgetPasswordScreen> {
                 ),
               ),
 
-              const SizedBox(height: 25),
+              AppGap.h25,
 
               // confirm
               SizedBox(
@@ -103,7 +105,7 @@ class _Body extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         children: [
-          const SizedBox(height: 15),
+          AppGap.h15,
 
           // Title
           Center(
@@ -118,17 +120,17 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 68),
+          AppGap.h68,
 
           // Image
           Image.asset(
-            'assets/images/logo_lockedcloud.png',
+            Images.logoLockedcloud,
             width: 225,
             height: 166,
             fit: BoxFit.cover,
           ),
 
-          const SizedBox(height: 80),
+          AppGap.h80,
 
           // Email Input Field
           TextField(
@@ -144,7 +146,7 @@ class _Body extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 165),
+          AppGap.h165,
         ],
       ),
     );

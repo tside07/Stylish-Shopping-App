@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../core/theme/app_text_style.dart';
 
 class EditButton extends StatelessWidget {
@@ -22,11 +24,11 @@ class EditButton extends StatelessWidget {
             child: Row(
               children: [
                 SvgPicture.asset(
-                  'assets/icons/app_icons/Edit1.svg',
+                  IconPath.edit1,
                   width: 15,
                   height: 15,
                 ),
-                const SizedBox(width: 5),
+                AppGap.w5,
                 Text('Edit', style: AppTextStyle.s15.copyWith()),
               ],
             ),

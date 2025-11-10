@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../../../core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/utils/colors.dart';
@@ -87,13 +88,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 15),
+                      AppGap.h15,
+
                       ProductInfo(
                         category: widget.product.productCategory,
                         name: widget.product.productName,
                         price: widget.product.productPrice,
                       ),
-                      const SizedBox(height: 20),
+
+                      AppGap.h20,
+
                       if (widget.product.galleryImages.isNotEmpty)
                         GalleryImages(
                           mainImage: widget.product.productImage,
@@ -103,14 +107,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                             setState(() => _selectedImageIndex = index);
                           },
                         ),
-                      const SizedBox(height: 20),
+                      AppGap.h20,
+
                       SizeSelection(
                         selectedSize: _selectedSize,
                         onSizeChanged: (size) {
                           setState(() => _selectedSize = size);
                         },
                       ),
-                      const SizedBox(height: 20),
+                      AppGap.h20,
+
                       ColorSelection(
                         selectedColor: _selectedColor,
                         colors: colors,
@@ -119,13 +125,13 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           setState(() => _selectedColor = color);
                         },
                       ),
-                      const SizedBox(height: 20),
+                      AppGap.h20,
                       ProductDescription(
                         content: widget.product.productDescription,
                       ),
-                      const SizedBox(height: 15),
+                      AppGap.h15,
                       const ProductReviewsSection(),
-                      const SizedBox(height: 20),
+                      AppGap.h20,
                     ],
                   ),
                 ),

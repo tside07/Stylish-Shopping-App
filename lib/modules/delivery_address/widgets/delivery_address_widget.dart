@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
@@ -116,17 +117,17 @@ class _Body extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 20),
+            AppGap.h20,
 
             // Name
             const FormLabel(text: 'Name'),
-            const SizedBox(height: 10),
+            AppGap.h10,
             CustomTextField(
               controller: nameController,
               hintText: 'Hemendra Mali',
             ),
 
-            const SizedBox(height: 25),
+            AppGap.h25,
 
             // Country and City
             Row(
@@ -137,7 +138,7 @@ class _Body extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const FormLabel(text: 'Country'),
-                      const SizedBox(height: 10),
+                      AppGap.h10,
                       CustomTextField(
                         controller: countryController,
                         hintText: 'India',
@@ -145,13 +146,13 @@ class _Body extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(width: 15),
+                AppGap.w15,
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const FormLabel(text: 'City'),
-                      const SizedBox(height: 10),
+                      AppGap.h10,
                       CustomTextField(
                         controller: cityController,
                         hintText: 'Bangalore',
@@ -162,28 +163,28 @@ class _Body extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 25),
+            AppGap.h25,
 
             // Phone Number
             const FormLabel(text: 'Phone Number'),
-            const SizedBox(height: 10),
+            AppGap.h10,
             CustomTextField(
               controller: phoneController,
               hintText: '+91-800 301 0108',
               keyboardType: TextInputType.phone,
             ),
 
-            const SizedBox(height: 25),
+            AppGap.h25,
 
             // Address
             FormLabel(text: 'Address'),
-            const SizedBox(height: 10),
+            AppGap.h10,
             CustomTextField(
               controller: addressController,
               hintText: '43, Electronics City Phase 1, Electronic City',
             ),
 
-            const SizedBox(height: 30),
+            AppGap.h30,
 
             // Save switch
             Row(
@@ -203,7 +204,7 @@ class _Body extends StatelessWidget {
               ],
             ),
 
-            const SizedBox(height: 20),
+            AppGap.h20,
           ],
         ),
       ),
