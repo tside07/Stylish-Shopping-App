@@ -8,7 +8,6 @@ import 'package:stylish_shopping_app/widgets/save_switch.dart';
 import '../../../utils/routes.dart';
 import '../../../widgets/custom_app_bar.dart';
 
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -33,7 +32,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         _isUsernameValid = _usernameController.text.isNotEmpty;
       });
     });
-    _passwordController.addListener((){
+    _passwordController.addListener(() {
       setState(() {
         _isPasswordValid = _passwordController.text.isNotEmpty;
       });
@@ -154,8 +153,7 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Username',
               labelStyle: AppTextStyle.s15.copyWith(),
-              floatingLabelStyle: AppTextStyle.s13
-                  .copyWith(),
+              floatingLabelStyle: AppTextStyle.s13.copyWith(),
               suffixIcon: isUsernameValid
                   ? const Icon(Icons.check, color: Color(0xff34C358), size: 20)
                   : null,
@@ -173,6 +171,9 @@ class _Body extends StatelessWidget {
               labelText: 'Password',
               labelStyle: AppTextStyle.s15.copyWith(),
               floatingLabelStyle: AppTextStyle.s13.copyWith(),
+              suffixIcon: isPasswordValid
+                  ? const Icon(Icons.check, color: Color(0xff34C358), size: 20)
+                  : null,
             ),
           ),
 
@@ -195,7 +196,11 @@ class _Body extends StatelessWidget {
           AppGap.h40,
 
           // Remember me
-          SaveSwitch(text: 'Remember me', save: rememberMe, onSaveChanged: onRememberMeChanged)
+          SaveSwitch(
+            text: 'Remember me',
+            save: rememberMe,
+            onSaveChanged: onRememberMeChanged,
+          ),
         ],
       ),
     );

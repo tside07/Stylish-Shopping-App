@@ -258,7 +258,7 @@ class _AppSideMenuState extends State<AppSideMenu>
                         title: 'Settings',
                         onTap: () {
                           Navigator.pop(context);
-                          // TODO: Navigate to settings screen
+                          // Navigate to settings screen
                         },
                       ),
                     ),
