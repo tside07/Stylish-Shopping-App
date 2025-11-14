@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  AppColors._();
+
+  static const Color backgroundColor = Color(0xFF8B5CF6);
+  
+
   static const Color primary = Color(0xFF8B5CF6);
   static const Color facebook = Color(0xFF4267B2);
   static const Color twitter = Color(0xFF1DA1F2);

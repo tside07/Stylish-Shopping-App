@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../widgets/custom_app_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 
 class CreateNewPasswordScreen extends StatefulWidget {
@@ -44,11 +44,9 @@ class _CreateNewPasswordState extends State<CreateNewPasswordScreen> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: CustomAppBar(
-            leading: IconButton(
-              icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
+            leading: AppBarIconButton(
               onPressed: () => Navigator.pop(context),
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
+              svgPath: IconPath.arrowLeft,
             ),
           ),
           body: Column(

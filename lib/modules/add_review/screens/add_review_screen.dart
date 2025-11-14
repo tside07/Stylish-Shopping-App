@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../../widgets/custom_app_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/modules/add_review/widgets/add_review_widget.dart';
 
 class AddReviewScreen extends StatefulWidget {
@@ -34,11 +34,9 @@ class _AddReviewScreenState extends State<AddReviewScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-          leading: IconButton(
-            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
+          leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            svgPath: IconPath.arrowLeft,
           ),
           title: Text(
             'Add Review',

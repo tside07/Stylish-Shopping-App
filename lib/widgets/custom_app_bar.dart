@@ -23,6 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      scrolledUnderElevation: 0,
       backgroundColor: backgroundColor ?? const Color(0xffFEFEFE),
       elevation: elevation ?? 0,
       automaticallyImplyLeading: false,

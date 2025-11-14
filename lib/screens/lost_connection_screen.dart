@@ -3,7 +3,6 @@ import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../widgets/custom_app_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class LostConnectionScreen extends StatefulWidget {
   final VoidCallback? onRetry;
@@ -41,19 +40,15 @@ class _LostConnectionScreenState extends State<LostConnectionScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-          leading: IconButton(
+          leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
-            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            svgPath: IconPath.arrowLeft,
           ),
-          action: IconButton(
+          action: AppBarIconButton(
             onPressed: () {
               // Navigate to cart or other action
             },
-            icon: SvgPicture.asset(IconPath.bag),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            svgPath: IconPath.bag,
           ),
         ),
         body: Center(

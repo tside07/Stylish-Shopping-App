@@ -5,7 +5,6 @@ import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../widgets/custom_app_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class OrderSuccessScreen extends StatefulWidget {
   const OrderSuccessScreen({super.key});
@@ -22,11 +21,9 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-          leading: IconButton(
+          leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
-            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            svgPath: IconPath.arrowLeft,
           ),
         ),
         body: Column(

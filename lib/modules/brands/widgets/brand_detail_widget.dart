@@ -18,7 +18,7 @@ class _IconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell( //TODO: REPLACE GES.. TO OTHER WIDGET, INKWELL
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(11),

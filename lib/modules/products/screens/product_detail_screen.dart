@@ -73,71 +73,72 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       left: false,
       child: Scaffold(
         backgroundColor: const Color(0xffF2F2F2),
-        body: Column(
-          children: [
-            ProductImageSection(
-              mainImage: _currentImage,
-              onBackPressed: () => Navigator.pop(context),
-              onCartPressed: () => Navigator.pushNamed(context, AppRoutes.cart),
-              brandLogo: widget.product.brandLogo,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppGap.h15,
-
-                      ProductInfo(
-                        category: widget.product.productCategory,
-                        name: widget.product.productName,
-                        price: widget.product.productPrice,
-                      ),
-
-                      AppGap.h20,
-
-                      if (widget.product.galleryImages.isNotEmpty)
-                        GalleryImages(
-                          mainImage: widget.product.productImage,
-                          galleryImages: widget.product.galleryImages,
-                          selectedIndex: _selectedImageIndex,
-                          onImageTapped: (index) {
-                            setState(() => _selectedImageIndex = index);
-                          },
-                        ),
-                      AppGap.h20,
-
-                      SizeSelection(
-                        selectedSize: _selectedSize,
-                        onSizeChanged: (size) {
-                          setState(() => _selectedSize = size);
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ProductImageSection(
+                mainImage: _currentImage,
+                onBackPressed: () => Navigator.pop(context),
+                onCartPressed: () => Navigator.pushNamed(context, AppRoutes.cart),
+                brandLogo: widget.product.brandLogo,
+              ),
+              
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    AppGap.h15,
+                        
+                    ProductInfo(
+                      category: widget.product.productCategory,
+                      name: widget.product.productName,
+                      price: widget.product.productPrice,
+                    ),
+                        
+                    AppGap.h20,
+                        
+                    if (widget.product.galleryImages.isNotEmpty)
+                      GalleryImages(
+                        mainImage: widget.product.productImage,
+                        galleryImages: widget.product.galleryImages,
+                        selectedIndex: _selectedImageIndex,
+                        onImageTapped: (index) {
+                          setState(() => _selectedImageIndex = index);
                         },
                       ),
-                      AppGap.h20,
-
-                      ColorSelection(
-                        selectedColor: _selectedColor,
-                        colors: colors,
-                        hexToColor: _hexToColor,
-                        onColorChanged: (color) {
-                          setState(() => _selectedColor = color);
-                        },
-                      ),
-                      AppGap.h20,
-                      ProductDescription(
-                        content: widget.product.productDescription,
-                      ),
-                      AppGap.h15,
-                      const ProductReviewsSection(),
-                      AppGap.h20,
-                    ],
-                  ),
+                    AppGap.h20,
+                        
+                    SizeSelection(
+                      selectedSize: _selectedSize,
+                      onSizeChanged: (size) {
+                        setState(() => _selectedSize = size);
+                      },
+                    ),
+                    AppGap.h20,
+                        
+                    ColorSelection(
+                      selectedColor: _selectedColor,
+                      colors: colors,
+                      hexToColor: _hexToColor,
+                      onColorChanged: (color) {
+                        setState(() => _selectedColor = color);
+                      },
+                    ),
+                    AppGap.h20,
+                    
+                    ProductDescription(
+                      content: widget.product.productDescription,
+                    ),
+                    AppGap.h15,
+                    
+                    const ProductReviewsSection(),
+                    AppGap.h20,
+                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         bottomNavigationBar: PrimaryButton(
           text: 'Add to Cart',

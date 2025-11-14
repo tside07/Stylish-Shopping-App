@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../../../widgets/custom_app_bar.dart';
 import 'package:stylish_shopping_app/modules/brands/widgets/brand_detail_widget.dart';
@@ -21,11 +21,9 @@ class BrandDetailScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: const Color(0xffFEFEFE),
         appBar: CustomAppBar(
-          leading: IconButton(
+          leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
-            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            svgPath: IconPath.arrowLeft,
           ),
           title: Container(
             padding: const EdgeInsets.all(10),
@@ -35,13 +33,11 @@ class BrandDetailScreen extends StatelessWidget {
             ),
             child: Image.asset(brandLogo, height: 30),
           ),
-          action: IconButton(
+          action: AppBarIconButton(
             onPressed: () {
               Navigator.pushNamed(context, AppRoutes.cart);
             },
-            icon: SvgPicture.asset('assets/icons/app_icons/Bag.svg'),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            svgPath: 'assets/icons/app_icons/Bag.svg',
           ),
         ),
         body: _Body(brandLogo: brandLogo),

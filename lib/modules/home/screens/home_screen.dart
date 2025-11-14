@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:stylish_shopping_app/modules/hub/screens/hub_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/modules/homepage/screens/home_page_screen.dart';
 import 'package:stylish_shopping_app/modules/wishlist/screens/wishlist_screen.dart';
 import 'package:stylish_shopping_app/modules/cart/screens/cart_screen.dart';
-import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/modules/home/widgets/app_side_menu.dart';
+import 'package:stylish_shopping_app/widgets/custom_app_bar.dart';
+import 'dart:ui';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -57,22 +61,146 @@ class _HomeScreenState extends State<HomeScreen>
     });
   }
 
+  PreferredSizeWidget? _buildAppBar(BuildContext context) {
+    if (_selectedIndex == 0) {
+      return CustomAppBar(
+        leading: Builder(
+          builder: (context) {
+            return AppBarIconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              svgPath: IconPath.menu,
+            );
+          },
+        ),
+        action: AppBarIconButton(
+          onPressed: () => _onItemTapped(2),
+          svgPath: IconPath.bag,
+        ),
+      );
+    }
+
+    return CustomAppBar(
+      leading: AppBarIconButton(
+        onPressed: () => _onItemTapped(0),
+        svgPath: IconPath.arrowLeft,
+      ),
+      title: _titles[_selectedIndex] != null
+          ? Text(
+              _titles[_selectedIndex]!,
+              style: AppTextStyle.s17.copyWith(
+                fontWeight: FontWeight.w600,
+                color: const Color(0xff1D1E20),
+              ),
+            )
+          : null,
+      action: _selectedIndex != 2
+          ? AppBarIconButton(
+              onPressed: () => _onItemTapped(2),
+              svgPath: IconPath.bag,
+            )
+          : null,
+    );
+  }
+
+  Widget _buildBottomNavBar() {
+    return Container(
+      height: 80,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0x1D1E2014),
+            blurRadius: 20,
+            offset: const Offset(0, -4),
+          ),
+        ],
+      ),
+      child: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: const Color(0xff9775FA),
+        unselectedItemColor: const Color(0xff8F959E),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        items: [
+          _buildNavItem(0, 'Home', IconPath.home),
+          _buildNavItem(1, 'Wishlist', IconPath.heart),
+          _buildNavItem(2, 'Cart', IconPath.bag),
+          _buildNavItem(3, 'My Cards', IconPath.wallet),
+        ],
+      ),
+    );
+  }
+
+  BottomNavigationBarItem _buildNavItem(
+    int index,
+    String label,
+    String iconPath,
+  ) {
+    final isSelected = _selectedIndex == index;
+
+    return BottomNavigationBarItem(
+      icon: isSelected
+          ? Text(
+              label,
+              style: AppTextStyle.s11.copyWith(
+                color: const Color(0xff9775FA),
+                fontWeight: FontWeight.w500,
+              ),
+            )
+          : SvgPicture.asset(
+              iconPath,
+              width: 20,
+              height: 20,
+              colorFilter: const ColorFilter.mode(
+                Color(0xff8F959E),
+                BlendMode.srcIn,
+              ),
+            ),
+      label: '',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget currentChild = _selectedIndex == 2
+    Widget currentScreen = _selectedIndex == 2
         ? SlideTransition(
             position: _slideAnimation,
             child: _screens[_selectedIndex],
           )
         : _screens[_selectedIndex];
 
-    return HubScreen(
-      selectedIndex: _selectedIndex,
-      onNavigationTap: _onItemTapped,
-      title: _titles[_selectedIndex],
-      showDrawer: _selectedIndex == 0,
-      showBackButton: _selectedIndex != 0,
-      child: currentChild,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: const Color(0xffFEFEFE),
+          drawer: _selectedIndex == 0
+              ? SafeArea(
+                  top: false,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Drawer(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.zero,
+                      ),
+                      child: AppSideMenu(onNavigateToTab: _onItemTapped),
+                    ),
+                  ),
+                )
+              : null,
+          appBar: _buildAppBar(context),
+          body: currentScreen,
+          bottomNavigationBar: _buildBottomNavBar(),
+        ),
+      ),
     );
   }
 }

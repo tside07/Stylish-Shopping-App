@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../../../core/theme/app_text_style.dart';
 import '../../../models/cart_item_model.dart';
 import '../widgets/empty_cart.dart';
 import '../widgets/cart_item_widget.dart';
-import '../widgets/cart_summary.dart'; // Widget mới
+import '../widgets/cart_bottom_section.dart';
 import '../../../widgets/custom_app_bar.dart';
 
 class CartScreen extends StatefulWidget {
@@ -62,11 +63,9 @@ class _CartScreenState extends State<CartScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-          leading: IconButton(
+          leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
-            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            svgPath: IconPath.arrowLeft,
           ),
           title: Text(
             'Cart',
@@ -86,41 +85,41 @@ class _CartScreenState extends State<CartScreen> {
       return const EmptyCart();
     }
 
-    return Stack(
-      children: [
-        // Cart Items List (scrollable)
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 20,
-            bottom: 300, // Space for draggable sheet
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          AppGap.h20,
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: cartItems.asMap().entries.map((entry) {
+                int index = entry.key;
+                CartItem item = entry.value;
+
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 15),
+                  child: CartItemWidget(
+                    item: item,
+                    onIncrement: () => _incrementQuantity(index),
+                    onDecrement: () => _decrementQuantity(index),
+                    onRemove: () => _removeItem(index),
+                  ),
+                );
+              }).toList(),
+            ),
           ),
-          child: ListView.builder(
-            itemCount: cartItems.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: CartItemWidget(
-                  item: cartItems[index],
-                  onIncrement: () => _incrementQuantity(index),
-                  onDecrement: () => _decrementQuantity(index),
-                  onRemove: () => _removeItem(index),
-                ),
-              );
+
+          CartBottomSection(
+            subtotal: subtotal,
+            deliveryCharge: deliveryCharge,
+            total: total,
+            onCheckout: () {
+              Navigator.pushNamed(context, AppRoutes.orderSuccess);
             },
           ),
-        ),
-
-        CartSummary(
-          subtotal: subtotal,
-          deliveryCharge: deliveryCharge,
-          total: total,
-          onCheckout: () {
-            Navigator.pushNamed(context, AppRoutes.orderSuccess);
-          },
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

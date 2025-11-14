@@ -120,18 +120,18 @@ class ProductInfo extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 16,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              category,
-              style: AppTextStyle.s13.copyWith(color: const Color(0xff8F959E)),
-            ),
-            AppGap.h8,
-            SizedBox(
-              width: 300,
-              child: Text(
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                category,
+                style: AppTextStyle.s13.copyWith(color: const Color(0xff8F959E)),
+              ),
+              AppGap.h8,
+              Text(
                 name,
                 style: AppTextStyle.base.copyWith(
                   fontSize: 22,
@@ -139,11 +139,12 @@ class ProductInfo extends StatelessWidget {
                   color: const Color(0xff1D1E20),
                   height: 24 / 22,
                 ),
-                maxLines: 3,
+                // maxLines: 3,
               ),
-            ),
-          ],
+            ],
+          ),
         ),
+        
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

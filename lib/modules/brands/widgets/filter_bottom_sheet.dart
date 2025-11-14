@@ -30,18 +30,25 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     if (start.isEmpty && end.isEmpty) {
       return 'From - to - ';
     } else if (start.isNotEmpty && end.isEmpty) {
-      return 'From \$$start to -   ';
+      return 'From \$$start to - ';
     } else if (start.isEmpty && end.isNotEmpty) {
-      return 'From - to \$$end   ';
+      return 'From - to \$$end ';
     } else {
-      return 'From \$$start to \$$end   ';
+      return 'From \$$start to \$$end ';
     }
+  }
+
+  void _clearPriceRange() {
+    setState(() {
+      _startController.clear();
+      _endController.clear();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.heightOf(context) * 0.4,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
@@ -66,13 +73,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {
-                        //Reset all
-                        setState(() {
-                          _startController.clear();
-                          _endController.clear();
-                        });
-                      },
+                      onTap: _clearPriceRange,
                       child: Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
@@ -82,7 +83,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                         child: Text(
                           'Reset',
                           style: AppTextStyle.s15.copyWith(
-                            color: Color(0xff1D1E20),
+                            color: const Color(0xff1D1E20),
                           ),
                         ),
                       ),
@@ -127,7 +128,6 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 
                       AppGap.h15,
 
-                      // from to
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -139,10 +139,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                             ),
                           ),
                           GestureDetector(
-                            onTap: () {
-                              _startController.clear();
-                              _endController.clear();
-                            },
+                            onTap:
+                                _clearPriceRange,
                             child: Container(
                               width: 25,
                               height: 25,
@@ -153,9 +151,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                                 ),
                               ),
                               child: Center(
-                                child: SvgPicture.asset(
-                                  IconPath.delete,
-                                ),
+                                child: SvgPicture.asset(IconPath.delete),
                               ),
                             ),
                           ),
@@ -173,31 +169,37 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   vertical: 20,
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(color: Color(0xffF5F6FA)),
+                  border: Border.all(color: const Color(0xffF5F6FA)),
                 ),
                 child: Row(
                   children: [
                     Expanded(
-                      child: ElevatedButton(
-                        onPressed: () => Navigator.pop(context),
-                        style: ElevatedButton.styleFrom(
-                          padding: const EdgeInsets.symmetric(vertical: 13.5),
-                          elevation: 0,
-                          backgroundColor: Color(0xffF5F6FA),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: Text(
-                          'Cancel',
-                          style: AppTextStyle.s17.copyWith(
-                            color: const Color(0xff8F959E),
-                            fontWeight: FontWeight.w500,
+                      child: Material(
+                        color: const Color(0xffF5F6FA),
+                        borderRadius: BorderRadius.circular(10),
+                        child: InkWell(
+                          onTap: () => Navigator.pop(context),
+                          borderRadius: BorderRadius.circular(10),
+                          splashColor: const Color(0xff8F959E).withValues(alpha: 0.2),
+                          highlightColor: const Color(
+                            0xff8F959E,
+                          ).withValues(alpha: 0.1),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 13.5),
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Cancel',
+                              style: AppTextStyle.s17.copyWith(
+                                color: const Color(0xff8F959E),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
                     AppGap.w15,
+                    
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {

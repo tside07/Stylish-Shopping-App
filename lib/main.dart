@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'utils/routes.dart';
-// import 'screens/splash_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -11,22 +17,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Stylish Shopping App',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-        fontFamily: 'FiraSans',
-        inputDecorationTheme: InputDecorationTheme(
-          hintStyle: const TextStyle(
-            fontFamily: 'Inter',
-            color: Colors.black87,
-            fontSize: 15,
-          ),
-        ),
-      ),
-      initialRoute: AppRoutes.splash,
-      routes: AppRoutes.routes,
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: 'Stylish Shopping App',
+          debugShowCheckedModeBanner: false,
+          theme: themeProvider.currentTheme,
+          initialRoute: AppRoutes.splash,
+          routes: AppRoutes.routes,
+        );
+      },
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
@@ -61,11 +61,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: CustomAppBar(
-            leading: IconButton(
-              icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
+            leading: AppBarIconButton(
               onPressed: () => Navigator.pop(context),
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
+              svgPath: IconPath.arrowLeft,
             ),
           ),
           body: Column(
@@ -137,6 +135,7 @@ class _Body extends StatelessWidget {
             child: Text(
               'Sign Up',
               style: AppTextStyle.base.copyWith(
+                color: Color(0xff1D1E20),
                 fontSize: 28,
                 fontWeight: FontWeight.w600,
               ),

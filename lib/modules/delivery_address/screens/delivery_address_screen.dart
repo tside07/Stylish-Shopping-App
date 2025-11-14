@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/save_switch.dart';
@@ -6,7 +7,6 @@ import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 import 'package:stylish_shopping_app/widgets/custom_app_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class DeliveryAddressScreen extends StatefulWidget {
   const DeliveryAddressScreen({super.key});
@@ -41,11 +41,9 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: CustomAppBar(
-          leading: IconButton(
+          leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
-            icon: SvgPicture.asset('assets/icons/app_icons/Arrow_Left.svg'),
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(),
+            svgPath: IconPath.arrowLeft,
           ),
           title: Text(
             'Address',

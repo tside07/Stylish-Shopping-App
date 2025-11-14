@@ -121,7 +121,7 @@ class _Body extends StatelessWidget {
                 AppGap.h25,
 
                 Header(
-                  title: 'Look Good, Feed Good',
+                  title: 'Look Good, Feel Good',
                   description:
                       'Create your individual & unique style and look amazing everyday.',
                 ),

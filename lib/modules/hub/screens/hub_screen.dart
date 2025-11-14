@@ -1,135 +1,112 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
-import 'package:stylish_shopping_app/modules/home/widgets/app_side_menu.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/modules/homepage/screens/home_page_screen.dart';
+import 'package:stylish_shopping_app/modules/wishlist/screens/wishlist_screen.dart';
+import 'package:stylish_shopping_app/modules/cart/screens/cart_screen.dart';
+import 'package:stylish_shopping_app/modules/home/widgets/app_side_menu.dart';
 import 'package:stylish_shopping_app/widgets/custom_app_bar.dart';
+import 'dart:ui';
 
-class HubScreen extends StatelessWidget {
-  final Widget child;
-  final int selectedIndex;
-  final Function(int) onNavigationTap;
-  final VoidCallback? onBackPressed;
-  final String? title;
-  final bool showDrawer;
-  final bool showBackButton;
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
-  const HubScreen({
-    super.key,
-    required this.child,
-    required this.selectedIndex,
-    required this.onNavigationTap,
-    this.onBackPressed,
-    this.title,
-    this.showDrawer = false,
-    this.showBackButton = false,
-  });
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
 
-  PreferredSizeWidget? buildAppBar(BuildContext context) {
-    if (selectedIndex == 0) {
-      return CustomAppBar(
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              icon: SvgPicture.asset(
-                IconPath.menu,
-                width: 25,
-                height: 25,
-              ),
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
-            );
-          },
-        ),
-        action: IconButton(
-          onPressed: () => onNavigationTap(2), // Navigate to Cart
-          icon: SvgPicture.asset(IconPath.bag),
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-        ),
-      );
-    }
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
+  int _selectedIndex = 0;
+  late AnimationController _animationController;
+  late Animation<Offset> _slideAnimation;
 
-    if (showBackButton || title != null) {
-      return CustomAppBar(
-        leading: IconButton(
-          onPressed: onBackPressed ?? () => onNavigationTap(0),
-          icon: SvgPicture.asset(
-            IconPath.arrowLeft,
-            width: 25,
-            height: 25,
-          ),
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(),
-        ),
-        title: title != null
-            ? Text(
-                title!,
-                style: AppTextStyle.s17.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff1D1E20),
-                ),
-              )
-            : null,
-        action: selectedIndex != 2
-            ? IconButton(
-                onPressed: () => onNavigationTap(2),
-                icon: SvgPicture.asset(IconPath.bag),
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              )
-            : null,
-      );
-    }
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
 
-    return null;
+    _slideAnimation =
+        Tween<Offset>(begin: const Offset(1.0, 0.0), end: Offset.zero).animate(
+          CurvedAnimation(parent: _animationController, curve: Curves.easeOut),
+        );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-      child: SafeArea(
-        top: false,
-        child: Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: const Color(0xffFEFEFE),
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
-          drawer: showDrawer
-              ? SafeArea(
-                  top: false,
-                  child: Stack(
-                    children: [
-                      BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                        child: const SizedBox.expand(),
-                      ),
-                      Drawer(
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadiusGeometry.zero,
-                        ),
-                        child: AppSideMenu(onNavigateToTab: onNavigationTap),
-                      ),
-                    ],
-                  ),
-                )
-              : null,
+  final List<Widget> _screens = const [
+    HomePageScreen(),
+    WishlistScreen(),
+    CartScreen(isInHub: true),
+    _MyCardScreen(),
+  ];
 
-          appBar: buildAppBar(context),
+  final List<String?> _titles = [null, 'Wishlist', 'Cart', 'My Cards'];
 
-          body: child,
+  void _onItemTapped(int index) {
+    if (index == 2 && _selectedIndex != 2) {
+      _animationController.forward(from: 0.0);
+    }
 
-          bottomNavigationBar: buildBottomNavBar(),
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  PreferredSizeWidget? _buildAppBar(BuildContext context) {
+    // Home page - show menu and cart
+    if (_selectedIndex == 0) {
+      return CustomAppBar(
+        leading: Builder(
+          builder: (context) {
+            return AppBarIconButton(
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+              svgPath: IconPath.menu,
+            );
+          },
         ),
+        action: AppBarIconButton(
+          onPressed: () => _onItemTapped(2),
+          svgPath: IconPath.bag,
+        ),
+      );
+    }
+
+    // Other pages - show back button and title
+    return CustomAppBar(
+      leading: AppBarIconButton(
+        onPressed: () => _onItemTapped(0),
+        svgPath: IconPath.arrowLeft,
       ),
+      title: _titles[_selectedIndex] != null
+          ? Text(
+              _titles[_selectedIndex]!,
+              style: AppTextStyle.s17.copyWith(
+                fontWeight: FontWeight.w600,
+                color: const Color(0xff1D1E20),
+              ),
+            )
+          : null,
+      action: _selectedIndex != 2
+          ? AppBarIconButton(
+              onPressed: () => _onItemTapped(2),
+              svgPath: IconPath.bag,
+            )
+          : null,
     );
   }
 
-  Widget buildBottomNavBar() {
+  Widget _buildBottomNavBar() {
     return Container(
       height: 80,
       decoration: BoxDecoration(
@@ -143,8 +120,8 @@ class HubScreen extends StatelessWidget {
         ],
       ),
       child: BottomNavigationBar(
-        currentIndex: selectedIndex,
-        onTap: onNavigationTap,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: const Color(0xff9775FA),
         unselectedItemColor: const Color(0xff8F959E),
@@ -153,21 +130,21 @@ class HubScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         items: [
-          buildNavItem(0, 'Home', IconPath.home),
-          buildNavItem(1, 'Wishlist', IconPath.heart),
-          buildNavItem(2, 'Cart', IconPath.bag),
-          buildNavItem(3, 'My Cards', IconPath.wallet),
+          _buildNavItem(0, 'Home', IconPath.home),
+          _buildNavItem(1, 'Wishlist', IconPath.heart),
+          _buildNavItem(2, 'Cart', IconPath.bag),
+          _buildNavItem(3, 'My Cards', IconPath.wallet),
         ],
       ),
     );
   }
 
-  BottomNavigationBarItem buildNavItem(
+  BottomNavigationBarItem _buildNavItem(
     int index,
     String label,
     String iconPath,
   ) {
-    final isSelected = selectedIndex == index;
+    final isSelected = _selectedIndex == index;
 
     return BottomNavigationBarItem(
       icon: isSelected
@@ -188,6 +165,55 @@ class HubScreen extends StatelessWidget {
               ),
             ),
       label: '',
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Widget currentScreen = _selectedIndex == 2
+        ? SlideTransition(
+            position: _slideAnimation,
+            child: _screens[_selectedIndex],
+          )
+        : _screens[_selectedIndex];
+
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: SafeArea(
+        top: false,
+        child: Scaffold(
+          resizeToAvoidBottomInset: true,
+          backgroundColor: const Color(0xffFEFEFE),
+          drawer: _selectedIndex == 0
+              ? SafeArea(
+                  top: false,
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                    child: Drawer(
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.zero,
+                      ),
+                      child: AppSideMenu(onNavigateToTab: _onItemTapped),
+                    ),
+                  ),
+                )
+              : null,
+          appBar: _buildAppBar(context),
+          body: currentScreen,
+          bottomNavigationBar: _buildBottomNavBar(),
+        ),
+      ),
+    );
+  }
+}
+
+class _MyCardScreen extends StatelessWidget {
+  const _MyCardScreen();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text('My Cards', style: AppTextStyle.base.copyWith(fontSize: 24)),
     );
   }
 }
