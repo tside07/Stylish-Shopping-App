@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
-import 'utils/routes.dart';
+import 'package:stylish_shopping_app/utils/routes.dart';
 
 void main() {
   runApp(
@@ -23,8 +23,9 @@ class MyApp extends StatelessWidget {
           title: 'Stylish Shopping App',
           debugShowCheckedModeBanner: false,
           theme: themeProvider.currentTheme,
-          initialRoute: AppRoutes.splash,
+          themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
           routes: AppRoutes.routes,
+          initialRoute: AppRoutes.splash,
         );
       },
     );

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
+import 'package:stylish_shopping_app/widgets/custom_title.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
-import '../widgets/custom_app_bar.dart';
+import '../../../widgets/custom_app_bar.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 
 class CreateNewPasswordScreen extends StatefulWidget {
@@ -42,7 +44,7 @@ class _CreateNewPasswordState extends State<CreateNewPasswordScreen> {
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: context.backgroundColor,
           appBar: CustomAppBar(
             leading: AppBarIconButton(
               onPressed: () => Navigator.pop(context),
@@ -116,16 +118,7 @@ class _Body extends StatelessWidget {
           AppGap.h15,
 
           // Title
-          Center(
-            child: Text(
-              'New Password',
-              style: AppTextStyle.base.copyWith(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
-                height: 31 / 28,
-              ),
-            ),
-          ),
+          Center(child: CustomTitle(text: 'New Password')),
 
           AppGap.h185,
 
@@ -136,6 +129,9 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Password',
               labelStyle: AppTextStyle.s13.copyWith(),
+              floatingLabelStyle: AppTextStyle.s13.copyWith(
+                color: context.primaryTextColor,
+              ),
             ),
           ),
 
@@ -148,6 +144,9 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Confirm Password',
               labelStyle: AppTextStyle.s13.copyWith(),
+              floatingLabelStyle: AppTextStyle.s13.copyWith(
+                color: context.primaryTextColor,
+              ),
             ),
           ),
         ],

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'dart:async';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
+import 'package:stylish_shopping_app/widgets/custom_title.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../../utils/routes.dart';
 import '../../../widgets/custom_app_bar.dart';
@@ -20,20 +22,6 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
   Duration duration = const Duration(seconds: 20);
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final String validPin = "1234";
-
-  final defaultPinTheme = PinTheme(
-    width: 77,
-    height: 98,
-    textStyle: AppTextStyle.base.copyWith(
-      fontSize: 20,
-      color: Color(0xff1D1E20),
-      fontWeight: FontWeight.w600,
-    ),
-    decoration: BoxDecoration(
-      border: Border.all(color: Color(0xffE7E8EA)),
-      borderRadius: BorderRadius.circular(10),
-    ),
-  );
 
   @override
   void initState() {
@@ -65,12 +53,25 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
     final seconds = getFormattedTime(duration.inSeconds.remainder(60));
     final isTimeUp = duration.inSeconds == 0;
 
+    final defaultPinTheme = PinTheme(
+      width: 77,
+      height: 98,
+      textStyle: AppTextStyle.base.copyWith(
+        fontSize: 20,
+        color: context.primaryTextColor,
+        fontWeight: FontWeight.w600,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(color: const Color(0xffE7E8EA)),
+        borderRadius: BorderRadius.circular(10),
+      ),
+    );
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: context.backgroundColor,
           appBar: CustomAppBar(
             leading: AppBarIconButton(
               onPressed: () => Navigator.pop(context),
@@ -99,14 +100,14 @@ class _VerificationCodeScreenState extends State<VerificationCodeScreen> {
                         TextSpan(
                           text: '$minutes:$seconds ',
                           style: AppTextStyle.base.copyWith(
-                            color: Colors.black,
+                            color: context.primaryTextColor,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       TextSpan(
                         text: 'resend confirmation code',
                         style: AppTextStyle.base.copyWith(
-                          color: isTimeUp ? Colors.black : Colors.grey,
+                          color: isTimeUp ? context.resendConfirmationCodeColor : const Color(0xff8F959E),
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -155,24 +156,16 @@ class _Body extends StatelessWidget {
           AppGap.h15,
 
           // Title
-          Center(
-            child: Text(
-              'Verification Code',
-              style: AppTextStyle.base.copyWith(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
+          Center(child: CustomTitle(text: 'Verification Code')),
 
           AppGap.h68,
 
           // Image
           Image.asset(
             Images.logoLockedcloud,
-            width: 225,
-            height: 166,
-            fit: BoxFit.contain,
+            width: 320,
+            height: 236,
+            fit: BoxFit.cover,
           ),
 
           AppGap.h60,

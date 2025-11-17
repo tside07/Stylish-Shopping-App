@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
+import 'package:stylish_shopping_app/widgets/custom_title.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../../utils/routes.dart';
 import '../../../widgets/custom_app_bar.dart';
 
-class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({super.key});
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<ForgetPasswordScreen> createState() => _ForgotPasswordScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _ForgotPasswordScreenState extends State<ForgetPasswordScreen> {
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _emailController = TextEditingController();
   bool _isEmailValid = false;
 
@@ -41,7 +43,7 @@ class _ForgotPasswordScreenState extends State<ForgetPasswordScreen> {
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: context.backgroundColor,
           appBar: CustomAppBar(
             leading: AppBarIconButton(
               onPressed: () => Navigator.pop(context),
@@ -105,25 +107,15 @@ class _Body extends StatelessWidget {
           AppGap.h15,
 
           // Title
-          Center(
-            child: Text(
-              'Forgot Password',
-              style: AppTextStyle.base.copyWith(
-                fontSize: 28,
-                fontWeight: FontWeight.w600,
-                height: 31 / 28,
-                color: const Color(0xff1D1E20),
-              ),
-            ),
-          ),
+          Center(child: CustomTitle(text: 'Forgot Password')),
 
           AppGap.h68,
 
           // Image
           Image.asset(
             Images.logoLockedcloud,
-            width: 225,
-            height: 166,
+            width: 320,
+            height: 236,
             fit: BoxFit.cover,
           ),
 
@@ -136,7 +128,9 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Email Address',
               labelStyle: AppTextStyle.s15.copyWith(),
-              floatingLabelStyle: AppTextStyle.s13.copyWith(),
+              floatingLabelStyle: AppTextStyle.s13.copyWith(
+                color: context.primaryTextColor,
+              ),
               suffixIcon: isEmailValid
                   ? const Icon(Icons.check, color: Color(0xff34C358), size: 20)
                   : null,

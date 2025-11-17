@@ -3,9 +3,9 @@ import '../modules/auth/screens/splash_screen.dart';
 import '../modules/auth/screens/get_started_screen.dart';
 import '../modules/auth/screens/sign_up_screen.dart';
 import '../modules/auth/screens/sign_in_screen.dart';
-import '../modules/auth/screens/forget_password_screen.dart';
+import '../modules/auth/screens/forgot_password_screen.dart';
 import '../modules/auth/screens/verification_code_screen.dart';
-import '../screens/create_new_password_screen.dart';
+import '../modules/auth/screens/create_new_password_screen.dart';
 import '../modules/gender_selection/screens/gender_selection_screen.dart';
 import '../modules/home/screens/home_screen.dart';
 import '../modules/delivery_address/screens/delivery_address_screen.dart';
@@ -15,7 +15,7 @@ import '../screens/order_success_screen.dart';
 import '../modules/view_review/screens/view_review_screen.dart';
 import '../modules/add_review/screens/add_review_screen.dart';
 import '../modules/auth/screens/change_password_screen.dart';
-import '../modules/cart/screens/cart_screen.dart'; // Đổi import
+import '../modules/cart/screens/cart_screen.dart';
 
 class AppRoutes {
   static const String splash = '/';
@@ -41,7 +41,7 @@ class AppRoutes {
     getStarted: (context) => const GetStartedScreen(),
     signin: (context) => const SignInScreen(),
     signup: (context) => const SignUpScreen(),
-    forgetPw: (context) => const ForgetPasswordScreen(),
+    forgetPw: (context) => const ForgotPasswordScreen(),
     verificationCode: (context) => const VerificationCodeScreen(),
     createNewPw: (context) => const CreateNewPasswordScreen(),
     selectGender: (context) => const GenderSelectionScreen(),

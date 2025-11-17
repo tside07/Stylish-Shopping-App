@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/modules/auth/screens/get_started_screen.dart';
-import '../../../utils/colors.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: isDark ? const Color(0xff1B262C) : const Color(0xff9775FA),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -25,23 +29,23 @@ class SplashScreen extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
 
-              const Text(
+              Text(
                 'STYLISH',
                 style: TextStyle(
                   fontFamily: 'FiraSans',
                   fontSize: 50,
                   fontWeight: FontWeight.normal,
-                  color: Colors.white,
+                  color: const Color(0xffFEFEFE),
                   letterSpacing: 2,
                 ),
               ),
 
-              const Text(
+              Text(
                 'Find Your Style',
                 style: TextStyle(
                   fontFamily: 'Sacramento',
                   fontSize: 40,
-                  color: Colors.white,
+                  color:const Color(0xffFEFEFE),
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -62,12 +66,12 @@ class SplashScreen extends StatelessWidget {
                   width: 60,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(0xffF5F6FA),
                     shape: BoxShape.circle,
                   ),
                   child: const Icon(
                     Icons.arrow_forward,
-                    color: Colors.black,
+                    color: Color(0xff1D1E20),
                     size: 30,
                   ),
                 ),

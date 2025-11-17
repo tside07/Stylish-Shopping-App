@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 
 class SaveSwitch extends StatelessWidget {
@@ -20,7 +21,7 @@ class SaveSwitch extends StatelessWidget {
       children: [
         Text(
           text,
-          style: AppTextStyle.s15.copyWith(color: const Color(0xff1D1E20)),
+          style: AppTextStyle.s15.copyWith(color: context.primaryTextColor),
         ),
         Switch(
           value: save,

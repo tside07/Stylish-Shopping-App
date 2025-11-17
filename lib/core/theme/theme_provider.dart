@@ -21,9 +21,11 @@ class ThemeProvider extends ChangeNotifier {
     primaryColor: const Color(0xff9775FA),
     fontFamily: 'FiraSans',
     colorScheme: const ColorScheme.light(
-      primary: Color(0xff9775FA),
+      primary: Color(0xffFEFEFE),
       surface: Color(0xffFFFFFF),
       onSurface: Color(0xff1D1E20),
+
+      
     ),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: Color(0xff1D1E20), fontFamily: 'FiraSans'),
@@ -45,11 +47,11 @@ class ThemeProvider extends ChangeNotifier {
   // Dark Theme
   static final ThemeData _darkTheme = ThemeData(
     brightness: Brightness.dark,
-    scaffoldBackgroundColor: const Color(0xff1D1E20),
+    scaffoldBackgroundColor: const Color(0xff1B262C),
     primaryColor: const Color(0xff9775FA),
     fontFamily: 'FiraSans',
     colorScheme: const ColorScheme.dark(
-      primary: Color(0xff9775FA),
+      primary: Color(0xff000000),
       surface: Color(0xff1B262C),
       onSurface: Color(0xffFFFFFF),
     ),
@@ -63,9 +65,9 @@ class ThemeProvider extends ChangeNotifier {
         color: Color(0xffFFFFFF),
         fontSize: 15,
       ),
-    ),
+    ),  
     appBarTheme: const AppBarTheme(
-      backgroundColor: Color(0xff1D1E20),
+      backgroundColor: Color(0xff1B262C),
       foregroundColor: Color(0xffFFFFFF),
     ),
   );

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/modules/homepage/screens/home_page_screen.dart';
 import 'package:stylish_shopping_app/modules/wishlist/screens/wishlist_screen.dart';
 import 'package:stylish_shopping_app/modules/cart/screens/cart_screen.dart';
@@ -91,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen>
               _titles[_selectedIndex]!,
               style: AppTextStyle.s17.copyWith(
                 fontWeight: FontWeight.w600,
-                color: const Color(0xff1D1E20),
+                color: context.surfaceColor,
               ),
             )
           : null,
@@ -108,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen>
     return Container(
       height: 80,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.backgroundColor,
         boxShadow: [
           BoxShadow(
             color: const Color(0x1D1E2014),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -30,9 +31,9 @@ class PrimaryButton extends StatelessWidget {
             children: [
               Text(
                 text,
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: 'Inter',
-                  color: Color(0xffFEFEFE),
+                  color: context.primaryButtonColor ,
                   fontSize: 17,
                   fontWeight: FontWeight.w500,
                 ),

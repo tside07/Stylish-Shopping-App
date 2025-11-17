@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
+import 'package:stylish_shopping_app/widgets/custom_title.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/utils/colors.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
@@ -13,17 +17,17 @@ class GetStartedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: AppColors.white,
-        appBar: CustomAppBar(
-        ),
+        backgroundColor: context.backgroundColor,
+        appBar: CustomAppBar(),
         body: Column(
           children: [
-            Expanded(
-              child: const _Body(),
-            ),
+            Expanded(child: const _Body()),
 
             // Already have an account
             Row(
@@ -31,7 +35,10 @@ class GetStartedScreen extends StatelessWidget {
               children: [
                 Text(
                   'Already have an account? ',
-                  style: AppTextStyle.s15.copyWith(color: Colors.grey),
+                  style: AppTextStyle.s15.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: isDark ? Color(0xffFEFEFE) : AppColors.grey,
+                  ),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -39,7 +46,9 @@ class GetStartedScreen extends StatelessWidget {
                   },
                   child: Text(
                     'Signin',
-                    style: AppTextStyle.s15.copyWith(color: Colors.black),
+                    style: AppTextStyle.s15.copyWith(
+                      color: context.primaryTextColor,
+                    ),
                   ),
                 ),
               ],
@@ -50,7 +59,7 @@ class GetStartedScreen extends StatelessWidget {
             SizedBox(
               child: PrimaryButton(
                 text: 'Create an Account',
-                color: Color(0xff9775FA),
+                color: context.primaryColor,
                 onClick: () {
                   Navigator.pushNamed(context, AppRoutes.signup);
                 },
@@ -75,14 +84,7 @@ class _Body extends StatelessWidget {
           AppGap.h15,
 
           // Title
-          Text(
-            "Let's Get Started",
-            style: AppTextStyle.base.copyWith(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: AppColors.black,
-            ),
-          ),
+          CustomTitle(text: 'Let\'s Get Started'),
 
           AppGap.h185,
 

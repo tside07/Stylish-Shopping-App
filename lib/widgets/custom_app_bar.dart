@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
@@ -24,7 +27,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       scrolledUnderElevation: 0,
-      backgroundColor: backgroundColor ?? const Color(0xffFEFEFE),
+      backgroundColor: backgroundColor ?? context.backgroundColor,
       elevation: elevation ?? 0,
       automaticallyImplyLeading: false,
       leading: leading != null
@@ -34,7 +37,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Color(0xffF5F6FA),
+                  color: context.backgroundAppBarIconColor,
                 ),
                 child: leading,
               ),
@@ -50,7 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    boxShadow: [BoxShadow(color: const Color(0xffF5F6FA))],
+                    color: context.backgroundAppBarIconColor,
                   ),
                   child: action,
                 ),
@@ -84,6 +87,8 @@ class AppBarIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final defaultColor = color ?? context.primaryTextColor;
+
     Widget iconWidget;
 
     if (svgPath != null) {
@@ -91,9 +96,10 @@ class AppBarIconButton extends StatelessWidget {
         svgPath!,
         width: width ?? 25,
         height: height ?? 25,
-        colorFilter: color != null
-            ? ColorFilter.mode(color!, BlendMode.srcIn)
-            : null,
+        colorFilter: ColorFilter.mode(
+          defaultColor,
+          BlendMode.srcIn,
+        ),
       );
     } else if (pngPath != null) {
       iconWidget = Image.asset(
@@ -106,7 +112,7 @@ class AppBarIconButton extends StatelessWidget {
       iconWidget = Icon(
         icon,
         size: width ?? 25,
-        color: color ?? const Color(0xff1D1E20),
+        color: defaultColor,
       );
     } else {
       iconWidget = const SizedBox.shrink();

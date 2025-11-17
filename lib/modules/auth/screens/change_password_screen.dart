@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
@@ -33,7 +34,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: context.backgroundColor,
           appBar: CustomAppBar(
             leading: AppBarIconButton(
               onPressed: () => Navigator.pop(context),

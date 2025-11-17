@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_input_decoration.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/modules/gender_selection/screens/gender_selection_screen.dart';
+import 'package:stylish_shopping_app/utils/colors.dart';
+import 'package:stylish_shopping_app/widgets/custom_title.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import 'package:stylish_shopping_app/widgets/save_switch.dart';
 import '../../../utils/routes.dart';
@@ -41,12 +46,15 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: SafeArea(
         top: false,
         child: Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: context.backgroundColor,
           appBar: CustomAppBar(
             leading: AppBarIconButton(
               onPressed: () => Navigator.pop(context),
@@ -74,7 +82,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   textAlign: TextAlign.center,
                   text: TextSpan(
                     style: AppTextStyle.s13.copyWith(
-                      color: Colors.grey,
+                      color: AppColors.grey,
                       fontWeight: FontWeight.w400,
                       height: 18 / 13,
                     ),
@@ -83,7 +91,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         text:
                             'By connecting your account confirm that you agree\nwith our ',
                         style: AppTextStyle.s13.copyWith(
-                          color: Colors.grey,
+                          color: AppColors.grey,
                           fontWeight: FontWeight.w400,
                           height: 18 / 13,
                         ),
@@ -91,7 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       TextSpan(
                         text: 'Term and Condition',
                         style: AppTextStyle.s13.copyWith(
-                          color: Color(0xff1D1E20),
+                          color: isDark ? const Color(0xffFFFFFF) : const Color(0xff1D1E20),
                           fontWeight: FontWeight.w500,
                           height: 18 / 13,
                         ),
@@ -150,16 +158,7 @@ class _Body extends StatelessWidget {
         children: [
           AppGap.h15,
 
-          Center(
-            child: Text(
-              'Welcome',
-              style: AppTextStyle.base.copyWith(
-                fontSize: 28,
-                color: const Color(0xff1D1E20),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
+          Center(child: CustomTitle(text: 'Welcome')),
 
           AppGap.h5,
 
@@ -181,7 +180,9 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Username',
               labelStyle: AppTextStyle.s15.copyWith(),
-              floatingLabelStyle: AppTextStyle.s13.copyWith(),
+              floatingLabelStyle: AppTextStyle.s13.copyWith(
+                color: context.primaryTextColor,
+              ),
               suffixIcon: isUsernameValid
                   ? const Icon(Icons.check, color: Color(0xff34C358), size: 20)
                   : null,
@@ -197,7 +198,9 @@ class _Body extends StatelessWidget {
             decoration: AppInputDecoration.underline.copyWith(
               labelText: 'Password',
               labelStyle: AppTextStyle.s15.copyWith(),
-              floatingLabelStyle: AppTextStyle.s13.copyWith(),
+              floatingLabelStyle: AppTextStyle.s13.copyWith(
+                color: context.primaryTextColor,
+              ),
             ),
           ),
 
