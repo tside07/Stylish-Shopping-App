@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../../../widgets/custom_app_bar.dart';
 import 'package:stylish_shopping_app/modules/brands/widgets/brand_detail_widget.dart';
@@ -19,7 +20,7 @@ class BrandDetailScreen extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: const Color(0xffFEFEFE),
+        backgroundColor: context.backgroundColor,
         appBar: CustomAppBar(
           leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
@@ -28,10 +29,14 @@ class BrandDetailScreen extends StatelessWidget {
           title: Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              boxShadow: const [BoxShadow(color: Color(0xffF5F6FA))],
+              color: context.backgroundAppBarIconColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Image.asset(brandLogo, height: 30),
+            child: Image.asset(
+              brandLogo,
+              height: 30,
+              color: context.primaryTextColor,
+            ),
           ),
           action: AppBarIconButton(
             onPressed: () {

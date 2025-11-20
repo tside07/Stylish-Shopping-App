@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../core/theme/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,7 +27,7 @@ class BrandItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
-          color: const Color(0xffF5F6FA),
+          color: context.secondaryColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
@@ -36,17 +37,22 @@ class BrandItem extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: const Color(0xffFEFEFE),
+                color: context.secondaryColor,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Image.asset(brand.logo, width: 25, height: 17),
+              child: Image.asset(
+                brand.logo,
+                color: context.primaryTextColor,
+                width: 25,
+                height: 17,
+              ),
             ),
             AppGap.w10,
             Text(
               brand.name,
               style: AppTextStyle.s15.copyWith(
                 fontWeight: FontWeight.w500,
-                color: const Color(0xff1D1E20),
+                color: context.primaryTextColor,
               ),
             ),
           ],
@@ -75,7 +81,7 @@ class WelcomeBanner extends StatelessWidget {
             style: AppTextStyle.base.copyWith(
               fontSize: 28,
               fontWeight: FontWeight.w600,
-              color: const Color(0xff1D1E20),
+              color: context.primaryTextColor,
             ),
           ),
           AppGap.h5,
@@ -106,16 +112,12 @@ class HomeSearchBar extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 16.5, vertical: 6),
             decoration: BoxDecoration(
-              color: const Color(0xffF5F6FA),
+              color: context.backgroundAppBarIconColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Row(
               children: [
-                SvgPicture.asset(
-                  IconPath.search,
-                  width: 20,
-                  height: 20,
-                ),
+                SvgPicture.asset(IconPath.search, width: 20, height: 20),
                 AppGap.w10,
                 Expanded(
                   child: TextField(

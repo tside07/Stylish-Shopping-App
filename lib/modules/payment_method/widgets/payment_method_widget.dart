@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 
@@ -25,6 +27,9 @@ class AddCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton(
@@ -32,7 +37,7 @@ class AddCard extends StatelessWidget {
           Navigator.pushNamed(context, AppRoutes.addCard);
         },
         style: OutlinedButton.styleFrom(
-          backgroundColor: const Color(0xffF6F2FF),
+          backgroundColor: isDark ? Color(0xff2F244E) : Color(0xffF6F2FF),
           side: const BorderSide(color: Color(0xff9775FA), width: 1.5),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -64,5 +69,3 @@ class AddCard extends StatelessWidget {
     );
   }
 }
-
-

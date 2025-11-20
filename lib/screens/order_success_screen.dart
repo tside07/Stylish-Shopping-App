@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
@@ -19,7 +20,7 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: context.backgroundColor,
         appBar: CustomAppBar(
           leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
@@ -31,28 +32,29 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
             Expanded(child: _Body()),
 
             AppGap.h30,
+
             // Go to Orders Button
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
+                child: InkWell(
+                  onTap: () {
                     // Navigate to Order screen
                   },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffF5F5F5),
-                    shape: RoundedRectangleBorder(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: context.containerColor,
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    elevation: 0,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.5),
-                    child: Text(
-                      'Go to Orders',
-                      style: AppTextStyle.s17.copyWith(
-                        color: const Color(0xff8F959E),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 15.5),
+                      child: Text(
+                        'Go to Orders',
+                        textAlign: TextAlign.center,
+                        style: AppTextStyle.s17.copyWith(
+                          color: Color(0xff8F959E),
+                        ),
                       ),
                     ),
                   ),
@@ -108,11 +110,7 @@ class _Body extends StatelessWidget {
 
                   Container(
                     alignment: Alignment(0, -0.53),
-                    child: Image.asset(
-                      Images.phone,
-                      height: 250,
-                      width: 300,
-                    ),
+                    child: Image.asset(Images.phone, height: 250, width: 300),
                   ),
 
                   Align(
@@ -122,7 +120,7 @@ class _Body extends StatelessWidget {
                       style: AppTextStyle.base.copyWith(
                         fontSize: 28,
                         fontWeight: FontWeight.w600,
-                        color: const Color(0xff1D1E20),
+                        color: context.primaryTextColor,
                       ),
                     ),
                   ),

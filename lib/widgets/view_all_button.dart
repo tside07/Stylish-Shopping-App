@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import '../../../core/theme/app_text_style.dart';
 
 class ViewAllButton extends StatelessWidget {
@@ -17,7 +18,7 @@ class ViewAllButton extends StatelessWidget {
           header,
           style: AppTextStyle.s17.copyWith(
             fontWeight: FontWeight.w600,
-            color: const Color(0xff1D1E20),
+            color: context.primaryTextColor,
           ),
         ),
         GestureDetector(
@@ -47,7 +48,7 @@ class HomeViewAll extends StatelessWidget {
         Text(
           header,
           style: AppTextStyle.s17.copyWith(
-            color: const Color(0xff1D1E20),
+            color: context.primaryTextColor,
           ),
         ),
         GestureDetector(

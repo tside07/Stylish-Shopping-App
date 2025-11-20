@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/models/cart_item_model.dart';
@@ -25,11 +26,11 @@ class CartItemWidget extends StatelessWidget {
       width: double.infinity,
       height: 120,
       decoration: BoxDecoration(
-        color: Color(0xffFEFEFE),
-        border: Border.all(color: const Color(0xffF5F6FA)),
+        color: context.cardColor,
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         child: Row(
           children: [
             // Product Image
@@ -42,12 +43,17 @@ class CartItemWidget extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 2),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _ProductName(item: item),
-                    AppGap.h10,
-                    _ProductPrice(item: item),
-
-                    AppGap.h10,
+                    Expanded(
+                      child: Column(
+                        children: [
+                          _ProductName(item: item),
+                          AppGap.h10,
+                          _ProductPrice(item: item),
+                        ],
+                      ),
+                    ),
 
                     // Quantity Controls
                     _QuantityControl(
@@ -110,32 +116,23 @@ class _QuantityControl extends StatelessWidget {
       children: [
         Row(
           children: [
-            _QuantityButton(
-              icon: IconPath.arrowDown,
-              onTap: onDecrement,
-            ),
+            _QuantityButton(icon: IconPath.arrowDown, onTap: onDecrement),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 '${item.quantity}',
                 style: AppTextStyle.s13.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: const Color(0xff1D1E20),
+                  color: context.primaryTextColor,
                 ),
               ),
             ),
-            _QuantityButton(
-              icon: IconPath.arrowUp,
-              onTap: onIncrement,
-            ),
+            _QuantityButton(icon: IconPath.arrowUp, onTap: onIncrement),
           ],
         ),
 
         // Delete Button
-        _QuantityButton(
-          onTap: onRemove,
-          icon: IconPath.delete,
-        ),
+        _QuantityButton(onTap: onRemove, icon: IconPath.delete),
       ],
     );
   }
@@ -180,7 +177,7 @@ class _ProductName extends StatelessWidget {
       item.productName,
       style: AppTextStyle.s13.copyWith(
         fontWeight: FontWeight.w500,
-        color: const Color(0xff1D1E20),
+        color: context.primaryTextColor,
       ),
       maxLines: 2,
       overflow: TextOverflow.ellipsis,

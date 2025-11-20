@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/save_switch.dart';
@@ -39,7 +40,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: context.backgroundColor,
         appBar: CustomAppBar(
           leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
@@ -48,7 +49,7 @@ class _DeliveryAddressScreenState extends State<DeliveryAddressScreen> {
           title: Text(
             'Address',
             style: AppTextStyle.s17.copyWith(
-              color: const Color(0xff1D1E20),
+              color: context.primaryTextColor,
               fontWeight: FontWeight.w600,
             ),
           ),

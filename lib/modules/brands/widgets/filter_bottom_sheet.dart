@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
@@ -23,18 +24,18 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     super.dispose();
   }
 
-  String get priceRangeText {
-    final start = _startController.text.trim();
-    final end = _endController.text.trim();
+  String get rangePriceValueText {
+    final startValue = _startController.text.trim();
+    final endValue = _endController.text.trim();
 
-    if (start.isEmpty && end.isEmpty) {
+    if (startValue.isEmpty && endValue.isEmpty) {
       return 'From - to - ';
-    } else if (start.isNotEmpty && end.isEmpty) {
-      return 'From \$$start to - ';
-    } else if (start.isEmpty && end.isNotEmpty) {
-      return 'From - to \$$end ';
+    } else if (startValue.isNotEmpty && endValue.isEmpty) {
+      return 'From \$$startValue to - ';
+    } else if (startValue.isEmpty && endValue.isNotEmpty) {
+      return 'From - to \$$endValue ';
     } else {
-      return 'From \$$start to \$$end ';
+      return 'From \$$startValue to \$$endValue ';
     }
   }
 
@@ -49,8 +50,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.heightOf(context) * 0.4,
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration: BoxDecoration(
+        color: context.backgroundColor,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: GestureDetector(
@@ -69,7 +70,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       'Filter',
                       style: AppTextStyle.s17.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: const Color(0xff1D1E20),
+                        color: context.primaryTextColor,
                       ),
                     ),
                     GestureDetector(
@@ -77,13 +78,13 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       child: Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: const Color(0xff00FFEA),
+                          color: context.resetValueButtonColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
                           'Reset',
                           style: AppTextStyle.s15.copyWith(
-                            color: const Color(0xff1D1E20),
+                            color: context.primaryTextColor,
                           ),
                         ),
                       ),
@@ -132,7 +133,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            priceRangeText,
+                            rangePriceValueText,
                             style: AppTextStyle.s13.copyWith(
                               color: const Color(0xff8F959E),
                               fontWeight: FontWeight.w400,
@@ -169,13 +170,13 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   vertical: 20,
                 ),
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xffF5F6FA)),
+                  border: Border.all(color: context.containerButtonTextColor),
                 ),
                 child: Row(
                   children: [
                     Expanded(
                       child: Material(
-                        color: const Color(0xffF5F6FA),
+                        color: Color(0xffF5F6FA),
                         borderRadius: BorderRadius.circular(10),
                         child: InkWell(
                           onTap: () => Navigator.pop(context),
@@ -244,7 +245,7 @@ class _SectionTitle extends StatelessWidget {
       title,
       style: AppTextStyle.s17.copyWith(
         fontWeight: FontWeight.w600,
-        color: const Color(0xff1D1E20),
+        color: context.primaryTextColor,
       ),
     );
   }

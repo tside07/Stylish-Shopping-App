@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/modules/gender_selection/widgets/gender_selection_widget.dart';
 import 'dart:ui' as ui;
@@ -10,7 +13,7 @@ class GenderSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Color(0xff9775FA),
+      color: context.genderSelectionBackgroundColor,
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -92,6 +95,9 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+    
     return Column(
       children: [
         AppGap.h140,
@@ -112,7 +118,7 @@ class _Body extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: isDark ? const Color(0xff29363D) : const Color(0xffFFFFFF) ,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Column(

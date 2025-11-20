@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'package:stylish_shopping_app/models/payment_method_model.dart';
 
 class PaymentMethodItem extends StatelessWidget {
@@ -16,15 +19,27 @@ class PaymentMethodItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+
+    Color? getIconColor() {
+      if (method.id == '3') {
+        return isDark ? Color(0xffFEFEFE) : null;
+      }
+      return null;
+    }
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0XffF5F6FA),
+          color: isSelected
+              ? method.backgroundColor ?? const Color(0xff9775FA)
+              : context.inputFieldFillColor,
           border: Border.all(
             color: isSelected
-                ? const Color(0xff9775FA)
-                : const Color(0xffFEFEFE),
+                ? method.selectedColor ?? const Color(0xff9775FA)
+                : context.inputFieldFillColor,
             width: 1.5,
           ),
           borderRadius: BorderRadius.circular(10),
@@ -33,9 +48,14 @@ class PaymentMethodItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
-              child: Center(
-                child: SvgPicture.asset(method.icon, width: 18, height: 18),
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+              child: SvgPicture.asset(
+                method.icon,
+                width: 20,
+                height: 20,
+                colorFilter: getIconColor() != null
+                    ? ColorFilter.mode(getIconColor()!, BlendMode.srcIn)
+                    : null,
               ),
             ),
           ],
@@ -68,8 +88,6 @@ class PaymentItem extends StatelessWidget {
             right: index != paymentMethods.length - 1 ? 17 : 0,
           ),
           child: SizedBox(
-            width: 100,
-            height: 50,
             child: PaymentMethodItem(
               method: method,
               isSelected: isSelected,

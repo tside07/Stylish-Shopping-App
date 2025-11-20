@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
-import '../../products/widgets/payment_method_item.dart';
+import '../widgets/payment_method_item.dart';
 import 'package:stylish_shopping_app/widgets/custom_text_field.dart';
 import 'package:stylish_shopping_app/widgets/form_label.dart';
 import '/widgets/custom_app_bar.dart';
@@ -21,7 +22,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: context.backgroundColor,
         appBar: CustomAppBar(
           leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
@@ -30,7 +31,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
           title: Text(
             'Add New Card',
             style: AppTextStyle.s17.copyWith(
-              color: const Color(0xff1D1E20),
+              color: context.primaryTextColor,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -63,6 +64,7 @@ class _Body extends StatefulWidget {
 }
 
 class _BodyState extends State<_Body> {
+  String selectedIndex = '1';
   String selectedPaymentMethod = '1';
 
   final TextEditingController _nameController = TextEditingController();
@@ -88,6 +90,7 @@ class _BodyState extends State<_Body> {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               AppGap.h25,
 

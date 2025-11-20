@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
-import 'package:stylish_shopping_app/modules/home/screens/home_screen.dart';
+import 'package:stylish_shopping_app/modules/hub/screens/hub_screen.dart';
 import '../../../core/theme/app_text_style.dart';
 
 class Header extends StatelessWidget {
@@ -20,7 +21,7 @@ class Header extends StatelessWidget {
             fontSize: 25,
             fontWeight: FontWeight.w600,
             height: 28 / 25,
-            color: const Color(0xff1D1E20),
+            color: context.primaryTextColor,
           ),
         ),
 
@@ -54,12 +55,13 @@ class GenderButton extends StatelessWidget {
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                MaterialPageRoute(builder: (context) => const HubScreen()),
                 (route) => false,
               );
             },
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(vertical: 20.5),
+              backgroundColor: Color(0xffF5F6FA),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -78,7 +80,7 @@ class GenderButton extends StatelessWidget {
             onPressed: () {
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const HomeScreen()),
+                MaterialPageRoute(builder: (context) => const HubScreen()),
                 (route) => false,
               );
             },
@@ -110,7 +112,7 @@ class SkipButton extends StatelessWidget {
       onPressed: () {
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const HomeScreen()),
+          MaterialPageRoute(builder: (context) => const HubScreen()),
           (route) => false,
         );
       },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 
@@ -23,9 +24,9 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.42,
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      height: MediaQuery.of(context).size.height * 0.43,
+      decoration: BoxDecoration(
+        color: context.backgroundColor,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: SafeArea(
@@ -51,7 +52,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                 'Sort',
                 style: AppTextStyle.s17.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: const Color(0xff1D1E20),
+                  color: context.primaryTextColor,
                 ),
               ),
             ),
@@ -77,21 +78,23 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                       });
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 16,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 14),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: const Color(0xffF5F6FA),
+                        color: context.containerColor,
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(option, style: AppTextStyle.s15.copyWith()),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: Text(option, style: AppTextStyle.s15.copyWith(color: context.primaryTextColor)),
+                          ),
                           if (isSelected)
                             SvgPicture.asset(
                               IconPath.check2,
+                              // width: 20,
+                              // height: 20,
                             ),
                         ],
                       ),
@@ -109,7 +112,7 @@ class _SortBottomSheetState extends State<SortBottomSheet> {
                 horizontal: 17.5,
               ),
               decoration: BoxDecoration(
-                border: Border.all(color: Color(0xffF5F6FA)),
+                border: Border.all(color: context.containerButtonTextColor),
               ),
               child: Row(
                 children: [

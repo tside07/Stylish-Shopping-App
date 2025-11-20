@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../../../core/theme/app_text_style.dart';
@@ -61,7 +62,7 @@ class _CartScreenState extends State<CartScreen> {
     return SafeArea(
       top: false,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: context.backgroundColor,
         appBar: CustomAppBar(
           leading: AppBarIconButton(
             onPressed: () => Navigator.pop(context),
@@ -71,7 +72,7 @@ class _CartScreenState extends State<CartScreen> {
             'Cart',
             style: AppTextStyle.s17.copyWith(
               fontWeight: FontWeight.w600,
-              color: const Color(0xff1D1E20),
+              color: context.primaryTextColor,
             ),
           ),
         ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import 'package:stylish_shopping_app/widgets/star_rating.dart';
@@ -35,7 +38,7 @@ class ProductImageSection extends StatelessWidget {
             color: const Color(0xffF2F2F2),
             child: Stack(
               children: [
-                // Hình sản phẩm
+                // Product Image
                 Positioned.fill(
                   child: Image.asset(mainImage, fit: BoxFit.contain),
                 ),
@@ -92,7 +95,7 @@ class _IconButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 15),
+        padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Color(0xffF5F6FA),
@@ -136,7 +139,7 @@ class ProductInfo extends StatelessWidget {
                 style: AppTextStyle.base.copyWith(
                   fontSize: 22,
                   fontWeight: FontWeight.w600,
-                  color: const Color(0xff1D1E20),
+                  color: context.primaryTextColor,
                   height: 24 / 22,
                 ),
                 // maxLines: 3,
@@ -158,7 +161,7 @@ class ProductInfo extends StatelessWidget {
               style: AppTextStyle.base.copyWith(
                 fontWeight: FontWeight.w600,
                 fontSize: 22,
-                color: const Color(0xff1D1E20),
+                color: context.primaryTextColor,
                 height: 24 / 22,
               ),
             ),
@@ -201,7 +204,7 @@ class GalleryImages extends StatelessWidget {
             String image = entry.value;
             return Padding(
               padding: EdgeInsets.only(
-                right: index != galleryImages.length ? 10 : 0,
+                right: index != galleryImages.length ? 9 : 0,
               ),
               child: _GalleryThumbnail(
                 image: image,
@@ -272,7 +275,7 @@ class SizeSelection extends StatelessWidget {
               'Size',
               style: AppTextStyle.s17.copyWith(
                 fontWeight: FontWeight.w600,
-                color: const Color(0xff1D1E20),
+                color: context.primaryTextColor,
               ),
             ),
             Text(
@@ -314,27 +317,30 @@ class _SizeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         width: 60,
         height: 60,
         decoration: BoxDecoration(
-          color: const Color(0xffF5F6FA),
+          color: context.buttonColor,
           border: Border.all(
             color: isSelected
                 ? const Color(0xff9775FA)
                 : const Color(0xffF5F6FA),
-            width: isSelected ? 2 : 1,
+            width: isSelected ? 2 : 0.0001,
           ),
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
           child: Text(
             size,
             style: AppTextStyle.s17.copyWith(
               fontWeight: FontWeight.w600,
-              color: const Color(0xff1D1E20),
+              color: context.primaryTextColor,
             ),
           ),
         ),
@@ -368,7 +374,7 @@ class ColorSelection extends StatelessWidget {
               'Color',
               style: AppTextStyle.s17.copyWith(
                 fontWeight: FontWeight.w600,
-                color: const Color(0xff1D1E20),
+                color: context.primaryTextColor,
               ),
             ),
             Text(
@@ -378,6 +384,7 @@ class ColorSelection extends StatelessWidget {
           ],
         ),
         AppGap.h15,
+
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -415,7 +422,7 @@ class _ColorButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(right: 12),
+        padding: const EdgeInsets.only(right: 18),
         child: Container(
           width: 60,
           height: 60,
@@ -425,7 +432,7 @@ class _ColorButton extends StatelessWidget {
               color: isSelected
                   ? const Color(0xff9775FA)
                   : const Color(0xffDEDEDE),
-              width: isSelected ? 2 : 1,
+              width: isSelected ? 2 : 0.0001,
             ),
             borderRadius: BorderRadius.circular(10),
           ),
@@ -449,7 +456,7 @@ class ProductDescription extends StatelessWidget {
           'Description',
           style: AppTextStyle.s17.copyWith(
             fontWeight: FontWeight.w600,
-            color: const Color(0xff1D1E20),
+            color: context.primaryTextColor,
           ),
         ),
         AppGap.h10,
@@ -520,6 +527,7 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
                   child: Text(
                     'Show Less',
                     style: AppTextStyle.s15.copyWith(
+                      color: context.primaryTextColor,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -532,9 +540,9 @@ class _ExpandableDescriptionState extends State<ExpandableDescription> {
           return Text(widget.content, style: textStyle);
         }
 
-        final readMoreText = ' Read More...';
+        final readMoreText = ' Read More..';
         final readMoreStyle = AppTextStyle.s15.copyWith(
-          color: const Color(0xff1D1E20),
+          color: context.primaryTextColor,
           fontWeight: FontWeight.w600,
         );
 
@@ -680,7 +688,7 @@ class _Reviewer extends StatelessWidget {
         Text(
           name,
           style: AppTextStyle.s15.copyWith(
-            color: const Color(0xff1D1E20),
+            color: context.primaryTextColor,
             fontWeight: FontWeight.w600,
           ),
         ),
@@ -688,7 +696,9 @@ class _Reviewer extends StatelessWidget {
           children: [
             Text(
               rating,
-              style: AppTextStyle.s15.copyWith(fontWeight: FontWeight.w600),
+              style: AppTextStyle.s15.copyWith(
+                color: context.primaryTextColor,
+                fontWeight: FontWeight.w600),
             ),
             AppGap.w5,
 

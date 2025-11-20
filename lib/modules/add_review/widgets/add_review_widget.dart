@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
@@ -27,7 +28,7 @@ class RatingField extends StatelessWidget {
           itemPadding: const EdgeInsets.symmetric(horizontal: 2.0),
           itemBuilder: (context, color) =>
               const Icon(Icons.star, color: Color(0xffFFC833)),
-          unratedColor: const Color(0xffE7E8EA),
+          unratedColor: context.secondaryTextColor,
           onRatingUpdate: onStarChanged,
           updateOnDrag: true,
           glow: false,
@@ -37,7 +38,7 @@ class RatingField extends StatelessWidget {
         Text(
           starValue.toStringAsFixed(1),
           style: AppTextStyle.s17.copyWith(
-            color: const Color(0xff1D1E20),
+            color: context.primaryTextColor,
             fontWeight: FontWeight.w600,
           ),
         ),

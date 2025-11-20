@@ -18,13 +18,13 @@ class ThemeProvider extends ChangeNotifier {
   static final ThemeData _lightTheme = ThemeData(
     brightness: Brightness.light,
     scaffoldBackgroundColor: const Color(0xffFEFEFE),
-    primaryColor: const Color(0xff9775FA),
+    primaryColor: const Color(0xff9775FA),  
     fontFamily: 'FiraSans',
     colorScheme: const ColorScheme.light(
       primary: Color(0xffFEFEFE),
       surface: Color(0xffFFFFFF),
       onSurface: Color(0xff1D1E20),
-
+      secondary: Color(0xffF5F6FA), 
       
     ),
     textTheme: const TextTheme(
@@ -54,6 +54,7 @@ class ThemeProvider extends ChangeNotifier {
       primary: Color(0xff000000),
       surface: Color(0xff1B262C),
       onSurface: Color(0xffFFFFFF),
+      secondary: Color(0xff29363D),
     ),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(color: Color(0xffFFFFFF), fontFamily: 'FiraSans'),

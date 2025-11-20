@@ -7,7 +7,8 @@ import '../modules/auth/screens/forgot_password_screen.dart';
 import '../modules/auth/screens/verification_code_screen.dart';
 import '../modules/auth/screens/create_new_password_screen.dart';
 import '../modules/gender_selection/screens/gender_selection_screen.dart';
-import '../modules/home/screens/home_screen.dart';
+import '../modules/homepage/screens/home_page_screen.dart';
+import '../modules/hub/screens/hub_screen.dart';
 import '../modules/delivery_address/screens/delivery_address_screen.dart';
 import '../modules/payment_method/screens/payment_method_screen.dart';
 import '../modules/add_card/screens/add_new_card_screen.dart';
@@ -27,6 +28,7 @@ class AppRoutes {
   static const String createNewPw = '/create-new-password';
   static const String selectGender = '/select-gender';
   static const String homepage = '/homepage-screen';
+  static const String hub = '/hub-screen';
   static const String cart = '/cart-screen';
   static const String address = '/address';
   static const String payment = '/payment';
@@ -45,7 +47,8 @@ class AppRoutes {
     verificationCode: (context) => const VerificationCodeScreen(),
     createNewPw: (context) => const CreateNewPasswordScreen(),
     selectGender: (context) => const GenderSelectionScreen(),
-    homepage: (context) => const HomeScreen(),
+    homepage: (context) => const HomePageScreen(),
+    hub: (context) => const HubScreen(),
     cart: (context) => const CartScreen(isInHub: false),
     address: (context) => const DeliveryAddressScreen(),
     payment: (context) => const PaymentMethodScreen(),

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+import 'package:provider/provider.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 
 class StarRating extends StatelessWidget {
   final double value;
   final int starCount;
   final double starSize;
   final Color starColor;
-  final Color starOffColor;
+  final Color? starOffColor;
   final bool showValue;
   final TextStyle? valueTextStyle;
   final Function(double)? onValueChanged;
@@ -19,7 +21,7 @@ class StarRating extends StatelessWidget {
     this.starCount = 5,
     this.starSize = 13,
     this.starColor = const Color(0xffFF981F),
-    this.starOffColor = const Color(0xff8F959E),
+    this.starOffColor,
     this.showValue = false,
     this.valueTextStyle,
     this.onValueChanged,
@@ -27,13 +29,17 @@ class StarRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+
+
     return RatingStars(
       value: value,
       onValueChanged: onValueChanged ?? (v) {},
       starCount: starCount,
       starSize: starSize,
       starColor: starColor,
-      starOffColor: starOffColor,
+      starOffColor: isDark ? const Color(0xff1B262C) : const Color(0xffFEFEFE),
       valueLabelVisibility: showValue,
       maxValueVisibility: false,
       starSpacing: 2,

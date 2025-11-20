@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/widgets/primary_button.dart';
 import '../../../core/theme/app_text_style.dart';
@@ -26,7 +27,7 @@ class CartBottomSection extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: const Color(0xffFEFEFE),
+            color: context.backgroundColor,
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withValues(alpha: 0.05),
@@ -96,7 +97,7 @@ class _DeliveryAddressSection extends StatelessWidget {
           children: [
             Text(
               'Delivery Address',
-              style: AppTextStyle.s17.copyWith(color: const Color(0xff1D1E20)),
+              style: AppTextStyle.s17.copyWith(color: context.primaryTextColor),
             ),
             const Icon(Icons.keyboard_arrow_right, size: 15),
           ],
@@ -164,7 +165,7 @@ class _PaymentMethodSection extends StatelessWidget {
           children: [
             Text(
               'Payment Method',
-              style: AppTextStyle.s17.copyWith(color: const Color(0xff1D1E20)),
+              style: AppTextStyle.s17.copyWith(color: context.primaryTextColor),
             ),
             const Icon(Icons.keyboard_arrow_right, size: 15),
           ],
@@ -195,7 +196,7 @@ class _PaymentMethodSection extends StatelessWidget {
                     'Visa Classic',
                     style: AppTextStyle.s15.copyWith(
                       fontWeight: FontWeight.w400,
-                      color: const Color(0xff1D1E20),
+                      color: context.primaryTextColor,
                     ),
                   ),
                   AppGap.h5,
@@ -249,7 +250,7 @@ class _OrderInfoSection extends StatelessWidget {
           children: [
             Text(
               'Order Info',
-              style: AppTextStyle.s17.copyWith(color: const Color(0xff1D1E20)),
+              style: AppTextStyle.s17.copyWith(color: context.primaryTextColor),
             ),
           ],
         ),
@@ -297,7 +298,7 @@ class _PriceRow extends StatelessWidget {
         Text(
           value,
           style: AppTextStyle.s15.copyWith(
-            color: const Color(0xff1D1E20),
+            color: context.primaryTextColor,
             fontWeight: isTotal ? FontWeight.w600 : FontWeight.w400,
           ),
         ),

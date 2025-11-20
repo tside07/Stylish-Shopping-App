@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import '../../../core/theme/app_text_style.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -24,7 +25,7 @@ class ProductItem extends StatelessWidget {
       },
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: context.backgroundColor,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
@@ -37,9 +38,7 @@ class ProductItem extends StatelessWidget {
                   width: double.infinity,
                   decoration: const BoxDecoration(
                     color: Color(0xffF5F6FA),
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(15),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
                   ),
                   child: ClipRRect(
                     borderRadius: const BorderRadius.vertical(
@@ -79,7 +78,7 @@ class ProductItem extends StatelessWidget {
                       style: AppTextStyle.base.copyWith(
                         fontSize: 11,
                         fontWeight: FontWeight.w500,
-                        color: const Color(0xff1D1E20),
+                        color: context.primaryTextColor,
                         height: 15 / 11,
                       ),
                     ),
@@ -88,7 +87,7 @@ class ProductItem extends StatelessWidget {
                       product.productPrice,
                       style: AppTextStyle.s13.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: const Color(0xff1D1E20),
+                        color: context.primaryTextColor,
                       ),
                     ),
                   ],

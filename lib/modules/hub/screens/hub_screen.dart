@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/theme/app_text_style.dart';
 import 'package:stylish_shopping_app/modules/homepage/screens/home_page_screen.dart';
 import 'package:stylish_shopping_app/modules/wishlist/screens/wishlist_screen.dart';
 import 'package:stylish_shopping_app/modules/cart/screens/cart_screen.dart';
-import 'package:stylish_shopping_app/modules/home/widgets/app_side_menu.dart';
+import 'package:stylish_shopping_app/modules/hub/widgets/app_side_menu.dart';
 import 'package:stylish_shopping_app/widgets/custom_app_bar.dart';
 import 'dart:ui';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HubScreen extends StatefulWidget {
+  const HubScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HubScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
+class _HomeScreenState extends State<HubScreen>
     with SingleTickerProviderStateMixin {
   int _selectedIndex = 0;
   late AnimationController _animationController;
@@ -62,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   PreferredSizeWidget? _buildAppBar(BuildContext context) {
-    // Home page - show menu and cart
+    // Home page (index 0) - show menu and cart
     if (_selectedIndex == 0) {
       return CustomAppBar(
         leading: Builder(
@@ -82,27 +83,32 @@ class _HomeScreenState extends State<HomeScreen>
       );
     }
 
-    // Other pages - show back button and title
+    // Cart page (index 2) - only show title, no cart icon
+    if (_selectedIndex == 2) {
+      return CustomAppBar(
+        title: Text(
+          'Cart',
+          style: AppTextStyle.s17.copyWith(
+            fontWeight: FontWeight.w600,
+            color: context.primaryTextColor,
+          ),
+        ),
+      );
+    }
+
+    // Wishlist (index 1) and My Cards (index 3) - show title and cart icon
     return CustomAppBar(
-      leading: AppBarIconButton(
-        onPressed: () => _onItemTapped(0),
-        svgPath: IconPath.arrowLeft,
+      title: Text(
+        _titles[_selectedIndex] ?? '',
+        style: AppTextStyle.s17.copyWith(
+          fontWeight: FontWeight.w600,
+          color: context.primaryTextColor,
+        ),
       ),
-      title: _titles[_selectedIndex] != null
-          ? Text(
-              _titles[_selectedIndex]!,
-              style: AppTextStyle.s17.copyWith(
-                fontWeight: FontWeight.w600,
-                color: const Color(0xff1D1E20),
-              ),
-            )
-          : null,
-      action: _selectedIndex != 2
-          ? AppBarIconButton(
-              onPressed: () => _onItemTapped(2),
-              svgPath: IconPath.bag,
-            )
-          : null,
+      action: AppBarIconButton(
+        onPressed: () => _onItemTapped(2),
+        svgPath: IconPath.bag,
+      ),
     );
   }
 
@@ -110,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen>
     return Container(
       height: 80,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.secondaryColor,
         boxShadow: [
           BoxShadow(
             color: const Color(0x1D1E2014),
@@ -183,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen>
         top: false,
         child: Scaffold(
           resizeToAvoidBottomInset: true,
-          backgroundColor: const Color(0xffFEFEFE),
+          backgroundColor: context.backgroundColor,
           drawer: _selectedIndex == 0
               ? SafeArea(
                   top: false,

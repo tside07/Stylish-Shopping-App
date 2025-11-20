@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import '../core/theme/app_text_style.dart';
 import '../core/theme/app_input_decoration.dart';
 
@@ -28,7 +29,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xffF5F6FA),
+        color: context.inputFieldFillColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: TextField(

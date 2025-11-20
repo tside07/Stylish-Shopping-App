@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
-import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
@@ -44,7 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             )
           : null,
       centerTitle: true,
-      title: title,
+      title: title ,
       actions: action != null
           ? [
               Padding(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../../../core/theme/app_text_style.dart';
@@ -72,7 +73,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       right: false,
       left: false,
       child: Scaffold(
-        backgroundColor: const Color(0xffF2F2F2),
+        backgroundColor: context.backgroundColor,
         body: SingleChildScrollView(
           child: Column(
             children: [

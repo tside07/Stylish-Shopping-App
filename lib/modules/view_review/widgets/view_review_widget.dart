@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:stylish_shopping_app/core/constants/resources.dart';
+import 'package:stylish_shopping_app/core/extensions/theme_extension.dart';
+import 'package:stylish_shopping_app/core/theme/theme_provider.dart';
 import 'package:stylish_shopping_app/core/widgets/app_gap.dart';
 import 'package:stylish_shopping_app/utils/routes.dart';
 import '../../../core/theme/app_text_style.dart';
@@ -27,9 +30,8 @@ class ReviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.backgroundColor,
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: const Color(0xffF5F6FA), width: 1),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,7 +65,7 @@ class ReviewCard extends StatelessWidget {
                       name,
                       style: AppTextStyle.s15.copyWith(
                         fontWeight: FontWeight.w600,
-                        color: const Color(0xff1D1E20),
+                        color: context.primaryTextColor,
                       ),
                     ),
                     AppGap.h7,
@@ -96,7 +98,7 @@ class ReviewCard extends StatelessWidget {
                       Text(
                         rating.toString(),
                         style: AppTextStyle.s15.copyWith(
-                          color: const Color(0xff1D1E20),
+                          color: context.primaryTextColor,
                         ),
                       ),
                       AppGap.w5,
@@ -144,6 +146,9 @@ class ReviewSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    final isDark = themeProvider.isDarkMode;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -152,7 +157,7 @@ class ReviewSummary extends StatelessWidget {
           children: [
             Text(
               '${reviews.length} Reviews',
-              style: AppTextStyle.s15.copyWith(color: const Color(0xff1D1E20)),
+              style: AppTextStyle.s15.copyWith(color: context.primaryTextColor),
             ),
             AppGap.h5,
             Row(
@@ -160,7 +165,7 @@ class ReviewSummary extends StatelessWidget {
                 Text(
                   rating,
                   style: AppTextStyle.s13.copyWith(
-                    color: const Color(0xff1D1E20),
+                    color: context.primaryTextColor,
                   ),
                 ),
                 AppGap.w8,
@@ -179,7 +184,9 @@ class ReviewSummary extends StatelessWidget {
             style: AppTextStyle.s13.copyWith(fontWeight: FontWeight.w500),
           ),
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xffFF7043),
+            backgroundColor: isDark
+                ? const Color(0xff9775FA)
+                : const Color(0xffFF7043),
             foregroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10.5),
             shape: RoundedRectangleBorder(
