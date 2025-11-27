@@ -102,7 +102,7 @@ class _Body extends StatelessWidget {
                 fontSize: 28,
                 fontWeight: FontWeight.w600,
                 height: 31 / 28,
-                color: const Color(0xff1D1E20),
+                color: context.primaryTextColor,
               ),
             ),
           ),
