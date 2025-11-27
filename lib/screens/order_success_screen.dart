@@ -103,14 +103,14 @@ class _Body extends StatelessWidget {
                     maxWidth: 620,
                     maxHeight: 620,
                     child: Image.asset(
-                      Images.maskGr,
+                      ImagePath.maskGr,
                       // color: Color(0xff1D1E20),
                     ),
                   ),
 
                   Container(
                     alignment: Alignment(0, -0.53),
-                    child: Image.asset(Images.phone, height: 250, width: 300),
+                    child: Image.asset(ImagePath.phone, height: 250, width: 300),
                   ),
 
                   Align(

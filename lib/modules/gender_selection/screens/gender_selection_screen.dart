@@ -104,7 +104,7 @@ class _Body extends StatelessWidget {
 
         // Image
         Image.asset(
-          Images.logoManNWoman,
+          ImagePath.logoManNWoman,
           width: 382,
           height: 430,
           fit: BoxFit.contain,

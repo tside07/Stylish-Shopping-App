@@ -45,7 +45,7 @@ class ProductImageSection extends StatelessWidget {
 
                 Align(
                   alignment: Alignment(0, 1),
-                  child: Image.asset(Images.backgroundBrand),
+                  child: Image.asset(ImagePath.backgroundBrand),
                 ),
 
                   Align(

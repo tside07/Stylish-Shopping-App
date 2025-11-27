@@ -162,7 +162,7 @@ class _Body extends StatelessWidget {
 
           // Image
           Image.asset(
-            Images.logoLockedcloud,
+            ImagePath.logoLockedcloud,
             width: 320,
             height: 236,
             fit: BoxFit.cover,

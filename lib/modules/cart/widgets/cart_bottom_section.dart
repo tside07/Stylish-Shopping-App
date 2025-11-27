@@ -113,7 +113,7 @@ class _DeliveryAddressSection extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(Images.map),
+                    child: Image.asset(ImagePath.map),
                   ),
                   Center(child: SvgPicture.asset(IconPath.location)),
                 ],
@@ -181,7 +181,7 @@ class _PaymentMethodSection extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(Images.whiteBackground),
+                    child: Image.asset(ImagePath.whiteBackground),
                   ),
                   Center(child: SvgPicture.asset(IconPath.visa)),
                 ],

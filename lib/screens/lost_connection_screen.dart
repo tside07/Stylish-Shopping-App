@@ -59,7 +59,7 @@ class _LostConnectionScreenState extends State<LostConnectionScreen> {
               children: [
                 // Connection icon/image
                 Image.asset(
-                  Images.disconnect,
+                  ImagePath.disconnect,
                   width: 142,
                   height: 142,
                   errorBuilder: (context, error, stackTrace) {

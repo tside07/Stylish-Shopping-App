@@ -1,7 +1,7 @@
 part of 'resources.dart';
 
-class Images {
-  Images._();
+class ImagePath {
+  ImagePath._();
 
   static const String backgroundBrand = 'assets/images/background_brand.png';
   static const String disconnect = 'assets/images/disconnect.png';
